@@ -1,6 +1,6 @@
 'use client';
 
-import { UploadCloud, Cpu, Search, X, CheckCircle2, ArrowRight, Target, TrendingUp, Info, Award, BookOpen, Layers, Zap, Sparkles, User, HelpCircle, Compass, Heart, Share2, ChevronRight, BarChart3, ChevronDown, UserCheck, Briefcase, Rocket, Car, Bus, Bike, Plane } from "lucide-react"
+import { UploadCloud, Cpu, Search, X, CheckCircle2, ArrowRight, Target, TrendingUp, Info, Award, BookOpen, Layers, Zap, Sparkles, User, HelpCircle, Compass, Heart, Share2, ChevronRight, BarChart3, ChevronDown, UserCheck, Briefcase, Rocket, Car, Bus, Bike, Plane, MoreHorizontal } from "lucide-react"
 import { useState, useRef, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import CareerCoachingPortal from './pathways/CareerCoachingPortal';
@@ -390,29 +390,32 @@ const DAILY_QUOTES = [
     <div style={{ 
       background: '#fff', 
       border: '1px solid #E2E8F0', 
-      borderRadius: 12, 
-      padding: isStart ? '20px 24px' : '16px 20px', 
-      minWidth: isStart ? 280 : 180,
+      borderRadius: 16, 
+      padding: isStart ? '24px' : '18px 24px', 
+      minWidth: isStart ? 320 : 200,
       position: 'relative',
-      boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
-      transition: 'all 0.3s ease'
+      boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
+      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 12
     }} className="hover-scale">
-      <div style={{ position: 'absolute', top: 12, right: 12, color: '#CBD5E1' }}><Info size={14} /></div>
+      <div style={{ position: 'absolute', top: 16, right: 16, color: '#CBD5E1', cursor: 'pointer' }}><MoreHorizontal size={18} /></div>
       
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <h4 style={{ fontSize: isStart ? 16 : 14, fontWeight: 900, color: '#1E293B', margin: 0, lineHeight: 1.2 }}>{node.role}</h4>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+        <h4 style={{ fontSize: isStart ? 18 : 15, fontWeight: 900, color: '#1E293B', margin: 0, lineHeight: 1.2 }}>{node.role}</h4>
         
         {isStart && (
-          <>
-            <p style={{ fontSize: 11, color: '#64748B', margin: 0 }}>You have 8 of 15 most common skills for role</p>
-            <div style={{ height: 6, background: '#F1F5F9', borderRadius: 3, overflow: 'hidden', width: '100%' }}>
+          <div style={{ marginTop: 8 }}>
+            <p style={{ fontSize: 12, color: '#64748B', margin: '0 0 8px 0', fontWeight: 600 }}>You have 8 of 15 most common skills for role</p>
+            <div style={{ height: 6, background: '#F1F5F9', borderRadius: 3, overflow: 'hidden', width: '100%', marginBottom: 12 }}>
               <div style={{ width: '68%', height: '100%', background: color }} />
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#FFF7ED', color: '#C2410C', padding: '4px 8px', borderRadius: 6, width: 'fit-content', marginTop: 4 }}>
-              <Sparkles size={10} fill="#C2410C" />
-              <span style={{ fontSize: 9, fontWeight: 900, textTransform: 'uppercase' }}>Leadership role</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#FFF7ED', color: '#C2410C', padding: '6px 12px', borderRadius: 8, width: 'fit-content' }}>
+              <Sparkles size={12} fill="#C2410C" />
+              <span style={{ fontSize: 10, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.02em' }}>Leadership role</span>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
@@ -424,25 +427,25 @@ function BranchingLane({ card, pathData, color, t }: any) {
   const nodes = pathData.nodes.filter((n: any) => n.status !== 'past');
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: '100%', animation: 'popIn 0.6s ease-out' }}>
       {/* Lane Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%', paddingLeft: 40 }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-            <div style={{ background: color, color: '#fff', fontSize: 10, fontWeight: 950, padding: '4px 12px', borderRadius: 6, textTransform: 'uppercase' }}>{card.label}</div>
-            <div style={{ background: color + '22', color: color, fontSize: 10, fontWeight: 950, padding: '4px 8px', borderRadius: 6 }}>5</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+            <div style={{ background: color, color: '#fff', fontSize: 11, fontWeight: 950, padding: '5px 14px', borderRadius: 8, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{card.label}</div>
+            <div style={{ background: color + '15', color: color, fontSize: 11, fontWeight: 950, padding: '5px 10px', borderRadius: 8 }}>5</div>
           </div>
-          <p style={{ fontSize: 12, color: '#64748B', fontWeight: 600, margin: 0 }}>Based on your Desired Role <span style={{ color: '#1E293B', fontWeight: 800 }}>Solution Architect ></span></p>
+          <p style={{ fontSize: 13, color: '#64748B', fontWeight: 600, margin: 0 }}>Based on your Desired Role <span style={{ color: '#1E293B', fontWeight: 800 }}>Solution Architect <ChevronRight size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /></span></p>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#64748B', cursor: 'pointer' }} className="hover-heart">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#64748B', cursor: 'pointer', padding: '8px 16px', borderRadius: 10, background: '#F8FAFC', border: '1px solid #E2E8F0' }} className="hover-heart">
           <Heart size={16} />
-          <span style={{ fontSize: 12, fontWeight: 800 }}>Save path</span>
+          <span style={{ fontSize: 13, fontWeight: 800 }}>Save path</span>
         </div>
       </div>
 
       {/* Path Sequence */}
       <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-        {/* Branching Line Connection Point */}
+        {/* Horizontal Connection line from Branching Anchor */}
         <div style={{ width: 40, height: 2, background: '#E2E8F0', position: 'absolute', left: -40, top: '50%' }} />
         
         <div style={{ display: 'flex', alignItems: 'center', gap: 0, flex: 1 }}>
@@ -450,10 +453,10 @@ function BranchingLane({ card, pathData, color, t }: any) {
             <React.Fragment key={idx}>
               <PathNode node={node} isStart={idx === 0} color={color} />
               {idx < nodes.length - 1 && (
-                <div style={{ display: 'flex', alignItems: 'center', padding: '0 20px', position: 'relative' }}>
-                  <div style={{ width: 60, height: 1, background: '#E2E8F0' }} />
-                  <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 8, height: 8, borderRadius: '50%', background: '#fff', border: '1px solid #CBD5E1' }} />
-                  <div style={{ position: 'absolute', bottom: -18, left: '50%', transform: 'translateX(-50%)', fontSize: 10, fontWeight: 800, color: '#94A3B8', whiteSpace: 'nowrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', padding: '0 30px', position: 'relative' }}>
+                  <div style={{ width: 80, height: 2, background: '#E2E8F0' }} />
+                  <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 10, height: 10, borderRadius: '50%', background: '#fff', border: '2px solid #CBD5E1', boxShadow: '0 0 0 4px #fff' }} />
+                  <div style={{ position: 'absolute', bottom: -24, left: '50%', transform: 'translateX(-50%)', fontSize: 11, fontWeight: 800, color: '#94A3B8', whiteSpace: 'nowrap' }}>
                     +{idx + 1} role
                   </div>
                 </div>
@@ -463,9 +466,6 @@ function BranchingLane({ card, pathData, color, t }: any) {
         </div>
       </div>
     </div>
-  );
-}
- </div>
   );
 }
 
@@ -516,11 +516,11 @@ export function AIProfileAnalyzer() {
       pathId: 'enterprise-automation-arch',
       role: 'Enterprise Automation Architect',
       label: 'Popular path',
-      labelColor: '#10B981',
+      labelColor: '#14B8A6',
       match: 'HIGH_MATCH',
-      matchColor: '#10B981',
+      matchColor: '#14B8A6',
       badge: 'NEXT_STEP',
-      badgeColor: '#10B981',
+      badgeColor: '#14B8A6',
       image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=400&fit=crop'
     },
     {
@@ -540,11 +540,11 @@ export function AIProfileAnalyzer() {
       pathId: 'ai-architect',
       role: 'AI Architect',
       label: 'Promoted Lane',
-      labelColor: '#8B5CF6',
+      labelColor: '#3B82F6',
       match: 'WILD_CARD',
-      matchColor: '#8B5CF6',
+      matchColor: '#3B82F6',
       badge: 'EXPLORE',
-      badgeColor: '#8B5CF6',
+      badgeColor: '#3B82F6',
       image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop'
     }
   ];
