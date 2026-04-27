@@ -1,51 +1,120 @@
-import Link from 'next/link'
-import { Zap, Clock, MapPin, ArrowRight } from 'lucide-react'
+'use client';
+
+import Link from 'next/link';
+import { Zap, Clock, MapPin, ArrowRight, Briefcase, Star, Search, Filter, Globe } from 'lucide-react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const gigs = [
-  { title: 'Fleet Audit Support — 2 Weeks', location: 'Dallas, TX', type: 'Short Term', pay: '$28/hr', dept: 'Fleet Management', urgent: true },
-  { title: 'Customer Experience Coach — 1 Month', location: 'Los Angeles, CA', type: 'Project', pay: '$32/hr', dept: 'Core Operations', urgent: false },
-  { title: 'Digital Systems Rollout Lead', location: 'Remote', type: 'Project', pay: '$35/hr', dept: 'Technology', urgent: true },
-  { title: 'HR Onboarding Facilitator', location: 'New York, NY', type: 'Short Term', pay: '$30/hr', dept: 'People Development', urgent: false },
-  { title: 'Financial Reporting Analyst — Q2', location: 'Chicago, IL', type: 'Seasonal', pay: '$33/hr', dept: 'Finance', urgent: false },
-  { title: 'Mobility Operations Support', location: 'Miami, FL', type: 'Short Term', pay: '$26/hr', dept: 'Mobility', urgent: true },
-]
+  { title: 'Fleet Audit Support — 2 Weeks', location: 'Dallas, TX', type: 'Short Term', pay: '$28/hr', dept: 'Fleet Management', urgent: true, color: '#f59e0b' },
+  { title: 'Customer Experience Coach — 1 Month', location: 'Los Angeles, CA', type: 'Project', pay: '$32/hr', dept: 'Core Operations', urgent: false, color: '#10b981' },
+  { title: 'Digital Systems Rollout Lead', location: 'Remote', type: 'Project', pay: '$35/hr', dept: 'Technology', urgent: true, color: '#3b82f6' },
+  { title: 'HR Onboarding Facilitator', location: 'New York, NY', type: 'Short Term', pay: '$30/hr', dept: 'People Development', urgent: false, color: '#ec4899' },
+  { title: 'Financial Reporting Analyst — Q2', location: 'Chicago, IL', type: 'Seasonal', pay: '$33/hr', dept: 'Finance', urgent: false, color: '#7c3aed' },
+  { title: 'Mobility Operations Support', location: 'Miami, FL', type: 'Short Term', pay: '$26/hr', dept: 'Mobility', urgent: true, color: '#ef4444' },
+];
 
 export default function GigsPage() {
   return (
-    <main style={{ background: '#F8FAFC', minHeight: '100vh' }}>
-      <div style={{ background: '#fff', borderBottom: '1px solid #F1F5F9', padding: '2.5rem 0' }}>
-        <div className="container">
-          <p style={{ fontSize: '0.7rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.2em', color: '#FFB800', marginBottom: '0.4rem' }}>Short-Term Opportunities</p>
-          <h1 style={{ fontSize: '2.25rem', fontWeight: 900, color: '#000', letterSpacing: '-0.04em', marginBottom: '0.4rem' }}>Gigs</h1>
-          <p style={{ color: '#6B7280' }}>Project-based and short-term assignments across Hertz — build skills while adding real value.</p>
-        </div>
+    <main style={{ background: '#fff', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
+      
+      {/* 1. Hero Banner - Standardized Branding */}
+      <div style={{ width: '100%', height: 260, position: 'relative', overflow: 'hidden' }}>
+         <Image 
+           src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=1600&h=400&fit=crop" 
+           alt="Hertz Fleet" 
+           fill 
+           style={{ objectFit: 'cover' }}
+         />
+         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(0,0,0,0.7) 0%, transparent 70%)' }} />
+         <div style={{ position: 'relative', zIndex: 1, padding: '60px 100px' }}>
+            <p style={{ fontSize: 12, fontWeight: 900, color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 12 }}>Gig Marketplace</p>
+            <h1 style={{ fontSize: 42, fontWeight: 950, color: '#fff', margin: 0, lineHeight: 1.1 }}>BOOST YOUR<br />EXPERIENCE.</h1>
+            <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 16, marginTop: 12, maxWidth: 600 }}>Short-term projects and high-impact gigs across the global organization.</p>
+         </div>
       </div>
 
-      <div className="container" style={{ paddingTop: '2.5rem', paddingBottom: '4rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.25rem' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 20px' }}>
+        
+        {/* Search & Filters Row */}
+        <div style={{ display: 'flex', gap: 16, marginBottom: 40, alignItems: 'center' }}>
+           <div style={{ position: 'relative', flex: 1 }}>
+              <input type="text" placeholder="Search for gigs, projects, or departments..." style={{ width: '100%', padding: '14px 20px', paddingLeft: 48, borderRadius: 12, border: '1px solid #e2e8f0', fontSize: 15, background: '#f8fafc' }} />
+              <Search size={20} style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
+           </div>
+           <button style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '14px 24px', borderRadius: 12, border: '1px solid #e2e8f0', background: '#fff', fontWeight: 700, fontSize: 14, color: '#475569' }}>
+              <Filter size={18} /> Filters
+           </button>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 30 }}>
           {gigs.map((gig, i) => (
-            <div key={i} className="card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: '1rem' }}>
+            <motion.div 
+              key={i} 
+              whileHover={{ y: -8 }}
+              style={{ 
+                background: '#fff', 
+                border: '1px solid #e2e8f0', 
+                borderRadius: 24, 
+                padding: '24px',
+                display: 'flex', 
+                flexDirection: 'column', 
+                justifyContent: 'space-between',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                position: 'relative',
+                overflow: 'hidden'
+              }}
+            >
+              {/* Top Accent Bar */}
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: gig.color }} />
+              
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                  <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                    <span style={{ background: '#FFD100', color: '#000', padding: '0.2rem 0.65rem', borderRadius: 999, fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase' }}>{gig.type}</span>
-                    {gig.urgent && <span style={{ background: '#FEF2F2', color: '#DC2626', border: '1px solid #FECACA', padding: '0.2rem 0.65rem', borderRadius: 999, fontSize: '0.65rem', fontWeight: 900, textTransform: 'uppercase' }}>Urgent</span>}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                    <span style={{ background: `${gig.color}15`, color: gig.color, padding: '4px 12px', borderRadius: 20, fontSize: 10, fontWeight: 900, textTransform: 'uppercase' }}>{gig.type}</span>
+                    {gig.urgent && <span style={{ background: '#fef2f2', color: '#ef4444', padding: '4px 12px', borderRadius: 20, fontSize: 10, fontWeight: 900, textTransform: 'uppercase', border: '1px solid #fee2e2' }}>Urgent</span>}
                   </div>
-                  <div style={{ background: '#F0FDF4', color: '#16A34A', padding: '0.2rem 0.65rem', borderRadius: 999, fontSize: '0.75rem', fontWeight: 900 }}>{gig.pay}</div>
+                  <div style={{ fontSize: 14, fontWeight: 900, color: '#059669' }}>{gig.pay}</div>
                 </div>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#111827', lineHeight: 1.3, marginBottom: '0.5rem' }}>{gig.title}</h3>
-                <p style={{ fontSize: '0.78rem', color: '#9CA3AF', fontWeight: 600, marginBottom: '0.25rem' }}>
-                  <span style={{ marginRight: '0.75rem' }}>📍 {gig.location}</span>
-                  <span>🏢 {gig.dept}</span>
-                </p>
+                
+                <h3 style={{ fontSize: 18, fontWeight: 850, color: '#111827', lineHeight: 1.3, marginBottom: 12 }}>{gig.title}</h3>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 24 }}>
+                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#64748b', fontWeight: 600 }}>
+                      <MapPin size={14} color={gig.color} /> {gig.location}
+                   </div>
+                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: '#64748b', fontWeight: 600 }}>
+                      <Briefcase size={14} color={gig.color} /> {gig.dept}
+                   </div>
+                </div>
               </div>
-              <Link href="/jobs" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', background: '#000', color: '#fff', padding: '0.75rem', borderRadius: 12, fontWeight: 800, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em', textDecoration: 'none' }}>
-                Apply Now <ArrowRight size={14} />
+
+              <Link 
+                href="/jobs" 
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  gap: 10, 
+                  background: 'linear-gradient(90deg, #f59e0b, #ec4899)', 
+                  color: '#fff', 
+                  padding: '14px', 
+                  borderRadius: 16, 
+                  fontWeight: 900, 
+                  fontSize: 13, 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.05em', 
+                  textDecoration: 'none',
+                  boxShadow: '0 10px 20px rgba(236, 72, 153, 0.2)',
+                  transition: 'all 0.3s'
+                }}
+              >
+                Apply Now <ArrowRight size={16} />
               </Link>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </main>
-  )
+  );
 }

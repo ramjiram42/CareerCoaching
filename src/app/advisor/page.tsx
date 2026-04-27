@@ -4,9 +4,9 @@ import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { Send, Sparkles, User, ChevronRight, BookOpen, Users, TrendingUp, Briefcase, Brain, BarChart3, ArrowRight, X } from 'lucide-react'
 
-// ─── Knowledge Base for Ram ─────────────────────────────
-const RAM_PROFILE = {
-  name: 'Ram',
+// ─── Knowledge Base for John ─────────────────────────────
+const JOHN_PROFILE = {
+  name: 'John',
   currentRole: 'Branch Manager / Operations',
   level: 'Mid-Senior',
   yearsExp: 9,
@@ -66,24 +66,24 @@ function buildResponse(input: string): { text: string; cards?: ResponseCard[]; a
         data: {
           title: 'Succession Readiness — Operations Supervisor',
           items: [
-            { label: 'Ram — You', sublabel: 'Strong operational leadership & team mgmt. Gap: formal P&L accountability.', badge: 'Ready now (73%)', badgeColor: '#22C55E', pct: 73, color: '#22C55E' },
+            { label: 'John — You', sublabel: 'Strong operational leadership & team mgmt. Gap: formal P&L accountability.', badge: 'Ready now (73%)', badgeColor: '#22C55E', pct: 73, color: '#22C55E' },
             { label: 'Priya Mehta', sublabel: 'Cross-functional coordination & growing fleet exposure. Needs 6 months more.', badge: 'Ready in 6-12 mo (61%)', badgeColor: '#F59E0B', pct: 61, color: '#F59E0B' },
             { label: 'James Park', sublabel: 'High potential trajectory. Currently in leadership cohort. On track.', badge: 'Ready in 12-18 mo (44%)', badgeColor: '#EF4444', pct: 44, color: '#EF4444' },
           ]
         }
       }],
-      actions: ['Who is ready for Fleet Ops Manager?', 'What gaps does Ram have?', 'Compare development plans']
+      actions: ['Who is ready for Fleet Ops Manager?', 'What gaps does John have?', 'Compare development plans']
     }
   }
 
   // ── Skills / gaps
   if (q.includes('skill') || q.includes('gap') || q.includes('develop') || q.includes('learn') || q.includes('improve')) {
     return {
-      text: "Based on Ram's current role and target of **Regional Operations Director**, here are the priority skill gaps and recommended actions:",
+      text: "Based on John's current role and target of **Regional Operations Director**, here are the priority skill gaps and recommended actions:",
       cards: [{
         type: 'skills',
         data: {
-          title: "Ram's Skill Priority Map",
+          title: "John's Skill Priority Map",
           items: [
             { label: 'P&L & Budget Ownership', sublabel: 'Critical gap — complete Finance for Ops Managers course (2 weeks)', badge: 'High Priority', badgeColor: '#EF4444', pct: 20, color: '#EF4444' },
             { label: 'Fleet Systems (inTouched)', sublabel: 'Take the Fleet Readiness gig in Dallas — 2 weeks hands-on', badge: 'Medium', badgeColor: '#F59E0B', pct: 35, color: '#F59E0B' },
@@ -99,11 +99,11 @@ function buildResponse(input: string): { text: string; cards?: ResponseCard[]; a
   // ── Mentor matching
   if (q.includes('mentor') || q.includes('coach') || q.includes('guide') || q.includes('session') || q.includes('book')) {
     return {
-      text: "Matching mentors based on **career path similarity to Ram**, skill overlap, and active availability:",
+      text: "Matching mentors based on **career path similarity to John**, skill overlap, and active availability:",
       cards: [{
         type: 'mentors',
         data: {
-          title: 'Mentor Matches for Ram',
+          title: 'Mentor Matches for John',
           items: [
             { label: 'Alice Johnson — SAP Project Mgmt', sublabel: 'Made exact Operations → Director transition. ⭐ 4.8 rating, 45 sessions. Available tomorrow 10AM', badge: '98% match', badgeColor: '#22C55E' },
             { label: 'Liam Neeson — Risk Management', sublabel: 'Strong compliance & reporting background. 120 sessions, 22 years exp.', badge: '84% match', badgeColor: '#3B82F6' },
@@ -118,11 +118,11 @@ function buildResponse(input: string): { text: string; cards?: ResponseCard[]; a
   // ── Adjacent roles / what others did
   if (q.includes('adjacent') || q.includes('similar') || q.includes('others') || q.includes('profile') || q.includes('like me') || q.includes('transition')) {
     return {
-      text: "Employees with **similar profiles to Ram** (Branch Manager / Ops, 9 years) have successfully transitioned into these roles at Hertz:",
+      text: "Employees with **similar profiles to John** (Branch Manager / Ops, 9 years) have successfully transitioned into these roles at Hertz:",
       cards: [{
         type: 'adjacent',
         data: {
-          title: 'What Employees Like Ram Did Next',
+          title: 'What Employees Like John Did Next',
           items: [
             { label: 'Fleet Operations Coordinator', sublabel: '62% of similar employees moved here first — fastest path', badge: 'Most Common', badgeColor: '#22C55E', pct: 62, color: '#22C55E' },
             { label: 'Operations Supervisor', sublabel: '51% moved directly — strong overlap with current responsibilities', badge: 'Direct Match', badgeColor: '#3B82F6', pct: 51, color: '#3B82F6' },
@@ -138,11 +138,11 @@ function buildResponse(input: string): { text: string; cards?: ResponseCard[]; a
   // ── Gigs
   if (q.includes('gig') || q.includes('project') || q.includes('short') || q.includes('assignment') || q.includes('temporary')) {
     return {
-      text: "Here are **active gigs** that match Ram's profile and build toward the target role of Regional Operations Director:",
+      text: "Here are **active gigs** that match John's profile and build toward the target role of Regional Operations Director:",
       cards: [{
         type: 'gigs',
         data: {
-          title: 'Recommended Gigs for Ram',
+          title: 'Recommended Gigs for John',
           items: [
             { label: 'Fleet Audit Support — 2 Weeks', sublabel: 'Dallas, TX · Fleet Management · $28/hr · Builds inTouched fleet system skills', badge: 'Urgent', badgeColor: '#EF4444' },
             { label: 'HR Onboarding Facilitator', sublabel: 'New York, NY · People Dev · $30/hr · Strengthens coaching capability', badge: 'Great Fit', badgeColor: '#22C55E' },
@@ -157,11 +157,11 @@ function buildResponse(input: string): { text: string; cards?: ResponseCard[]; a
   // ── Readiness / am I ready
   if (q.includes('ready') || q.includes('readiness') || q.includes('prepared') || q.includes('score') || q.includes('promotion')) {
     return {
-      text: `Ram is currently **${RAM_PROFILE.readiness}% ready** for Regional Operations Director. Here's the breakdown:`,
+      text: `John is currently **${JOHN_PROFILE.readiness}% ready** for Regional Operations Director. Here's the breakdown:`,
       cards: [{
         type: 'readiness',
         data: {
-          title: `Readiness Breakdown — ${RAM_PROFILE.targetRole}`,
+          title: `Readiness Breakdown — ${JOHN_PROFILE.targetRole}`,
           items: [
             { label: 'Operational Leadership', sublabel: 'Exceeds requirements — 9 yrs high-volume ops', badge: '95%', badgeColor: '#22C55E', pct: 95, color: '#22C55E' },
             { label: 'Team Management', sublabel: 'Regular performance coaching — strong signals', badge: '88%', badgeColor: '#22C55E', pct: 88, color: '#22C55E' },
@@ -178,17 +178,17 @@ function buildResponse(input: string): { text: string; cards?: ResponseCard[]; a
   // ── 90-day plan
   if (q.includes('90') || q.includes('plan') || q.includes('action') || q.includes('steps') || q.includes('roadmap') || q.includes('timeline')) {
     return {
-      text: "Here's Ram's **personalised 90-day development plan** based on current readiness gaps and available opportunities:",
+      text: "Here's John's **personalised 90-day development plan** based on current readiness gaps and available opportunities:",
       cards: [{
         type: 'paths',
         data: {
-          title: '90-Day Action Plan for Ram',
+          title: '90-Day Action Plan for John',
           items: [
             { label: 'Week 1-2: Complete Enterprise Reporting module', sublabel: 'Module 3 in active learning path — closes reporting gap', badge: 'Learning', badgeColor: '#3B82F6' },
             { label: 'Week 3-4: Fleet Audit Gig (Dallas)', sublabel: 'Build inTouched system hands-on — Urgent, available now', badge: 'Gig', badgeColor: '#F59E0B' },
             { label: 'Week 5-6: Mentor session with Alice Johnson', sublabel: 'Focus: P&L accountability + executive presence coaching', badge: 'Mentor', badgeColor: '#8B5CF6' },
             { label: 'Week 7-10: Finance for Ops Managers course', sublabel: 'Closes the P&L budget ownership gap — highest priority', badge: 'Learning', badgeColor: '#3B82F6' },
-            { label: 'Week 11-13: Apply for Operations Supervisor role', sublabel: 'Internal posting expected Q2 — Ram will be 85%+ ready', badge: 'Apply', badgeColor: '#22C55E' },
+            { label: 'Week 11-13: Apply for Operations Supervisor role', sublabel: 'Internal posting expected Q2 — John will be 85%+ ready', badge: 'Apply', badgeColor: '#22C55E' },
           ]
         }
       }],
@@ -199,11 +199,11 @@ function buildResponse(input: string): { text: string; cards?: ResponseCard[]; a
   // ── What roles match / role recommendations
   if (q.includes('role') || q.includes('match') || q.includes('recommend') || q.includes('next') || q.includes('move') || q.includes('option')) {
     return {
-      text: "Based on Ram's profile, skills, and the current Hertz opportunity landscape — here are the **best-fit role moves** right now:",
+      text: "Based on John's profile, skills, and the current Hertz opportunity landscape — here are the **best-fit role moves** right now:",
       cards: [{
         type: 'roles',
         data: {
-          title: 'Best Role Matches for Ram',
+          title: 'Best Role Matches for John',
           items: [
             { label: 'Operations Supervisor — Core Ops', sublabel: 'Strongest skills overlap. 73% ready. Internal posting in Q2.', badge: '87% match', badgeColor: '#22C55E', pct: 87, color: '#22C55E' },
             { label: 'Fleet Operations Coordinator — Fleet Mgmt', sublabel: 'Natural next step. Builds fleet system skills for future Director role.', badge: '81% match', badgeColor: '#22C55E', pct: 81, color: '#22C55E' },
@@ -218,7 +218,7 @@ function buildResponse(input: string): { text: string; cards?: ResponseCard[]; a
 
   // ── Default
   return {
-    text: `I'm your Hertz Career Advisor. I know Ram's profile, all open Hertz roles, and what your 9 corporate verticals require. Ask me anything about career moves, skill gaps, mentors, or gig opportunities.`,
+    text: `I'm your Hertz Career Advisor. I know John's profile, all open Hertz roles, and what your 9 corporate verticals require. Ask me anything about career moves, skill gaps, mentors, or gig opportunities.`,
     actions: ['What roles match my profile?', 'Where am I ready today?', 'What are my top skill gaps?', 'Who should I get as a mentor?']
   }
 }
@@ -276,7 +276,7 @@ export default function AdvisorPage() {
     {
       role: 'advisor',
       time: now(),
-      text: `Hello Ram! I'm your Hertz Career Advisor. I have full context on your profile, all open roles across Hertz's 9 verticals, your skill gaps, available gigs, and mentors who've made similar transitions.\n\nWhat would you like to explore today?`,
+      text: `Hello John! I'm your Hertz Career Advisor. I have full context on your profile, all open roles across Hertz's 9 verticals, your skill gaps, available gigs, and mentors who've made similar transitions.\n\nWhat would you like to explore today?`,
       actions: ['What roles match my profile?', 'How ready am I for promotion?', 'Build my 90-day plan', 'Who should mentor me?']
     }
   ])
@@ -317,13 +317,13 @@ export default function AdvisorPage() {
           </div>
           <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
             <div style={{ background: '#111827', borderRadius: 16, padding: '1rem 1.5rem', textAlign: 'right' }}>
-              <p style={{ color: '#FFD100', fontWeight: 900, fontSize: '1.8rem', margin: 0, lineHeight: 1 }}>{RAM_PROFILE.readiness}%</p>
+              <p style={{ color: '#FFD100', fontWeight: 900, fontSize: '1.8rem', margin: 0, lineHeight: 1 }}>{JOHN_PROFILE.readiness}%</p>
               <p style={{ color: '#9CA3AF', fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', margin: 0 }}>Readiness Score</p>
             </div>
             <div style={{ background: '#111827', borderRadius: 16, padding: '1rem 1.5rem' }}>
-              <p style={{ color: '#fff', fontWeight: 800, fontSize: '0.9rem', margin: '0 0 0.15rem' }}>{RAM_PROFILE.name}</p>
-              <p style={{ color: '#9CA3AF', fontSize: '0.72rem', margin: 0 }}>{RAM_PROFILE.currentRole}</p>
-              <p style={{ color: '#FFD100', fontSize: '0.72rem', fontWeight: 700, margin: '0.15rem 0 0' }}>→ {RAM_PROFILE.targetRole}</p>
+              <p style={{ color: '#fff', fontWeight: 800, fontSize: '0.9rem', margin: '0 0 0.15rem' }}>{JOHN_PROFILE.name}</p>
+              <p style={{ color: '#9CA3AF', fontSize: '0.72rem', margin: 0 }}>{JOHN_PROFILE.currentRole}</p>
+              <p style={{ color: '#FFD100', fontSize: '0.72rem', fontWeight: 700, margin: '0.15rem 0 0' }}>→ {JOHN_PROFILE.targetRole}</p>
             </div>
           </div>
         </div>
@@ -358,14 +358,14 @@ export default function AdvisorPage() {
 
           {/* Ram's Status */}
           <div style={{ background: '#fff', border: '1px solid #E5E7EB', borderRadius: 20, padding: '1.25rem', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-            <p style={{ fontWeight: 900, fontSize: '0.75rem', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 1rem' }}>Ram's Profile</p>
+            <p style={{ fontWeight: 900, fontSize: '0.75rem', color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 1rem' }}>John's Profile</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               {[
-                { label: 'Current Role', val: RAM_PROFILE.currentRole },
-                { label: 'Target', val: RAM_PROFILE.targetRole },
-                { label: 'Experience', val: `${RAM_PROFILE.yearsExp} years` },
-                { label: 'Learning', val: RAM_PROFILE.learningProgress },
-                { label: 'Next Mentor', val: RAM_PROFILE.mentorSession },
+                { label: 'Current Role', val: JOHN_PROFILE.currentRole },
+                { label: 'Target', val: JOHN_PROFILE.targetRole },
+                { label: 'Experience', val: `${JOHN_PROFILE.yearsExp} years` },
+                { label: 'Learning', val: JOHN_PROFILE.learningProgress },
+                { label: 'Next Mentor', val: JOHN_PROFILE.mentorSession },
               ].map(row => (
                 <div key={row.label}>
                   <p style={{ fontSize: '0.65rem', color: '#9CA3AF', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 0.2rem' }}>{row.label}</p>
@@ -438,7 +438,7 @@ export default function AdvisorPage() {
                 )}
 
                 {/* User timestamp */}
-                {msg.role === 'user' && <span style={{ fontSize: '0.65rem', color: '#9CA3AF' }}>Ram · {msg.time}</span>}
+                {msg.role === 'user' && <span style={{ fontSize: '0.65rem', color: '#9CA3AF' }}>John · {msg.time}</span>}
               </div>
             ))}
 

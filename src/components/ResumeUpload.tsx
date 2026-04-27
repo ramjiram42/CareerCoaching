@@ -84,7 +84,7 @@ export function ResumeUploadSection() {
                 boxShadow: '0 0 30px rgba(236, 72, 153, 0.2)',
              }}>
                 <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', border: '5px solid #030B17' }}>
-                   <Image src="/ram_profile.png" width={120} height={120} alt="Ram" style={{ objectFit: 'cover', transform: 'scale(1.2) translateY(5%)' }} />
+                   <Image src="/john_profile.png" width={120} height={120} alt="John" style={{ objectFit: 'cover', transform: 'scale(1.2) translateY(5%)' }} />
                 </div>
                 {/* Active Status Badge */}
                 <div style={{ 
@@ -107,7 +107,7 @@ export function ResumeUploadSection() {
 
              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                   <h1 style={{ fontSize: 44, color: '#fff', margin: 0, fontWeight: 1000, fontFamily: '"Outfit", sans-serif', letterSpacing: '-0.02em', lineHeight: 0.9 }}>Ram</h1>
+                   <h1 style={{ fontSize: 44, color: '#fff', margin: 0, fontWeight: 1000, fontFamily: '"Outfit", sans-serif', letterSpacing: '-0.02em', lineHeight: 0.9 }}>John</h1>
                    <div style={{ 
                       padding: '4px 12px', 
                       background: 'rgba(16, 185, 129, 0.1)', 

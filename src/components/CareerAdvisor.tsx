@@ -4,12 +4,12 @@ import { useState, useRef, useEffect } from 'react'
 import { MessageCircle, X, Send, ChevronRight, Sparkles, ArrowRight } from 'lucide-react'
 
 const advisorResponses: Record<string, string> = {
-  default: "Great question! Based on Ram's profile — Branch Manager with strong operational leadership — let me analyse the best next moves across Hertz verticals.",
-  match: "Based on Ram's profile: **Operations Supervisor (Core Ops)** is your strongest match at ~87% readiness. You have people leadership and high-volume execution experience that directly maps to this role. Key gap: formal P&L accountability.",
+  default: "Great question! Based on John's profile — Solution Architect with strong operational leadership — let me analyse the best next moves across Hertz verticals.",
+  match: "Based on John's profile: **Operations Supervisor (Core Ops)** is your strongest match at ~87% readiness. You have people leadership and high-volume execution experience that directly maps to this role. Key gap: formal P&L accountability.",
   skills: "Your top 3 skill gaps to close are: **1.** P&L and budget ownership **2.** Fleet management systems (e.g. inTouched) **3.** Formal performance coaching frameworks. Each can be addressed in 4–6 weeks with focused development.",
   mentor: "For Fleet Management, I recommend **Diana Prince** (EVP Digital Transformation, 20 years, ⭐ 5.0) or checking the Mentors page for someone with a Fleet Operations background. Both have active availability.",
-  ready: "Ram is approximately **73% ready** for Operations Supervisor right now. The remaining 27% is addressable through: completing the Active Learning Path (2 modules left) and 1 targeted coaching session with a Branch Director.",
-  path: "The fastest path for Ram is: **Operations Supervisor → Regional Operations Manager → Enterprise Operations Executive**. With 10hrs/week development, this is achievable in ~18–24 months. The 'Desired Path' section below shows all three route options.",
+  ready: "John is approximately **73% ready** for Operations Supervisor right now. The remaining 27% is addressable through: completing the Active Learning Path (2 modules left) and 1 targeted coaching session with a Branch Director.",
+  path: "The fastest path for John is: **Operations Supervisor → Regional Operations Manager → Enterprise Operations Executive**. With 10hrs/week development, this is achievable in ~18–24 months. The 'Desired Path' section below shows all three route options.",
 }
 
 function getResponse(input: string): string {
@@ -34,7 +34,7 @@ const suggestions = [
 export function CareerAdvisor() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'advisor', text: "Hi Ram! I'm your Hertz Career Advisor. I've analysed your profile and readiness signals. Ask me anything about your next move.", time: 'Now' }
+    { role: 'advisor', text: "Hi John! I'm your Hertz Career Advisor. I've analysed your profile and readiness signals. Ask me anything about your next move.", time: 'Now' }
   ])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)

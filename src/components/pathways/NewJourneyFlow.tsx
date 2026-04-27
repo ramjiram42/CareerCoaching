@@ -80,7 +80,7 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
                 overflow: 'hidden' 
               }}>
                 <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
-                   <Image src="/ram_profile.png" width={120} height={120} alt="User" />
+                   <Image src="/john_profile.png" width={120} height={120} alt="User" priority />
                 </div>
               </div>
            </div>
@@ -160,7 +160,7 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <div style={{ width: 100, height: 100, borderRadius: '50%', padding: 4, background: '#F3F4F6', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }}>
               <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}>
-                <Image src="/ram_profile.png" width={100} height={100} alt="Start" style={{ objectFit: 'cover' }} />
+                <Image src="/john_profile.png" width={100} height={100} alt="Start" style={{ objectFit: 'cover' }} priority />
               </div>
             </div>
             <span style={{ marginTop: 16, fontSize: 11, fontWeight: 800, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Current Location</span>
@@ -184,7 +184,7 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
       <div style={{ display: 'flex', gap: 30, justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap' }}>
          <div style={{ flex: 1, minWidth: '320px' }}>
             <div style={{ padding: '4px 10px', fontSize: 11, fontWeight: 700, color: '#6B7280', letterSpacing: '0.05em', marginBottom: 8, textTransform: 'uppercase' }}>Current Designation</div>
-            <input readOnly value="RPA Solution Architect" style={{ width: '100%', padding: '18px 24px', borderRadius: 16, border: '1px solid #E5E7EB', fontSize: 16, fontWeight: 700, color: '#111827', background: '#F9FAFB', outline: 'none' }} />
+            <input readOnly value="Solution Architect" style={{ width: '100%', padding: '18px 24px', borderRadius: 16, border: '1px solid #E5E7EB', fontSize: 16, fontWeight: 700, color: '#111827', background: '#F9FAFB', outline: 'none' }} />
          </div>
 
          <div style={{ position: 'relative', flex: 1, minWidth: '320px' }}>

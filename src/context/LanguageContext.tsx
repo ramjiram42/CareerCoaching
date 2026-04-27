@@ -12,12 +12,19 @@ interface Translations {
 
 const translations: Translations = {
   // NavBar
-  'EXPLORE_JOURNEYS': {
-    EN: 'Explore Journeys',
-    DE: 'Reisen erkunden',
-    FR: 'Explorer les parcours',
-    ES: 'Explorar trayectorias',
-    IT: 'Esplora i percorsi'
+  'JOURNEY': {
+    EN: 'Journey',
+    DE: 'Reise',
+    FR: 'Parcours',
+    ES: 'Trayecto',
+    IT: 'Percorso'
+  },
+  'JOURNEYS': {
+    EN: 'Journeys',
+    DE: 'Reisen',
+    FR: 'Parcours',
+    ES: 'Trayectos',
+    IT: 'Percorsi'
   },
   'OPPORTUNITIES': {
     EN: 'Opportunities',
@@ -25,6 +32,34 @@ const translations: Translations = {
     FR: 'Opportunités',
     ES: 'Oportunidades',
     IT: 'Opportunità'
+  },
+  'VACANCIES': {
+    EN: 'Vacancies',
+    DE: 'Vakanzen',
+    FR: 'Vacances',
+    ES: 'Vacantes',
+    IT: 'Posti vacanti'
+  },
+  'GIGS': {
+    EN: 'Gigs',
+    DE: 'Gigs',
+    FR: 'Missions',
+    ES: 'Proyectos',
+    IT: 'Missioni'
+  },
+  'MENTORS': {
+    EN: 'Mentors',
+    DE: 'Mentoren',
+    FR: 'Mentors',
+    ES: 'Mentores',
+    IT: 'Mentor'
+  },
+  'LEARN+': {
+    EN: 'Learn+',
+    DE: 'Lernen+',
+    FR: 'Apprendre+',
+    ES: 'Aprender+',
+    IT: 'Impara+'
   },
   'MENTORSHIP': {
     EN: 'Mentorship',
@@ -47,12 +82,12 @@ const translations: Translations = {
     ES: 'Hitos',
     IT: 'Traguardi'
   },
-  'LEARNING_MARKET': {
-    EN: 'Learning Hub',
-    DE: 'Lernzentrum',
-    FR: 'Centre d\'apprentissage',
-    ES: 'Centro de aprendizaje',
-    IT: 'Centro di apprendimento'
+  'MASTERY': {
+    EN: 'Mastery',
+    DE: 'Meisterschaft',
+    FR: 'Maîtrise',
+    ES: 'Maestría',
+    IT: 'Maestria'
   },
   'MY_PLAN': {
     EN: 'My Development Plan',
@@ -134,25 +169,25 @@ const translations: Translations = {
     IT: 'RIALLINEA PROFILO'
   },
   'HIGH_MATCH': {
-    EN: 'HIGH MATCH',
-    DE: 'HOHE ÜBEREINSTIMMUNG',
-    FR: 'CORRESPONDANCE ÉLEVÉE',
-    ES: 'ALTA COINCIDENCIA',
-    IT: 'ALTA CORRISPONDENZA'
+    EN: 'BEST FIT',
+    DE: 'BESTE PASSFORM',
+    FR: 'MEILLEURE CORRESPONDANCE',
+    ES: 'MEJOR OPCIÓN',
+    IT: 'MIGLIORE SCELTA'
   },
   'ADJACENT': {
-    EN: 'ADJACENT',
-    DE: 'ANGRENZEND',
-    FR: 'ADJACENT',
-    ES: 'ADYACENTE',
-    IT: 'ADIACENTE'
+    EN: 'POTENTIAL',
+    DE: 'POTENZIAL',
+    FR: 'POTENTIEL',
+    ES: 'POTENCIAL',
+    IT: 'POTENZIALE'
   },
   'WILD_CARD': {
-    EN: 'WILD CARD',
-    DE: 'WILD CARD',
-    FR: 'CARTE BLANCHE',
-    ES: 'COMODÍN',
-    IT: 'WILD CARD'
+    EN: 'NEW HORIZON',
+    DE: 'NEUER HORIZONT',
+    FR: 'NOUVEL HORIZON',
+    ES: 'NUEVO HORIZONTE',
+    IT: 'NUOVO ORIZZONTE'
   },
   'NEXT_STEP': {
     EN: 'NEXT STEP',
@@ -174,6 +209,13 @@ const translations: Translations = {
     FR: 'FEUILLE DE ROUTE COMPLÈTE',
     ES: 'MAPA COMPLETO',
     IT: 'ROADMAP COMPLETA'
+  },
+  'PROFILE': {
+    EN: 'Profile',
+    DE: 'Profil',
+    FR: 'Profil',
+    ES: 'Perfil',
+    IT: 'Profilo'
   }
 };
 

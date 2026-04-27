@@ -2,12 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import careerPathsData from '../../data/careerPaths.json';
-import { Bookmark, ChevronRight, CheckCircle, Crosshair, Target, Briefcase, Zap, Info, Compass, ArrowLeft } from 'lucide-react';
+import { Bookmark, ChevronRight, CheckCircle, Crosshair, Target, Briefcase, Zap, Info, Compass, ArrowLeft, Star, Shield, TrendingUp, Sparkles, MapPin } from 'lucide-react';
 
 export default function CareerCoachingPortal({ overridePath, onBack }: { overridePath?: string, onBack?: () => void }) {
   const [activePath, setActivePath] = useState<any>(null);
   const [savedPaths, setSavedPaths] = useState<string[]>([]);
-  const [showCompare, setShowCompare] = useState(false);
 
   // If overridePath is passed, initialize activePath matching it
   useEffect(() => {
@@ -36,7 +35,13 @@ export default function CareerCoachingPortal({ overridePath, onBack }: { overrid
   };
 
   return (
-    <div style={{ width: '100%', marginTop: 20, animation: 'cardIn 0.8s ease forwards', color: '#1E293B', fontFamily: 'Inter, sans-serif' }}>
+    <div style={{ 
+      width: '100%', 
+      marginTop: 20, 
+      animation: 'cardIn 0.8s ease forwards', 
+      color: '#111827', 
+      fontFamily: "'Outfit', 'Inter', sans-serif" 
+    }}>
       
       {!activePath ? (
         <RecommendedView 
@@ -54,145 +59,104 @@ export default function CareerCoachingPortal({ overridePath, onBack }: { overrid
         />
       )}
 
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+        @keyframes cardIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .roadmap-card-hover:hover { 
+          transform: translateY(-8px);
+          border-color: #3B82F6 !important;
+          box-shadow: 0 30px 60px -12px rgba(0,0,0,0.1) !important;
+        }
+        .premium-blur { background: rgba(255, 255, 255, 0.6) !important; backdrop-filter: blur(20px); }
+        .marching-border {
+          background-image: linear-gradient(90deg, #E2E8F0 50%, transparent 50%);
+          background-size: 20px 2px;
+          background-repeat: repeat-x;
+        }
+      `}</style>
     </div>
   );
 }
 
 // ==========================================
-// RECOMMENDED VIEW (Step 4) - Redesigned for Horizontal Lane Layout
+// RECOMMENDED VIEW
 // ==========================================
 function RecommendedView({ data, onSelectPath, savedPaths, toggleSave }: any) {
-  // Select top paths for the lanes
   const lanes = [
-    { 
-      path: data.categories[0].paths[0], 
-      label: "Desired path", 
-      color: "#D81B60", // Pink
-      icon: "🎯"
-    },
-    { 
-      path: data.categories[1].paths[0], 
-      label: "Popular path", 
-      color: "#00897B", // Teal
-      icon: "🔥"
-    },
-    { 
-      path: data.categories[2].paths[0], 
-      label: "Career Pivot", 
-      color: "#5E35B1", // Deep Purple
-      icon: "🚀"
-    }
+    { path: data.categories[0].paths[0], label: "Primary path", color: "#EC4899", icon: <Star size={16} fill="#fff" /> },
+    { path: data.categories[1].paths[0], label: "Trending path", color: "#F59E0B", icon: <TrendingUp size={16} color="#fff" /> },
+    { path: data.categories[2].paths[0], label: "Rapid pivot", color: "#3B82F6", icon: <Zap size={16} fill="#fff" /> }
   ];
 
   return (
-    <div style={{ padding: '0 20px', maxWidth: '1200px', margin: '0 auto' }}>
-      <div style={{ margin: '40px 0 60px' }}>
-        <h2 style={{ fontSize: 32, fontWeight: 900, letterSpacing: '-0.02em', color: '#0F172A', marginBottom: 8 }}>Recommended for you</h2>
-        <p style={{ color: '#64748B', fontSize: 16 }}>Based on your profile and skills set</p>
+    <div style={{ padding: '0 40px', maxWidth: '1400px', margin: '0 auto' }}>
+      <div style={{ margin: '80px 0 100px', textAlign: 'center' }}>
+        <h2 style={{ fontSize: 56, fontWeight: 1000, letterSpacing: '-0.04em', color: '#0F172A', marginBottom: 20 }}>Tailored Connections</h2>
+        <p style={{ color: '#64748B', fontSize: 22, fontWeight: 500, maxWidth: 600, margin: '0 auto' }}>Strategic career pathways computed from your profile strengths and Hertz market intelligence.</p>
       </div>
 
-      <div style={{ display: 'flex', position: 'relative', minHeight: 600 }}>
-        {/* Profile Column */}
-        <div style={{ width: 80, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 10, zIndex: 10 }}>
-           <div style={{ width: 64, height: 64, borderRadius: '50%', overflow: 'hidden', border: '4px solid #fff', boxShadow: '0 8px 20px rgba(0,0,0,0.1)', position: 'relative' }}>
-              <Image src="/ram_profile.png" width={64} height={64} alt="Profile" style={{ objectFit: 'cover' }} />
+      <div style={{ display: 'flex', position: 'relative', minHeight: 700 }}>
+        <div style={{ width: 120, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 30, zIndex: 10 }}>
+           <div style={{ width: 90, height: 90, borderRadius: '50%', overflow: 'hidden', border: '8px solid #fff', boxShadow: '0 20px 40px rgba(0,0,0,0.15)', position: 'relative' }}>
+              <Image src="/john_profile.png" width={90} height={90} alt="Profile" style={{ objectFit: 'cover' }} priority />
            </div>
+           <div style={{ background: '#111827', color: '#fff', fontSize: 10, fontWeight: 1000, padding: '4px 10px', borderRadius: 20, marginTop: 16, textTransform: 'uppercase', letterSpacing: '0.05em' }}>Current</div>
         </div>
 
-        {/* Lanes Column */}
-        <div style={{ flex: 1, paddingLeft: 60, position: 'relative' }}>
-           
-           {/* SVG Back-Connectors (Static Branching) */}
-           <svg width="60" height="100%" style={{ position: 'absolute', left: 0, top: 0, pointerEvents: 'none', overflow: 'visible' }}>
-              <path d="M -30 32 V 460" fill="none" stroke="#E2E8F0" strokeWidth="3" />
-              <path d="M -30 32 H 0" fill="none" stroke="#E2E8F0" strokeWidth="3" />
-              <path d="M -30 240 H 0" fill="none" stroke="#E2E8F0" strokeWidth="3" />
-              <path d="M -30 460 H 0" fill="none" stroke="#E2E8F0" strokeWidth="3" />
-           </svg>
-
+        <div style={{ flex: 1, paddingLeft: 100, position: 'relative' }}>
            {lanes.map((lane, idx) => (
-             <div key={lane.path.id} style={{ marginBottom: 60, position: 'relative' }}>
-                
-                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
-                   <div style={{ background: lane.color, color: '#fff', fontSize: 11, fontWeight: 950, padding: '4px 10px', borderRadius: 4, display: 'flex', alignItems: 'center' }}>
-                      <span style={{ marginRight: 6 }}>{lane.label}</span>
-                      <span style={{ opacity: 0.8, background: 'rgba(255,255,255,0.2)', padding: '1px 6px', borderRadius: 2 }}>{lane.path.nodes.length}</span>
+             <div key={lane.path.id} style={{ marginBottom: 100, position: 'relative' }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 30 }}>
+                   <div style={{ background: lane.color, color: '#fff', fontSize: 13, fontWeight: 1000, padding: '8px 18px', borderRadius: 12, display: 'flex', alignItems: 'center', boxShadow: `0 10px 20px ${lane.color}44` }}>
+                      <span style={{ marginRight: 10 }}>{lane.icon}</span>
+                      <span style={{ marginRight: 10, textTransform: 'uppercase', letterSpacing: '0.02em' }}>{lane.label}</span>
+                      <span style={{ opacity: 0.9, background: 'rgba(255,255,255,0.3)', padding: '2px 10px', borderRadius: 8 }}>{lane.path.nodes.length} Stages</span>
                    </div>
-                   <div style={{ marginLeft: 16, color: '#64748B', fontSize: 13, fontWeight: 700 }}>
-                      Based on your Desired Role <span style={{ textDecoration: 'underline', color: '#0F172A', cursor: 'pointer' }}>{lane.path.name} ›</span>
+                   <div style={{ marginLeft: 24, color: '#64748B', fontSize: 16, fontWeight: 600 }}>
+                      Target Destination: <span style={{ color: '#0F172A', fontWeight: 1000 }}>{lane.path.name}</span>
                    </div>
                    <div style={{ flex: 1 }}></div>
-                   <button onClick={(e: any) => toggleSave(lane.path.id, e)} style={{ border: 'none', background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', color: '#64748B', fontSize: 13, fontWeight: 700 }}>
-                      <Bookmark size={15} style={{ marginRight: 6 }} fill={savedPaths.includes(lane.path.id) ? lane.color : 'none'} color={savedPaths.includes(lane.path.id) ? lane.color : '#CBD5E1'} /> Save path
+                   <button onClick={(e: any) => toggleSave(lane.path.id, e)} style={{ border: 'none', background: '#fff', border: '1px solid #E2E8F0', cursor: 'pointer', display: 'flex', alignItems: 'center', color: '#475569', padding: '10px 20px', borderRadius: 14, fontSize: 14, fontWeight: 800, transition: 'all 0.2s' }}>
+                      <Bookmark size={18} style={{ marginRight: 8 }} fill={savedPaths.includes(lane.path.id) ? lane.color : 'none'} color={savedPaths.includes(lane.path.id) ? lane.color : '#94A3B8'} /> Save Milestone
                    </button>
                 </div>
 
-                {/* Nodes Horizontal Row */}
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 0 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 30 }}>
                    {lane.path.nodes.filter((n: any) => n.status !== 'past').slice(0, 3).map((node: any, nIdx: number) => (
                       <React.Fragment key={nIdx}>
-                         {/* Circle between profile and first card */}
-                         {nIdx === 0 && (
-                            <div style={{ width: 14, height: 14, borderRadius: '50%', border: '3px solid #E2E8F0', background: '#fff', alignSelf: 'center', marginLeft: -40, marginRight: 26, zIndex: 5 }}></div>
-                         )}
-
                          <div 
                            onClick={() => onSelectPath(lane.path)}
                            style={{ 
                              background: '#fff', 
-                             border: '1px solid #E2E8F0', 
-                             borderRadius: 8, 
-                             padding: nIdx === 0 ? '24px' : '20px',
-                             width: nIdx === 0 ? '280px' : '220px',
-                             boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
-                             transition: 'all 0.2s',
+                             border: '1px solid rgba(226, 232, 240, 0.8)', 
+                             borderRadius: 30, 
+                             padding: '34px',
+                             width: 350,
+                             boxShadow: '0 10px 40px rgba(0,0,0,0.02)',
+                             transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
                              cursor: 'pointer',
-                             position: 'relative'
+                             position: 'relative',
+                             overflow: 'hidden'
                            }}
-                           onMouseOver={(e) => {
-                             e.currentTarget.style.transform = 'translateY(-4px)';
-                             e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.08)';
-                           }}
-                           onMouseOut={(e) => {
-                             e.currentTarget.style.transform = 'translateY(0)';
-                             e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.03)';
-                           }}
+                           className="roadmap-card-hover"
                          >
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
-                               <h4 style={{ fontSize: 16, fontWeight: 800, color: '#1E293B', lineHeight: 1.3 }}>{node.role}</h4>
-                               <div style={{ color: '#E2E8F0', fontSize: 18, fontWeight: 900 }}>•••</div>
+                            {nIdx === 0 && <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 6, background: lane.color }} />}
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
+                               <h4 style={{ fontSize: 20, fontWeight: 1000, color: '#0F172A', lineHeight: 1.2 }}>{node.role}</h4>
+                               <div style={{ background: `${lane.color}15`, padding: 10, borderRadius: 14 }}><TrendingUp size={20} color={lane.color} /></div>
                             </div>
-
-                            {nIdx === 0 ? (
-                               <>
-                                 <div style={{ fontSize: 11, color: '#64748B', fontWeight: 600, marginBottom: 10 }}>
-                                    You have <span style={{ color: '#0F172A', fontWeight: 800 }}>{Math.floor(lane.path.matchScore * 1.5)} of 15</span> most common skills for role
-                                 </div>
-                                 <div style={{ height: 6, background: '#F1F5F9', borderRadius: 4, overflow: 'hidden', marginBottom: 16 }}>
-                                    <div style={{ width: `${lane.path.matchScore * 10}%`, height: '100%', background: '#3B82F6' }}></div>
-                                 </div>
-                                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                    <div style={{ background: '#F59E0B', color: '#fff', borderRadius: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', width: 20, height: 20 }}><Zap size={12} fill="#fff" /></div>
-                                    <span style={{ fontSize: 12, fontWeight: 800, color: '#475569' }}>Leadership role</span>
-                                 </div>
-                               </>
-                            ) : null}
+                            <div style={{ fontSize: 13, color: '#64748B', fontWeight: 700, marginBottom: 16 }}>
+                               Velocity Score: <span style={{ color: lane.color, fontWeight: 1000 }}>{lane.path.matchScore * 10}% Match</span>
+                            </div>
+                            <div style={{ height: 10, background: '#F1F5F9', borderRadius: 8, overflow: 'hidden' }}>
+                               <div style={{ width: `${lane.path.matchScore * 10}%`, height: '100%', background: `linear-gradient(90deg, ${lane.color}, ${lane.color}CC)`, borderRadius: 8 }}></div>
+                            </div>
                          </div>
-
-                         {/* Node-to-node connector */}
-                         {nIdx < 2 && (
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: 80 }}>
-                               <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                                  <div style={{ width: 12, height: 12, borderRadius: '50%', border: '3px solid #E2E8F0', background: '#fff' }}></div>
-                                  <div style={{ height: 2, flex: 1, background: '#E2E8F0' }}></div>
-                               </div>
-                               <div style={{ fontSize: 10, fontWeight: 800, color: '#94A3B8', marginTop: 8 }}>+1 role</div>
-                            </div>
-                         )}
+                         {nIdx < 2 && <ChevronRight size={32} color="#CBD5E1" strokeWidth={3} />}
                       </React.Fragment>
                    ))}
                 </div>
-
              </div>
            ))}
         </div>
@@ -202,209 +166,161 @@ function RecommendedView({ data, onSelectPath, savedPaths, toggleSave }: any) {
 }
 
 // ==========================================
-// EXPANDED JOURNEY VIEW (Step 5)
+// EXPANDED JOURNEY VIEW
 // ==========================================
 function ExpandedJourneyView({ path, goBack, isSaved, toggleSave }: any) {
   const [selectedNode, setSelectedNode] = useState<any>(null);
 
-  // Auto-select the "next" node
-  React.useEffect(() => {
+  useEffect(() => {
     const nextNode = path.nodes.find((n: any) => n.status === 'next');
     if (nextNode) setSelectedNode(nextNode);
   }, [path]);
 
   return (
-    <div style={{ padding: '0 20px', animation: 'fadeIn 0.4s ease forwards' }}>
-      
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 30 }}>
-         <button onClick={goBack} style={{ display: 'flex', alignItems: 'center', background: '#F8FAFC', border: '1px solid #E2E8F0', padding: '8px 16px', borderRadius: 8, cursor: 'pointer', fontWeight: 600, color: '#475569', marginRight: 20 }}>
-            <ArrowLeft size={16} style={{ marginRight: 8 }} /> Back to Recommendations
+    <div style={{ padding: '60px 80px', animation: 'fadeIn 0.8s ease forwards' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 80 }}>
+         <button onClick={goBack} style={{ display: 'flex', alignItems: 'center', background: 'rgba(255,255,255,0.5)', border: '1px solid #E2E8F0', padding: '14px 24px', borderRadius: 16, cursor: 'pointer', fontWeight: 900, color: '#475569', fontSize: 15, textTransform: 'uppercase', letterSpacing: '0.05em', backdropFilter: 'blur(10px)' }}>
+            <ArrowLeft size={18} style={{ marginRight: 12 }} /> Exit Experience
+         </button>
+         <button onClick={toggleSave} style={{ display: 'flex', alignItems: 'center', padding: '16px 36px', borderRadius: 18, background: isSaved ? '#EC4899' : '#111827', color: '#fff', border: 'none', fontWeight: 1000, cursor: 'pointer', boxShadow: '0 15px 35px -10px rgba(0,0,0,0.2)', transition: 'all 0.3s' }}>
+           <Bookmark size={20} fill={isSaved ? '#fff' : 'none'} style={{ marginRight: 12 }} /> {isSaved ? 'Syncing Pathway' : 'Lock Progress'}
          </button>
       </div>
 
-      <div style={{ display: 'flex', gap: 40, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-        
-        {/* Left Side: Tree Interactive Map */}
-        <div style={{ flex: '1 1 600px', background: '#fff', borderRadius: 24, border: '1px solid #E2E8F0', padding: 40, boxShadow: '0 20px 40px rgba(0,0,0,0.03)' }}>
-           
-           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
-             <div>
-                <h2 style={{ fontSize: 28, fontWeight: 900, color: '#0F172A', marginBottom: 8 }}>{path.name} Roadmap</h2>
-             </div>
-             <button onClick={toggleSave} style={{ display: 'flex', alignItems: 'center', padding: '10px 20px', borderRadius: 8, background: isSaved ? '#EFF6FF' : '#F8FAFC', color: isSaved ? '#3B82F6' : '#64748B', border: isSaved ? '1px solid #BFDBFE' : '1px solid #E2E8F0', fontWeight: 700, cursor: 'pointer' }}>
-               <Bookmark size={18} fill={isSaved ? '#3B82F6' : 'none'} style={{ marginRight: 8 }} /> {isSaved ? 'Path Saved' : 'Save Path'}
-             </button>
+      <div style={{ display: 'flex', gap: 80, alignItems: 'flex-start' }}>
+        {/* Main Roadmap Container */}
+        <div style={{ flex: '1', background: 'rgba(255,255,255,0.7)', borderRadius: 50, border: '1px solid rgba(226, 232, 240, 0.5)', padding: 70, backdropFilter: 'blur(40px)', boxShadow: '0 50px 120px -30px rgba(0,0,0,0.08)' }}>
+           <div style={{ marginBottom: 70 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+                 <Sparkles size={20} color="#F59E0B" fill="#F59E0B" />
+                 <span style={{ fontSize: 13, fontWeight: 1000, color: '#F59E0B', textTransform: 'uppercase', letterSpacing: '0.2em' }}>Intelligence-Driven</span>
+              </div>
+              <h2 style={{ fontSize: 52, fontWeight: 1000, color: '#0F172A', letterSpacing: '-0.05em', lineHeight: 1.0 }}>{path.name}<br/><span style={{ color: '#94A3B8' }}>Future Trajectory</span></h2>
            </div>
 
-           {/* The Map */}
-           <div style={{ position: 'relative', paddingLeft: 30 }}>
-             {/* Vertical Timeline Line */}
-             <div style={{ position: 'absolute', left: 45, top: 0, bottom: 0, width: 4, background: 'linear-gradient(180deg, #EC4899 0%, #10B981 50%, #3B82F6 100%)', zIndex: 1, borderRadius: 2, opacity: 0.8 }}></div>
-             
-             {path.nodes.map((node: any, idx: number) => {
-               const isSelected = selectedNode?.role === node.role;
-               
+           <div style={{ position: 'relative', paddingLeft: 60 }}>
+              {/* Animated Spine */}
+              <div style={{ position: 'absolute', left: 88, top: 0, bottom: 0, width: 6, background: 'linear-gradient(180deg, #E2E8F0 0%, #EC4899 20%, #F59E0B 50%, #3B82F6 100%)', zIndex: 1, borderRadius: 3 }} />
+              
+              {path.nodes.map((node: any, idx: number) => {
+                const isSelected = selectedNode?.role === node.role;
                 let nodeColor = '#94A3B8';
-                let glowColor = 'rgba(148, 163, 184, 0.2)';
-                let icon = <CheckCircle size={18} color="#fff" />;
+                let icon = <CheckCircle size={20} color="#fff" />;
                 
-                if (node.status === 'past') { 
-                  nodeColor = '#E2E8F0'; 
-                  glowColor = 'rgba(226, 232, 240, 0.1)';
-                }
-                if (node.status === 'current') { 
-                  nodeColor = '#0F172A'; 
-                  glowColor = 'rgba(15, 23, 42, 0.2)';
-                  icon = <Briefcase size={16} color="#fff"/>; 
-                }
-                if (node.status === 'next') { 
-                  nodeColor = '#3B82F6'; 
-                  glowColor = 'rgba(59, 130, 246, 0.3)';
-                  icon = <Crosshair size={16} color="#fff"/>; 
-                }
-                if (node.status === 'future') { 
-                  nodeColor = '#8B5CF6'; 
-                  glowColor = 'rgba(139, 92, 246, 0.3)';
-                  icon = <Zap size={16} color="#fff"/>; 
-                }
+                if (node.status === 'past') { nodeColor = '#E2E8F0'; }
+                if (node.status === 'current') { nodeColor = '#111827'; icon = <Briefcase size={18} color="#fff"/>; }
+                if (node.status === 'next') { nodeColor = '#3B82F6'; icon = <Crosshair size={18} color="#fff"/>; }
+                if (node.status === 'future') { nodeColor = '#8B5CF6'; icon = <Zap size={18} color="#fff"/>; }
 
                 return (
-                  <div 
-                    key={idx} 
-                    onClick={() => setSelectedNode(node)}
-                    style={{ 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      marginBottom: 34, 
-                      cursor: 'pointer',
-                      transform: isSelected ? 'scale(1.02) translateX(12px)' : 'none',
-                      transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                      position: 'relative',
-                      zIndex: 2
-                    }}
-                  >
-                     {/* Node Dot */}
+                  <div key={idx} onClick={() => setSelectedNode(node)} style={{ display: 'flex', alignItems: 'center', marginBottom: 44, cursor: 'pointer', transform: isSelected ? 'translateX(24px)' : 'none', transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)', position: 'relative', zIndex: 2 }}>
                      <div style={{ 
-                       width: 38, 
-                       height: 38, 
+                       width: 54, 
+                       height: 54, 
                        borderRadius: '50%', 
                        background: nodeColor, 
                        display: 'flex', 
                        alignItems: 'center', 
                        justifyContent: 'center', 
-                       marginRight: 24, 
-                       border: isSelected ? `6px solid ${nodeColor}22` : '4px solid #fff', 
-                       boxShadow: `0 4px 12px ${glowColor}`,
-                       flexShrink: 0,
-                       transition: 'all 0.3s ease'
-                     }}>
-                        {icon}
-                     </div>
-                    
-                     {/* Node Box */}
-                     {/* Dynamic background based on fading position */}
+                       marginRight: 40, 
+                       border: '6px solid #fff', 
+                       boxShadow: '0 10px 25px rgba(0,0,0,0.12)', 
+                       flexShrink: 0, 
+                       transition: 'all 0.3s' 
+                     }}>{icon}</div>
+                     
                      <div style={{ 
                        flex: 1, 
-                       padding: '20px 28px', 
-                       background: isSelected ? `${nodeColor}0D` : `rgba(255,255,255,${1 - (idx * 0.05)})`,
-                       backdropFilter: isSelected ? 'blur(10px)' : 'none',
-                       border: `1px solid ${isSelected ? nodeColor : '#E2E8F0'}`,
-                       borderRadius: 20,
-                       boxShadow: isSelected ? `0 15px 30px -10px ${glowColor}` : '0 4px 15px rgba(0,0,0,0.02)',
-                       display: 'flex',
-                       justifyContent: 'space-between',
-                       alignItems: 'center',
-                       position: 'relative',
-                       overflow: 'hidden',
-                       transition: 'all 0.3s ease'
-                     }} className="node-timeline-card">
-                        {isSelected && <div style={{ position: 'absolute', top: 0, left: 0, width: 6, height: '100%', background: nodeColor }} />}
+                       padding: '30px 44px', 
+                       background: isSelected ? '#fff' : 'rgba(255,255,255,0.4)', 
+                       border: `2px solid ${isSelected ? '#3B82F6' : 'transparent'}`, 
+                       borderRadius: 36, 
+                       boxShadow: isSelected ? '0 30px 70px -15px rgba(59,130,246,0.2)' : '0 4px 12px rgba(0,0,0,0.01)', 
+                       display: 'flex', 
+                       justifyContent: 'space-between', 
+                       alignItems: 'center', 
+                       transition: 'all 0.4s' 
+                     }}>
                         <div>
-                           <div style={{ fontSize: 10, fontWeight: 950, color: nodeColor, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 6 }}>
-                             {node.status === 'past' ? 'Completed Role' : node.status === 'current' ? 'Current Role' : node.status === 'next' ? 'Target Next Move' : 'Future Vision'}
-                           </div>
-                           <div style={{ fontSize: 20, fontWeight: 900, color: node.status === 'past' ? '#94A3B8' : '#0F172A', letterSpacing: '-0.02em' }}>
-                             {node.role}
-                           </div>
+                           <div style={{ fontSize: 11, fontWeight: 1000, color: nodeColor, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 8 }}>{node.status.toUpperCase()} VERTICAL</div>
+                           <h4 style={{ fontSize: 26, fontWeight: 1000, color: node.status === 'past' ? '#CBD5E1' : '#0F172A', letterSpacing: '-0.03em' }}>{node.role}</h4>
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                           {isSelected && <ChevronRight size={20} color={nodeColor} />}
-                        </div>
+                        {isSelected && <ChevronRight size={28} color="#3B82F6" strokeWidth={3} />}
                      </div>
-                 </div>
-               );
-             })}
+                  </div>
+                );
+              })}
            </div>
         </div>
 
-        {/* Right Side: Details Panel (Step 6) */}
-        <div style={{ flex: '1 1 350px', position: 'sticky', top: 20 }}>
+        {/* Sidebar Insights */}
+        <div style={{ width: 500, position: 'sticky', top: 60 }}>
           {selectedNode ? (
-            <div style={{ background: '#fff', borderRadius: 24, border: '1px solid #E2E8F0', padding: 30, boxShadow: '0 20px 40px rgba(0,0,0,0.05)' }}>
-               <h3 style={{ fontSize: 24, fontWeight: 900, color: '#0F172A', marginBottom: 20 }}>Role Insights</h3>
-               
-               <div style={{ padding: '16px', background: '#F8FAFC', borderRadius: 12, marginBottom: 24, borderLeft: '4px solid #3B82F6' }}>
-                  <h4 style={{ fontSize: 14, fontWeight: 800, color: '#0F172A', marginBottom: 6 }}>Focusing on: {selectedNode.role}</h4>
-                  <p style={{ fontSize: 14, color: '#64748B', lineHeight: 1.5 }}>
-                     {selectedNode.status === 'past' ? 'You have successfully completed this phase of the journey.' : 
-                      selectedNode.status === 'current' ? 'Your current position commands a strong technical foundation.' : 
-                      'This is a crucial milestone requiring specific skill acquisitions.'}
-                  </p>
-               </div>
+            <div style={{ padding: '10px' }}>
+              <div style={{ background: '#fff', borderRadius: 44, border: '1px solid #E2E8F0', padding: 50, boxShadow: '0 40px 90px -20px rgba(0,0,0,0.12)' }}>
+                 <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 40 }}>
+                    <div style={{ background: 'linear-gradient(135deg, #3B82F6, #8B5CF6)', width: 60, height: 60, borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', boxShadow: '0 10px 20px rgba(59,130,246,0.3)' }}><Star size={30} fill="#fff" /></div>
+                    <h3 style={{ fontSize: 32, fontWeight: 1000, color: '#0F172A', letterSpacing: '-0.04em' }}>Role Intelligence</h3>
+                 </div>
+                 
+                 <div style={{ padding: '30px', background: 'linear-gradient(145deg, #F8FAFC 0%, #F1F5F9 100%)', borderRadius: 32, marginBottom: 44, borderLeft: '8px solid #3B82F6' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                       <MapPin size={16} color="#3B82F6" />
+                       <span style={{ fontSize: 14, fontWeight: 900, color: '#3B82F6', textTransform: 'uppercase' }}>Strategic Position</span>
+                    </div>
+                    <h4 style={{ fontSize: 20, fontWeight: 1000, color: '#0F172A', marginBottom: 10 }}>Target: {selectedNode.role}</h4>
+                    <p style={{ fontSize: 16, color: '#475569', lineHeight: 1.7, fontWeight: 500 }}>{selectedNode.status === 'past' ? 'Historical domain mastery. These skills form the bedrock of your high-velocity trajectory.' : selectedNode.status === 'current' ? 'Active optimization phase. You are currently leveraging core strengths for maximum impact.' : 'High-value career target. Reaching this milestone signifies architectural maturity.'}</p>
+                 </div>
 
-               {/* Skills Gaps */}
-               {(selectedNode.status === 'next' || selectedNode.status === 'future') && (
-                 <>
-                   <div style={{ marginBottom: 24 }}>
-                      <h4 style={{ fontSize: 13, fontWeight: 800, color: '#64748B', textTransform: 'uppercase', marginBottom: 12, display: 'flex', alignItems: 'center' }}><CheckCircle size={16} color="#10B981" style={{ marginRight: 6 }}/> Aligned Strengths</h4>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                        {path.alignedSkills.map((s: string, i: number) => (
-                           <span key={i} style={{ background: '#D1FAE5', color: '#065F46', fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 6 }}>{s}</span>
-                        ))}
-                      </div>
-                   </div>
-                   
-                   <div style={{ marginBottom: 30 }}>
-                      <h4 style={{ fontSize: 13, fontWeight: 800, color: '#64748B', textTransform: 'uppercase', marginBottom: 12, display: 'flex', alignItems: 'center' }}><Info size={16} color="#F59E0B" style={{ marginRight: 6 }}/> Skills To Acquire</h4>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                        {path.missingSkills.map((s: string, i: number) => (
-                           <span key={i} style={{ background: '#FEF3C7', color: '#92400E', fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 6 }}>{s}</span>
-                        ))}
-                        {selectedNode.skillsToLearn && selectedNode.skillsToLearn.map((s: string, i: number) => (
-                           <span key={i} style={{ background: '#FEE2E2', color: '#991B1B', fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 6 }}>{s}</span>
-                        ))}
-                      </div>
-                   </div>
+                 <div style={{ marginBottom: 44 }}>
+                    <h4 style={{ fontSize: 14, fontWeight: 1000, color: '#94A3B8', textTransform: 'uppercase', marginBottom: 20, letterSpacing: '0.15em' }}>Unlocked Power</h4>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                      {path.alignedSkills.map((s: string, i: number) => (
+                         <span key={i} style={{ background: '#F1FDF9', color: '#059669', fontSize: 14, fontWeight: 800, padding: '10px 20px', borderRadius: 14, display: 'flex', alignItems: 'center', gap: 8, border: '1px solid #D1FAE5' }}><Shield size={16} /> {s}</span>
+                      ))}
+                    </div>
+                 </div>
+                 
+                 <div style={{ marginBottom: 50 }}>
+                    <h4 style={{ fontSize: 14, fontWeight: 1000, color: '#94A3B8', textTransform: 'uppercase', marginBottom: 20, letterSpacing: '0.15em' }}>Target Deficits</h4>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+                      {(selectedNode.status === 'next' || selectedNode.status === 'future') && path.missingSkills.map((s: string, i: number) => (
+                         <span key={i} style={{ background: '#FFF7ED', color: '#EA580C', fontSize: 14, fontWeight: 800, padding: '10px 20px', borderRadius: 14, display: 'flex', alignItems: 'center', gap: 8, border: '1px solid #FFEDD5' }}><Info size={16} /> {s}</span>
+                      ))}
+                    </div>
+                 </div>
 
-                   <hr style={{ border: 'none', borderTop: '1px solid #E2E8F0', marginBottom: 24 }} />
-
-                   <h4 style={{ fontSize: 16, fontWeight: 800, color: '#0F172A', marginBottom: 16 }}>Recommended Action Plan</h4>
-                   <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                      <div style={{ background: '#F8FAFC', padding: '12px 16px', borderRadius: 8, display: 'flex', gap: 12 }}>
-                         <div style={{ fontWeight: 800, color: '#3B82F6', fontSize: 14, minWidth: 50 }}>30 Days</div>
-                         <div style={{ fontSize: 13, color: '#475569' }}>Audit your current skills against the target role requirements.</div>
-                      </div>
-                      <div style={{ background: '#F8FAFC', padding: '12px 16px', borderRadius: 8, display: 'flex', gap: 12 }}>
-                         <div style={{ fontWeight: 800, color: '#3B82F6', fontSize: 14, minWidth: 50 }}>90 Days</div>
-                         <div style={{ fontSize: 13, color: '#475569' }}>Enroll in certifications for required tech stacks (e.g. {path.missingSkills[0]}).</div>
-                      </div>
-                      <div style={{ background: '#F8FAFC', padding: '12px 16px', borderRadius: 8, display: 'flex', gap: 12 }}>
-                         <div style={{ fontWeight: 800, color: '#3B82F6', fontSize: 14, minWidth: 50 }}>180 Days</div>
-                         <div style={{ fontSize: 13, color: '#475569' }}>Take on internal shadow projects aligned with the {selectedNode.role} domain.</div>
-                      </div>
-                   </div>
-                 </>
-               )}
+                 <div style={{ background: '#111827', borderRadius: 40, padding: '40px', color: '#fff', boxShadow: '0 30px 60px -10px rgba(0,0,0,0.3)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 30 }}>
+                       <Sparkles size={20} color="#F59E0B" fill="#F59E0B" />
+                       <h4 style={{ fontSize: 22, fontWeight: 1000, color: '#fff' }}>Accelerator Protocol</h4>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                       {[
+                         { d: '30', t: 'Skill Conversion', c: `Benchmark profile against ${selectedNode.role} KPIs.` },
+                         { d: '90', t: 'Core Authority', c: `Validate expertise via ${path.missingSkills[0] || 'Technical Stack'} certs.` },
+                         { d: '180', t: 'Internal Deployment', c: 'Secure high-impact shadow projects for domain mastery.' }
+                       ].map((item, i) => (
+                         <div key={i} style={{ display: 'flex', gap: 20 }}>
+                            <div style={{ minWidth: 50, height: 50, borderRadius: 16, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 1000, fontSize: 14, color: '#F59E0B' }}>{item.d}d</div>
+                            <div>
+                               <div style={{ fontSize: 16, fontWeight: 900, marginBottom: 4 }}>{item.t}</div>
+                               <div style={{ fontSize: 14, opacity: 0.6, fontWeight: 500 }}>{item.c}</div>
+                            </div>
+                         </div>
+                       ))}
+                    </div>
+                 </div>
+              </div>
             </div>
           ) : (
-             <div style={{ background: '#F8FAFC', borderRadius: 24, border: '1px dashed #CBD5E1', padding: 40, textAlign: 'center', color: '#94A3B8' }}>
-                <Compass size={48} style={{ marginBottom: 16, opacity: 0.5 }} />
-                <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Select a Journey Node</h3>
-                <p style={{ fontSize: 14 }}>Click on any role in the timeline to explore detailed skills, gaps, and action plans.</p>
-             </div>
+            <div style={{ background: 'rgba(255,255,255,0.5)', borderRadius: 50, border: '3px dashed rgba(226, 232, 240, 1)', padding: 80, textAlign: 'center', color: '#94A3B8', backdropFilter: 'blur(20px)' }}>
+               <Compass size={80} style={{ marginBottom: 30, opacity: 0.2 }} />
+               <h3 style={{ fontSize: 24, fontWeight: 1000, marginBottom: 12, color: '#475569' }}>Select a Destination</h3>
+               <p style={{ fontSize: 17, fontWeight: 500, opacity: 0.8 }}>Choose a career milestone on the left to reveal your strategic acceleration plan.</p>
+            </div>
           )}
         </div>
-
       </div>
     </div>
   );
