@@ -385,341 +385,87 @@ const DAILY_QUOTES = [
   "Your future is as bright as your faith.",
   "Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence.",
   "Be humble. Be hungry. And always be the hardest worker in the room.",
-  "Success is not about the destination, it's about the climb.",
-];
+  "Success is not about the destination, it's about the function PathNode({ node, isStart, color }: any) {
+  return (
+    <div style={{ 
+      background: '#fff', 
+      border: '1px solid #E2E8F0', 
+      borderRadius: 12, 
+      padding: isStart ? '20px 24px' : '16px 20px', 
+      minWidth: isStart ? 280 : 180,
+      position: 'relative',
+      boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
+      transition: 'all 0.3s ease'
+    }} className="hover-scale">
+      <div style={{ position: 'absolute', top: 12, right: 12, color: '#CBD5E1' }}><Info size={14} /></div>
+      
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <h4 style={{ fontSize: isStart ? 16 : 14, fontWeight: 900, color: '#1E293B', margin: 0, lineHeight: 1.2 }}>{node.role}</h4>
+        
+        {isStart && (
+          <>
+            <p style={{ fontSize: 11, color: '#64748B', margin: 0 }}>You have 8 of 15 most common skills for role</p>
+            <div style={{ height: 6, background: '#F1F5F9', borderRadius: 3, overflow: 'hidden', width: '100%' }}>
+              <div style={{ width: '68%', height: '100%', background: color }} />
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#FFF7ED', color: '#C2410C', padding: '4px 8px', borderRadius: 6, width: 'fit-content', marginTop: 4 }}>
+              <Sparkles size={10} fill="#C2410C" />
+              <span style={{ fontSize: 9, fontWeight: 900, textTransform: 'uppercase' }}>Leadership role</span>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
 
-function LaneRow({ card, pathData, t, setPortalActivePath, isPromoted = false }: any) {
-  const [selectedNode, setSelectedNode] = useState<string | null>(null);
-  const [showFullRoadmap, setShowFullRoadmap] = useState(false);
-  
+function BranchingLane({ card, pathData, color, t }: any) {
   if (!pathData) return null;
-  const isDesired = card.label === 'Desired path';
-  const accentColor = isPromoted ? '#3B82F6' : (isDesired ? '#10B981' : '#059669');
+  const nodes = pathData.nodes.filter((n: any) => n.status !== 'past');
 
-  const getLearningResources = (role: string) => {
-    const resources: Record<string, any[]> = {
-      'RPA Solution Architect': [
-        { name: 'UiPath Advanced Architect Mastery', url: 'https://academy.uipath.com', type: 'Certification' },
-        { name: 'Enterprise RPA Design Patterns', url: 'https://automationanywhere.com/university', type: 'Course' }
-      ],
-      'Intelligent Automation Architect': [
-        { name: 'Microsoft Azure AI Fundamentals', url: 'https://learn.microsoft.com', type: 'Certification' },
-        { name: 'Cognitive Automation Specialist', url: 'https://workato.com/academy', type: 'Course' },
-        { name: 'Python for Automation Engineers', url: 'https://coursera.org', type: 'Course' }
-      ],
-      'Enterprise Automation Architect': [
-        { name: 'TOGAF Enterprise Architecture', url: 'https://opengroup.org', type: 'Certification' },
-        { name: 'Strategic IT Governance', url: 'https://edx.org', type: 'Course' }
-      ],
-      'Technical Program Manager': [
-        { name: 'Advanced Agile Program Management', url: 'https://scrum.org', type: 'Course' },
-        { name: 'Strategic Product Leadership', url: 'https://productschool.com', type: 'Course' }
-      ],
-      'AI Architect': [
-        { name: 'LLM & Generative AI for Architects', url: 'https://deeplearning.ai', type: 'Course' },
-        { name: 'AWS Machine Learning Specialty', url: 'https://aws.amazon.com/training', type: 'Certification' }
-      ]
-    };
-    return resources[role] || [
-      { name: `${role} Professional Certification`, url: '#', type: 'Certification' },
-      { name: `Advanced ${role} Strategy`, url: '#', type: 'Course' }
-    ];
-  };
-
-  const nextNodes = pathData.nodes.filter((n: any) => n.status !== 'past').slice(0, 2);
-  const allNodes = pathData.nodes;
-  const filteredNodes = allNodes.filter((n: any) => n.status !== 'past');
-
-    return (
-    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 12 }}>
-      <div style={{ display: 'flex', alignItems: 'center', width: '100%', position: 'relative' }}>
-         {/* Branch line from spine */}
-         <div style={{ width: 40, height: 2, background: `linear-gradient(90deg, #E2E8F0, ${accentColor}44)`, position: 'absolute', left: -40, top: '50%' }} />
-         
-         <div className="discovery-row-container"
-              style={{ position: 'relative', overflow: 'hidden' }} 
-              style={{ 
-                display: 'flex', 
-                flexDirection: 'row', 
-                alignItems: 'center', 
-                flex: 1,
-                background: 'linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9))', 
-                backdropFilter: 'blur(10px)',
-                border: `1px solid ${accentColor}${selectedNode ? '44' : '22'}`, 
-                borderRadius: 24, 
-                padding: '24px 32px', 
-                boxShadow: selectedNode ? `0 20px 50px -10px ${accentColor}26` : `0 10px 40px -15px ${accentColor}1A`, 
-                transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                position: 'relative',
-                overflow: 'hidden'
-              }}>
-           
-           <div style={{ position: 'absolute', top: 0, left: 0, width: 4, height: '100%', background: accentColor }} />
-           
-           {/* Main Card */}
-           <div onClick={() => setSelectedNode(selectedNode === card.role ? null : card.role)} 
-                style={{ display: 'flex', alignItems: 'center', gap: 20, minWidth: 300, borderRight: '1px solid #F1F5F9', paddingRight: 32, cursor: 'pointer' }}>
-              <div style={{ position: 'relative' }}>
-                <div style={{ position: 'absolute', inset: -8, background: accentColor, borderRadius: 14, opacity: 0.1, filter: 'blur(8px)' }} />
-                <div style={{ width: 64, height: 64, borderRadius: 14, overflow: 'hidden', border: '2px solid #fff', flexShrink: 0, boxShadow: '0 8px 20px rgba(0,0,0,0.1)', position: 'relative' }}>
-                  <Image src={card.image} width={64} height={64} alt="" style={{ objectFit: 'cover' }} />
-                </div>
-              </div>
-              <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                  <h3 style={{ fontSize: 16, fontWeight: 950, color: '#1E293B', margin: 0, letterSpacing: '-0.01em' }}>{card.role}</h3>
-                  <div style={{ color: selectedNode === card.role ? accentColor : '#CBD5E1', transition: 'all 0.3s' }}><Info size={14} /></div>
-                </div>
-                <div style={{ height: 6, background: '#F1F5F9', borderRadius: 3, overflow: 'hidden', marginTop: 12, width: 140 }}>
-                  <div style={{ width: '68%', height: '100%', background: `linear-gradient(90deg, ${accentColor}, #059669)` }}></div>
-                </div>
-                <div style={{ color: accentColor, fontSize: 9, fontWeight: 950, textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 12, display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <Sparkles size={10} fill={accentColor} /> High Match Potential
-                </div>
-              </div>
-           </div>
-  
-           {/* Pathway Progression */}
-           <div style={{ flex: 1, display: 'flex', alignItems: 'center', paddingLeft: 32 }}>
-                {nextNodes.map((node: any, nIdx: number) => (
-                  <React.Fragment key={nIdx}>
-                     <div style={{ width: 80, height: 2, background: `linear-gradient(90deg, #F1F5F9, ${accentColor}33, #F1F5F9)`, position: 'relative', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#fff', border: `3px solid ${accentColor}`, boxShadow: `0 0 10px ${accentColor}33` }} />
-                        <div style={{ position: 'absolute', bottom: -18, fontSize: 10, fontWeight: 950, color: '#94A3B8', whiteSpace: 'nowrap', letterSpacing: '0.05em' }}>NEXT LVL</div>
-                     </div>
-                     <div onClick={() => setSelectedNode(selectedNode === node.role ? null : node.role)}
-                          style={{ 
-                            background: selectedNode === node.role ? `${accentColor}08` : 'rgba(255, 255, 255, 0.5)', 
-                            border: `1px solid ${selectedNode === node.role ? accentColor : '#F1F5F9'}`, 
-                            borderRadius: 16, 
-                            padding: '12px 20px', 
-                            minWidth: 180, 
-                            boxShadow: selectedNode === node.role ? `0 8px 24px ${accentColor}1A` : '0 4px 12px rgba(0,0,0,0.02)', 
-                            position: 'relative',
-                            transition: 'all 0.3s ease',
-                            cursor: 'pointer'
-                          }} className="progression-box">
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                          <p style={{ fontSize: 10, fontWeight: 900, color: accentColor, margin: 0, textTransform: 'uppercase', letterSpacing: '0.02em' }}>{nIdx === 0 ? 'Milestone' : 'Target'}</p>
-                          <h4 style={{ fontSize: 13, fontWeight: 850, color: '#1E293B', margin: 0 }}>{node.role}</h4>
-                        </div>
-                        <div style={{ position: 'absolute', right: -6, top: '50%', transform: 'translateY(-50%)', color: accentColor, background: '#fff', borderRadius: '50%', padding: 2, border: '1px solid #F1F5F9', transform: `translateY(-50%) rotate(${selectedNode === node.role ? '90deg' : '0deg'})`, transition: 'all 0.3s' }}><ChevronRight size={14} /></div>
-                     </div>
-                  </React.Fragment>
-                ))}
-                
-                <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 24 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#94A3B8', cursor: 'pointer' }} className="hover-heart">
-                    <Heart size={18} />
-                    <span style={{ fontSize: 11, fontWeight: 800 }}>Save</span>
-                  </div>
-                  <button onClick={() => setShowFullRoadmap(!showFullRoadmap)} className="btn-roadmap-premium" style={{ background: showFullRoadmap ? '#0F172A' : 'linear-gradient(135deg, #f59e0b, #ec4899)', color: '#fff', border: 'none', padding: '12px 24px', borderRadius: 14, fontSize: 11, fontWeight: 950, textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'pointer', transition: 'all 0.3s', boxShadow: showFullRoadmap ? 'none' : `0 8px 20px ${accentColor}4D` }}>
-                    {showFullRoadmap ? 'Hide Roadmap' : 'Full Roadmap'}
-                  </button>
-                </div>
-           </div>
-         </div>
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
+      {/* Lane Header */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%', paddingLeft: 40 }}>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+            <div style={{ background: color, color: '#fff', fontSize: 10, fontWeight: 950, padding: '4px 12px', borderRadius: 6, textTransform: 'uppercase' }}>{card.label}</div>
+            <div style={{ background: color + '22', color: color, fontSize: 10, fontWeight: 950, padding: '4px 8px', borderRadius: 6 }}>5</div>
+          </div>
+          <p style={{ fontSize: 12, color: '#64748B', fontWeight: 600, margin: 0 }}>Based on your Desired Role <span style={{ color: '#1E293B', fontWeight: 800 }}>Solution Architect ></span></p>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#64748B', cursor: 'pointer' }} className="hover-heart">
+          <Heart size={16} />
+          <span style={{ fontSize: 12, fontWeight: 800 }}>Save path</span>
+        </div>
       </div>
 
-      {/* Expanded Node Details */}
-      {selectedNode && (
-        <div style={{ 
-          background: '#fff', 
-          borderRadius: 24, 
-          padding: '24px 32px', 
-          border: `1px solid ${accentColor}22`, 
-          marginLeft: 40,
-          boxShadow: '0 10px 30px rgba(0,0,0,0.03)',
-          animation: 'popIn 0.4s ease-out'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
-            <div>
-              <h4 style={{ fontSize: 18, fontWeight: 900, color: '#1E293B', margin: '0 0 4px 0' }}>{selectedNode} Roadmap</h4>
-              <p style={{ fontSize: 13, color: '#64748B', margin: 0 }}>Step-by-step guide and learning resources to master this role.</p>
-            </div>
-            <button onClick={() => setSelectedNode(null)} style={{ background: '#F1F5F9', border: 'none', padding: 8, borderRadius: 10, cursor: 'pointer', color: '#94A3B8' }}><X size={16} /></button>
-          </div>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                <div style={{ background: `${accentColor}15`, color: accentColor, padding: 8, borderRadius: 10 }}><Target size={18} /></div>
-                <h5 style={{ fontSize: 14, fontWeight: 850, color: '#334155', margin: 0 }}>Skills to Master</h5>
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                {['Solution Design', 'Enterprise Integration', 'Cost Optimization', 'Strategic Planning', 'Risk Mitigation'].map((skill, sIdx) => (
-                  <div key={sIdx} style={{ background: '#F8FAF6', border: '1px solid #E2E8F0', padding: '8px 14px', borderRadius: 10, fontSize: 12, fontWeight: 700, color: '#475569' }}>{skill}</div>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                <div style={{ background: `${accentColor}15`, color: accentColor, padding: 8, borderRadius: 10 }}><BookOpen size={18} /></div>
-                <h5 style={{ fontSize: 14, fontWeight: 850, color: '#334155', margin: 0 }}>Learning Path</h5>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {getLearningResources(selectedNode).map((res, rIdx) => (
-                  <a key={rIdx} href={res.url} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#F8FAFC', padding: '12px 16px', borderRadius: 12, textDecoration: 'none', border: '1px solid #F1F5F9', transition: 'all 0.2s' }} className="hover-scale">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                      <div style={{ background: '#fff', width: 32, height: 32, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #E2E8F0', color: accentColor }}><Rocket size={16} /></div>
-                      <div>
-                        <p style={{ fontSize: 13, fontWeight: 800, color: '#1E293B', margin: 0 }}>{res.name}</p>
-                        <p style={{ fontSize: 11, color: '#94A3B8', margin: 0 }}>{res.type}</p>
-                      </div>
-                    </div>
-                    <ArrowRight size={14} color="#CBD5E1" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
+      {/* Path Sequence */}
+      <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+        {/* Branching Line Connection Point */}
+        <div style={{ width: 40, height: 2, background: '#E2E8F0', position: 'absolute', left: -40, top: '50%' }} />
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: 0, flex: 1 }}>
+          {nodes.map((node: any, idx: number) => (
+            <React.Fragment key={idx}>
+              <PathNode node={node} isStart={idx === 0} color={color} />
+              {idx < nodes.length - 1 && (
+                <div style={{ display: 'flex', alignItems: 'center', padding: '0 20px', position: 'relative' }}>
+                  <div style={{ width: 60, height: 1, background: '#E2E8F0' }} />
+                  <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 8, height: 8, borderRadius: '50%', background: '#fff', border: '1px solid #CBD5E1' }} />
+                  <div style={{ position: 'absolute', bottom: -18, left: '50%', transform: 'translateX(-50%)', fontSize: 10, fontWeight: 800, color: '#94A3B8', whiteSpace: 'nowrap' }}>
+                    +{idx + 1} role
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
         </div>
-      )}
-
-      {/* Full Roadmap Expansion */}
-      {showFullRoadmap && (
-        <div style={{ 
-          background: 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)', 
-          borderRadius: 32, 
-          padding: '40px', 
-          border: '1px solid #E2E8F0',
-          marginLeft: 40,
-          position: 'relative',
-          overflow: 'hidden',
-          animation: 'popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
-        }}>
-           {/* Decorative Background Elements */}
-           <div style={{ position: 'absolute', top: -100, right: -100, width: 300, height: 300, background: `${accentColor}10`, borderRadius: '50%', filter: 'blur(80px)' }} />
-           <div style={{ position: 'absolute', bottom: -50, left: -50, width: 200, height: 200, background: '#10B98110', borderRadius: '50%', filter: 'blur(60px)' }} />
-
-           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 40, position: 'relative', zIndex: 1 }}>
-             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-               <div style={{ background: `linear-gradient(135deg, ${accentColor}, #059669)`, color: '#fff', padding: 10, borderRadius: 12, boxShadow: `0 8px 20px ${accentColor}4D` }}><Layers size={20} /></div>
-               <div>
-                 <h4 style={{ fontSize: 18, fontWeight: 950, color: '#0F172A', margin: 0 }}>The Career Highway</h4>
-                 <p style={{ fontSize: 13, color: '#64748B', margin: '4px 0 0 0' }}>Your personalized high-speed route to {filteredNodes[filteredNodes.length - 1]?.role}</p>
-               </div>
-             </div>
-             <div style={{ background: '#fff', padding: '8px 16px', borderRadius: 20, border: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', gap: 8 }}>
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#10B981', boxShadow: '0 0 10px #10B981' }} />
-                <span style={{ fontSize: 11, fontWeight: 900, color: '#475569', textTransform: 'uppercase' }}>Route Optimized by AI</span>
-             </div>
-           </div>
-           
-           <div style={{ position: 'relative', height: 240, padding: '0 40px', display: 'flex', alignItems: 'center', zIndex: 1 }}>
-              {/* The "Road" Path */}
-              <svg style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible' }}>
-                 <defs>
-                   <linearGradient id={`roadGrad-${accentColor}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                     <stop offset="0%" stopColor={accentColor} />
-                     <stop offset="100%" stopColor="#059669" />
-                   </linearGradient>
-                   <filter id="glow">
-                     <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                     <feMerge>
-                       <feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/>
-                     </feMerge>
-                   </filter>
-                 </defs>
-                 
-                 {/* Main Road Stroke */}
-                 <path 
-                   d={`M 80 120 C 200 120, 300 40, 450 120 S 700 200, 850 120 S 1100 40, 1250 120`}
-                   fill="none" 
-                   stroke={`url(#roadGrad-${accentColor})`} 
-                   strokeWidth="12" 
-                   strokeLinecap="round"
-                   style={{ opacity: 0.2, filter: 'blur(4px)' }}
-                 />
-                 <path 
-                   d={`M 80 120 C 200 120, 300 40, 450 120 S 700 200, 850 120 S 1100 40, 1250 120`}
-                   fill="none" 
-                   stroke={`url(#roadGrad-${accentColor})`} 
-                   strokeWidth="6" 
-                   strokeLinecap="round"
-                   strokeDasharray="1 15"
-                   style={{ animation: 'roadFlow 20s linear infinite' }}
-                 />
-              </svg>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: 0, width: '100%', justifyContent: 'space-between', position: 'relative' }}>
-                {filteredNodes.map((node: any, idx: number) => {
-                  const curveOffsets = [
-                    { x: 0, y: 0 },    // Current
-                    { x: 0, y: -60 },  // Next
-                    { x: 0, y: 40 },   // Future 1
-                    { x: 0, y: -60 },  // Future 2
-                    { x: 0, y: 0 },    // Future 3
-                  ];
-                  const offset = curveOffsets[idx] || { x: 0, y: 0 };
-                  const isCurrent = node.status === 'current';
-                  const isTarget = node.status === 'next';
-                  
-                  return (
-                    <div key={idx} 
-                         onClick={() => setSelectedNode(node.role)}
-                         style={{ 
-                           display: 'flex', 
-                           flexDirection: 'column', 
-                           alignItems: 'center', 
-                           gap: 16, 
-                           position: 'relative',
-                           transform: `translateY(${offset.y}px)`,
-                           transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                           cursor: 'pointer',
-                           zIndex: 10
-                         }}
-                         className="hover-scale">
-                      
-                      {/* Milestone Sign */}
-                      <div style={{ 
-                        background: isCurrent ? accentColor : '#fff',
-                        padding: '8px 16px',
-                        borderRadius: 12,
-                        boxShadow: '0 10px 25px rgba(0,0,0,0.05)',
-                        border: `1px solid ${isCurrent ? accentColor : '#E2E8F0'}`,
-                        marginBottom: 8,
-                        position: 'relative'
-                      }}>
-                        <p style={{ fontSize: 9, fontWeight: 950, color: isCurrent ? '#fff' : accentColor, margin: 0, textTransform: 'uppercase', textAlign: 'center' }}>{node.status}</p>
-                        <div style={{ position: 'absolute', bottom: -6, left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '6px solid transparent', borderRight: '6px solid transparent', borderTop: `6px solid ${isCurrent ? accentColor : '#fff'}` }} />
-                      </div>
-
-                      {/* Road Pip */}
-                      <div style={{ 
-                        width: 56, 
-                        height: 56, 
-                        borderRadius: '50%', 
-                        background: isCurrent ? `linear-gradient(135deg, ${accentColor}, #EC4899)` : '#fff', 
-                        border: `4px solid ${isCurrent ? '#fff' : accentColor}`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: isCurrent ? '#fff' : accentColor,
-                        boxShadow: isCurrent ? `0 0 30px ${accentColor}66` : `0 0 20px ${accentColor}22`,
-                        zIndex: 2,
-                        position: 'relative'
-                      }}>
-                        {isCurrent ? <User size={24} /> : (isTarget ? <Rocket size={24} /> : <Award size={24} />)}
-                        
-                        {/* Glow Pulse */}
-                        {isCurrent && (
-                          <div style={{ position: 'absolute', inset: -8, borderRadius: '50%', border: `2px solid ${accentColor}`, opacity: 0.5, animation: 'pulse-slow 2s infinite' }} />
-                        )}
-                      </div>
-
-                      <div style={{ textAlign: 'center', width: 140 }}>
-                        <p style={{ fontSize: 12, fontWeight: 900, color: '#1E293B', margin: 0, lineHeight: 1.2 }}>{node.role}</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-           </div>
-        </div>
-      )}
+      </div>
     </div>
+  );
+}
+ </div>
   );
 }
 
@@ -996,7 +742,7 @@ export function AIProfileAnalyzer() {
           <div style={{ position: 'absolute', left: '2.5rem', top: '50%', transform: 'translateY(-50%)' }}>
             <h2 style={{ fontSize: '2rem', fontWeight: 900, color: '#fff', textTransform: 'uppercase', letterSpacing: '-0.02em', lineHeight: 1.1, margin: 0, whiteSpace: 'pre-line' }}>{t('NAVIGATE_YOUR_NEXT_MOVE')}</h2>
                <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-                <button onClick={() => { setStep('upload'); setSelectedFile(null); }} style={{ background: 'linear-gradient(90deg, #f59e0b, #ec4899)', color: '#fff', padding: '0.5rem 1.25rem', borderRadius: 8, fontWeight: 900, fontSize: '0.75rem', border: 'none', textTransform: 'uppercase', letterSpacing: '0.08em', cursor: 'pointer' }}>{t('UPLOAD_RESUME')}</button>
+                <button onClick={() => { setStep('upload'); setSelectedFile(null); }} style={{ background: 'linear-gradient(90deg, #f59e0b, #10B981)', color: '#fff', padding: '0.5rem 1.25rem', borderRadius: 8, fontWeight: 900, fontSize: '0.75rem', border: 'none', textTransform: 'uppercase', letterSpacing: '0.08em', cursor: 'pointer' }}>{t('UPLOAD_RESUME')}</button>
                 <button onClick={() => { localStorage.removeItem('hertz_profile_analyzed'); setStep('upload'); setSelectedFile(null); }} style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', padding: '0.5rem 1.25rem', borderRadius: 8, fontWeight: 700, fontSize: '0.75rem', textTransform: 'uppercase', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)' }}>{t('REVALIDATE')}</button>
                </div>
           </div>
@@ -1031,105 +777,53 @@ export function AIProfileAnalyzer() {
 
            )}
 
-           {showSurprise && !portalActivePath && !showNewJourney && (
-             <div style={{ animation: 'cardIn 0.8s ease' }}>
-                <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
-                    <React.Fragment>
-                      <div style={{ position: 'relative', height: 180, width: '100%', marginBottom: 20, marginTop: -20, pointerEvents: 'none', zIndex: 10 }}>
-                          <svg width="100%" height="100%" viewBox="0 0 1000 180" preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
-                             <defs>
-                               <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#f59e0b" /><stop offset="100%" stopColor="#10B981" /></linearGradient>
-                               <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                                 <path d="M 0 0 L 10 5 L 0 10 z" fill="#10B981" />
-                               </marker>
-                             </defs>
-                             {/* Curved, black dotted lines for a more elegant flow */}
-                             <path d="M 500 0 C 500 80, 125 40, 125 180" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
-                               <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
-                               <animate attributeName="opacity" from="0" to="0.9" dur="0.5s" begin="0s" fill="freeze" />
-                             </path>
-                             <path d="M 500 0 C 500 80, 375 40, 375 180" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
-                               <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
-                               <animate attributeName="opacity" from="0" to="0.9" dur="0.5s" begin="1s" fill="freeze" />
-                             </path>
-                             <path d="M 500 0 C 500 80, 625 40, 625 180" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
-                               <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
-                               <animate attributeName="opacity" from="0" to="0.9" dur="0.5s" begin="2s" fill="freeze" />
-                             </path>
-                             <path d="M 500 0 C 500 80, 875 40, 875 180" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
-                               <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
-                               <animate attributeName="opacity" from="0" to="0.9" dur="0.5s" begin="3s" fill="freeze" />
-                             </path>
-                          </svg>
-                      </div>
+            {showSurprise && !portalActivePath && !showNewJourney && (
+              <div style={{ animation: 'cardIn 0.8s ease', marginTop: 40 }}>
+                 <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', display: 'flex', gap: 0 }}>
+                    
+                    {/* Left side: Profile Central Node */}
+                    <div style={{ width: 120, position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                       <div style={{ borderRadius: '50%', padding: 4, background: 'linear-gradient(135deg, #10B981, #059669)', boxShadow: '0 0 20px rgba(16, 185, 129, 0.2)', marginBottom: 20 }}>
+                         <div style={{ width: 80, height: 80, borderRadius: '50%', overflow: 'hidden', border: '4px solid #fff', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
+                           <Image src="/john_profile.png" alt="You" width={80} height={80} style={{ objectFit: 'cover' }} priority />
+                         </div>
+                       </div>
+                       
+                       {/* Branching SVG */}
+                       <svg width="60" height="600" style={{ position: 'absolute', left: 80, top: 40, overflow: 'visible', pointerEvents: 'none' }}>
+                          <path d="M 0 0 C 40 0, 40 100, 60 100" fill="none" stroke="#E2E8F0" strokeWidth="2" />
+                          <path d="M 0 0 C 40 0, 40 300, 60 300" fill="none" stroke="#E2E8F0" strokeWidth="2" />
+                          <path d="M 0 0 C 40 0, 40 500, 60 500" fill="none" stroke="#E2E8F0" strokeWidth="2" />
+                       </svg>
+                    </div>
 
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, width: '100%', transition: 'all 0.5s ease', marginBottom: expandedPathId ? 60 : 0 }}>
-                        {careerCards.map((card, idx) => (
-                          <div key={card.id} className="path-card-tree" onClick={() => setExpandedPathId(card.pathId)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', animation: 'popIn 0.5s ease forwards', animationDelay: `${idx * 1}s`, opacity: 0, width: '100%', background: '#fff', border: expandedPathId === card.pathId ? '2px solid #3B82F6' : '1px solid #E2E8F0', borderRadius: 24, padding: '20px 16px', boxShadow: expandedPathId === card.pathId ? '0 15px 35px rgba(59, 130, 246, 0.15)' : '0 10px 25px rgba(0,0,0,0.05)', transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)', position: 'relative', overflow: 'hidden' }}>
-                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-                                <div style={{ background: card.matchColor, color: '#fff', fontSize: 9, fontWeight: 950, padding: '3px 12px', borderRadius: 6, border: '2px solid #fff', textTransform: 'uppercase', marginBottom: -8, zIndex: 2, boxShadow: `0 4px 6px ${card.matchColor}4D` }}>{t(card.match)}</div>
-                                <div style={{ background: '#fff', borderRadius: 12, padding: '12px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
-                                   <div style={{ position: 'absolute', top: -4, left: 0, fontSize: 8, color: '#94A3B8', fontWeight: 700 }}>JOURNEY</div>
-                                   <div style={{ position: 'absolute', top: -4, right: 0 }}><Compass size={14} color="#CBD5E1" /></div>
-                                   <div style={{ width: 80, height: 80, borderRadius: '50%', overflow: 'hidden', border: '4px solid #F1F5F9', margin: '12px 0', boxShadow: '0 6px 12px rgba(0,0,0,0.1)' }}>
-                                     <Image src={card.image} width={80} height={80} alt="" style={{ objectFit: 'cover' }} />
-                                   </div>
-                                   <div style={{ fontSize: 15, fontWeight: 900, color: '#0F172A', lineHeight: 1.1, textAlign: 'center', marginBottom: 12, height: 34, display: 'flex', alignItems: 'center' }}>{card.role}</div>
-                                   <button onClick={(e) => { e.stopPropagation(); setExpandedPathId(card.pathId); }} style={{ background: card.badgeColor, color: '#fff', fontSize: 9, fontWeight: 950, padding: '8px 20px', borderRadius: 10, textTransform: 'uppercase', boxShadow: `0 6px 12px ${card.badgeColor}33`, border: 'none', cursor: 'pointer' }}>{expandedPathId === card.pathId ? 'VIEWING' : t(card.badge)}</button>
-                                </div>
-                             </div>
-                          </div>
-                        ))}
-                      </div>
-                    </React.Fragment>
+                    {/* Right side: Pathways List */}
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 60, paddingLeft: 60 }}>
+                       <div style={{ textAlign: 'left', marginBottom: 20 }}>
+                          <h3 style={{ fontSize: 24, fontWeight: 900, color: '#1E293B', margin: 0 }}>Recommended for you</h3>
+                          <p style={{ fontSize: 14, color: '#64748B', margin: '4px 0 0 0' }}>Based on your profile and skills set</p>
+                       </div>
 
-                    {expandedPathId && (
-                      <div style={{ width: '100%', transition: 'all 0.5s ease', animation: 'popIn 0.6s ease-out forwards', paddingTop: 40, borderTop: '2px dashed #E2E8F0', marginTop: 20 }}>
-                         {careerCards.map((selectedCardInLoop) => {
-                           if (expandedPathId !== selectedCardInLoop.pathId) return null;
-                           const cardIdx = careerCards.findIndex(c => c.pathId === expandedPathId);
-                           const lane1 = careerCards[cardIdx];
-                           const lane2 = careerCards[(cardIdx + 1) % 4];
-                           const lane3 = careerCards[(cardIdx + 2) % 4];
-                           const getPath = (pId: string) => careerPathsData.categories.flatMap(c => c.paths).find(p => p.id === pId);
-                           const path1 = getPath(lane1.pathId);
-                           const path2 = getPath(lane2.pathId);
-                           const path3 = getPath(lane3.pathId);
-                           return (
-                             <div key="discovery-dashboard" style={{ position: 'relative' }}>
-                               <div style={{ marginBottom: 32, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                                 <div>
-                                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
-                                     <div style={{ background: '#EC4899', width: 4, height: 24, borderRadius: 2 }} />
-                                     <h2 style={{ fontSize: 28, fontWeight: 900, color: '#1E293B', margin: 0 }}>Path Simulation: <span style={{ color: '#EC4899' }}>{selectedCardInLoop.role}</span></h2>
-                                   </div>
-                                   <p style={{ fontSize: 14, color: '#94A3B8', fontWeight: 600, marginLeft: 16 }}>Detailed career roadmap based on your current expertise</p>
-                                 </div>
-                                 <button onClick={() => setExpandedPathId(null)} style={{ background: '#fff', border: '1px solid #E2E8F0', padding: '10px 20px', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 900, color: '#64748B', cursor: 'pointer', boxShadow: '0 4px 10px rgba(0,0,0,0.05)', transition: 'all 0.2s' }} className="hover-scale"><X size={16} /> CLOSE SIMULATION</button>
-                               </div>
-                               <div style={{ display: 'flex', gap: 0, position: 'relative', background: 'rgba(248, 250, 252, 0.5)', padding: '40px 20px', borderRadius: 32, border: '1px solid #F1F5F9' }}>
-                                 <div style={{ width: 100, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 20 }}>
-                                   <div style={{ width: 2, height: 160, background: 'linear-gradient(180deg, #EC4899, rgba(236, 72, 153, 0))', position: 'relative', opacity: 0.3 }}>
-                                      <div style={{ position: 'absolute', left: -6, top: 40, width: 14, height: 14, borderRadius: '50%', background: '#fff', border: '3px solid #EC4899', boxShadow: '0 0 15px rgba(236, 72, 153, 0.3)' }} />
-                                   </div>
-                                 </div>
-                                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 40, paddingTop: 40 }}>
-                                   <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginLeft: 20 }}>
-                                        <div style={{ background: '#10B981', color: '#fff', fontSize: 10, fontWeight: 900, padding: '4px 12px', borderRadius: 6, textTransform: 'uppercase' }}>Desired Path</div>
-                                      </div>
-                                      <LaneRow card={lane1} pathData={path1} t={t} setPortalActivePath={setPortalActivePath} />
-                                   </div>
-                                 </div>
-                               </div>
-                             </div>
-                           );
-                         })}
-                      </div>
-                    )}
-                </div>
-             </div>
-           )}
+                       {careerCards.map((card, idx) => {
+                         const getPath = (pId: string) => careerPathsData.categories.flatMap(c => c.paths).find(p => p.id === pId);
+                         const pathData = getPath(card.pathId);
+                         // Assign colors based on index for visual variety (following second image pattern)
+                         const colors = ['#10B981', '#14B8A6', '#3B82F6', '#8B5CF6'];
+                         return (
+                           <BranchingLane 
+                             key={card.id} 
+                             card={card} 
+                             pathData={pathData} 
+                             color={colors[idx % colors.length]} 
+                             t={t} 
+                           />
+                         );
+                       })}
+                    </div>
+                 </div>
+              </div>
+            )}
+
         </div>
 
         <style>{`
