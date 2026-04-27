@@ -382,10 +382,10 @@ const DAILY_QUOTES = [
   "The future belongs to those who prepare for it today.",
   "Persistence is the key to success.",
   "Every mountain top is within reach if you just keep climbing.",
-  "Your future is as bright as your faith.",
-  "Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence.",
-  "Be humble. Be hungry. And always be the hardest worker in the room.",
-  "Success is not about the destination, it's about the function PathNode({ node, isStart, color }: any) {
+  "Success is not about the destination, it's about the climb.",
+];
+
+function PathNode({ node, isStart, color }: any) {
   return (
     <div style={{ 
       background: '#fff', 
@@ -425,19 +425,33 @@ const DAILY_QUOTES = [
 function BranchingLane({ card, pathData, color, t }: any) {
   if (!pathData) return null;
   const nodes = pathData.nodes.filter((n: any) => n.status !== 'past');
+  const isPromoted = card.label === 'Promoted Lane';
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: '100%', animation: 'popIn 0.6s ease-out' }}>
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      gap: 20, 
+      width: '100%', 
+      animation: 'popIn 0.6s ease-out',
+      background: isPromoted ? '#F0F7FF' : 'transparent',
+      padding: isPromoted ? '24px 0 24px 0' : '0',
+      borderRadius: isPromoted ? 20 : 0,
+      marginLeft: isPromoted ? -20 : 0,
+      paddingLeft: isPromoted ? 20 : 0
+    }}>
       {/* Lane Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%', paddingLeft: 40 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%', paddingLeft: 40, paddingRight: 20 }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
             <div style={{ background: color, color: '#fff', fontSize: 11, fontWeight: 950, padding: '5px 14px', borderRadius: 8, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{card.label}</div>
-            <div style={{ background: color + '15', color: color, fontSize: 11, fontWeight: 950, padding: '5px 10px', borderRadius: 8 }}>5</div>
+            <div style={{ background: color + '15', color: color, fontSize: 11, fontWeight: 950, padding: '5px 10px', borderRadius: 8, display: 'flex', alignItems: 'center', gap: 4 }}>
+               <Share2 size={10} /> 5
+            </div>
           </div>
-          <p style={{ fontSize: 13, color: '#64748B', fontWeight: 600, margin: 0 }}>Based on your Desired Role <span style={{ color: '#1E293B', fontWeight: 800 }}>Solution Architect <ChevronRight size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /></span></p>
+          <p style={{ fontSize: 13, color: '#64748B', fontWeight: 600, margin: 0 }}>Based on your Desired Role <span style={{ color: '#1E293B', fontWeight: 800 }}>Senior Eng Manager <ChevronRight size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /></span></p>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#64748B', cursor: 'pointer', padding: '8px 16px', borderRadius: 10, background: '#F8FAFC', border: '1px solid #E2E8F0' }} className="hover-heart">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#64748B', cursor: 'pointer', padding: '8px 16px', borderRadius: 10, background: '#fff', border: '1px solid #E2E8F0', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }} className="hover-heart">
           <Heart size={16} />
           <span style={{ fontSize: 13, fontWeight: 800 }}>Save path</span>
         </div>
@@ -455,7 +469,10 @@ function BranchingLane({ card, pathData, color, t }: any) {
               {idx < nodes.length - 1 && (
                 <div style={{ display: 'flex', alignItems: 'center', padding: '0 30px', position: 'relative' }}>
                   <div style={{ width: 80, height: 2, background: '#E2E8F0' }} />
-                  <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 10, height: 10, borderRadius: '50%', background: '#fff', border: '2px solid #CBD5E1', boxShadow: '0 0 0 4px #fff' }} />
+                  {/* Double Circle Connection */}
+                  <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 14, height: 14, borderRadius: '50%', background: '#fff', border: '1px solid #CBD5E1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                     <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#94A3B8' }} />
+                  </div>
                   <div style={{ position: 'absolute', bottom: -24, left: '50%', transform: 'translateX(-50%)', fontSize: 11, fontWeight: 800, color: '#94A3B8', whiteSpace: 'nowrap' }}>
                     +{idx + 1} role
                   </div>
@@ -781,27 +798,27 @@ export function AIProfileAnalyzer() {
               <div style={{ animation: 'cardIn 0.8s ease', marginTop: 40 }}>
                  <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', display: 'flex', gap: 0 }}>
                     
-                    {/* Left side: Profile Central Node */}
-                    <div style={{ width: 120, position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                       <div style={{ borderRadius: '50%', padding: 4, background: 'linear-gradient(135deg, #10B981, #059669)', boxShadow: '0 0 20px rgba(16, 185, 129, 0.2)', marginBottom: 20 }}>
-                         <div style={{ width: 80, height: 80, borderRadius: '50%', overflow: 'hidden', border: '4px solid #fff', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
-                           <Image src="/john_profile.png" alt="You" width={80} height={80} style={{ objectFit: 'cover' }} priority />
+                    {/* Left side: Profile Central Node with Branching Lines */}
+                    <div style={{ width: 100, position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 80 }}>
+                       <div style={{ borderRadius: '50%', padding: 3, background: '#fff', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', border: '1px solid #E2E8F0', zIndex: 2 }}>
+                         <div style={{ width: 64, height: 64, borderRadius: '50%', overflow: 'hidden' }}>
+                           <Image src="/john_profile.png" alt="You" width={64} height={64} style={{ objectFit: 'cover' }} priority />
                          </div>
                        </div>
                        
-                       {/* Branching SVG */}
-                       <svg width="60" height="600" style={{ position: 'absolute', left: 80, top: 40, overflow: 'visible', pointerEvents: 'none' }}>
-                          <path d="M 0 0 C 40 0, 40 100, 60 100" fill="none" stroke="#E2E8F0" strokeWidth="2" />
-                          <path d="M 0 0 C 40 0, 40 300, 60 300" fill="none" stroke="#E2E8F0" strokeWidth="2" />
-                          <path d="M 0 0 C 40 0, 40 500, 60 500" fill="none" stroke="#E2E8F0" strokeWidth="2" />
+                       {/* High-Fidelity Branching SVG */}
+                       <svg width="100" height="700" style={{ position: 'absolute', left: 66, top: 112, overflow: 'visible', pointerEvents: 'none' }}>
+                          <path d="M 0 0 L 20 0 C 40 0, 40 10, 60 10" fill="none" stroke="#E2E8F0" strokeWidth="3" strokeLinecap="round" />
+                          <path d="M 20 0 L 20 200 C 20 210, 40 210, 60 210" fill="none" stroke="#E2E8F0" strokeWidth="3" strokeLinecap="round" />
+                          <path d="M 20 210 L 20 450 C 20 460, 40 460, 60 460" fill="none" stroke="#E2E8F0" strokeWidth="3" strokeLinecap="round" />
                        </svg>
                     </div>
 
                     {/* Right side: Pathways List */}
-                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 60, paddingLeft: 60 }}>
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 50, paddingLeft: 60, paddingBottom: 100 }}>
                        <div style={{ textAlign: 'left', marginBottom: 20 }}>
                           <h3 style={{ fontSize: 24, fontWeight: 900, color: '#1E293B', margin: 0 }}>Recommended for you</h3>
-                          <p style={{ fontSize: 14, color: '#64748B', margin: '4px 0 0 0' }}>Based on your profile and skills set</p>
+                          <p style={{ fontSize: 14, color: '#64748B', margin: '4px 0 0 0', fontWeight: 600 }}>Based on your profile and skills set</p>
                        </div>
 
                        {careerCards.map((card, idx) => {
