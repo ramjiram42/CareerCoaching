@@ -44,14 +44,14 @@ export default function SuggestedMoves({ onBack, userProfile }: SuggestedMovesPr
     { title: 'Intelligent Automation Architect', description: 'Master RPA and cognitive automation at scale.', level: 'Milestone', match: 'High Match Potential', color: '#f59e0b', target: 'RPA Solution Architect' },
     { title: 'Enterprise Automation Architect', description: 'Design end-to-end automated business processes.', level: 'Milestone', match: 'High Match Potential', color: '#7c3aed', target: 'Technical Program Manager' },
     { title: 'Technical Project Manager', description: 'Lead high-complexity technical delivery teams.', level: 'Target', match: 'NEXT LVL', color: '#3b82f6', target: 'Technical Program Manager' },
-    { title: 'AI Architect', description: 'Implement neural networks and LLMs for enterprise.', level: 'Milestone', match: 'High Match Potential', color: '#ec4899', target: 'Data Engineer' },
+    { title: 'AI Architect', description: 'Implement neural networks and LLMs for enterprise.', level: 'Milestone', match: 'High Match Potential', color: '#10b981', target: 'Data Engineer' },
     { title: 'AI Engineer', description: 'Develop predictive models and AI-driven solutions.', level: 'Milestone', match: 'High Match Potential', color: '#10b981', target: 'Data Engineer' },
     ...Array.from({ length: 45 }, (_, i) => ({
       title: `Global Pathway ${i + 6}`,
       description: `A strategic roadmap focused on mastering key competencies.`,
       level: ['Milestone', 'Target', 'NEXT LVL'][i % 3],
       match: ['High Match Potential', '85%', '92%'][i % 3],
-      color: ['#7c3aed', '#10b981', '#3b82f6', '#ec4899', '#f59e0b'][i % 5],
+      color: ['#7c3aed', '#10b981', '#3b82f6', '#059669', '#f59e0b'][i % 5],
       target: 'Senior Leadership'
     }))
   ];
@@ -60,7 +60,7 @@ export default function SuggestedMoves({ onBack, userProfile }: SuggestedMovesPr
     name: [`Automation COE`, `Digital Hub Mumbai`, `Fleet Logistics`, `Innovation Lab`][i % 4] + ` ${Math.floor(i/4) + 1}`,
     type: ['Functional Hub', 'Regional Team', 'Excellence Center', 'Project Unit'][i % 4],
     icon: [Network, Building2, Globe, Database, Cpu, Shield, Zap][i % 7],
-    color: ['#7c3aed', '#10b981', '#3b82f6', '#ec4899', '#f59e0b', '#ef4444', '#06b6d4'][i % 7]
+    color: ['#7c3aed', '#10b981', '#3b82f6', '#059669', '#f59e0b', '#ef4444', '#06b6d4'][i % 7]
   }));
 
   const reportingLines = [
@@ -148,10 +148,10 @@ export default function SuggestedMoves({ onBack, userProfile }: SuggestedMovesPr
              <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0 }}>
                 <defs>
                   <linearGradient id="curveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#f59e0b" /><stop offset="100%" stopColor="#ec4899" />
+                    <stop offset="0%" stopColor="#f59e0b" /><stop offset="100%" stopColor="#10b981" />
                   </linearGradient>
                   <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
-                    <polygon points="0 0, 6 2, 0 4" fill="#ec4899" />
+                    <polygon points="0 0, 6 2, 0 4" fill="#10b981" />
                   </marker>
                 </defs>
                 
@@ -177,7 +177,7 @@ export default function SuggestedMoves({ onBack, userProfile }: SuggestedMovesPr
 
             <div style={{ position: 'relative', height: 120, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ position: 'relative', zIndex: 10 }}>
-                <div style={{ width: 100, height: 100, borderRadius: '50%', padding: 5, background: 'linear-gradient(135deg, #f59e0b, #ec4899)', boxShadow: '0 0 35px rgba(236, 72, 153, 0.5)' }}>
+                <div style={{ width: 100, height: 100, borderRadius: '50%', padding: 5, background: 'linear-gradient(135deg, #f59e0b, #10b981)', boxShadow: '0 0 35px rgba(16, 185, 129, 0.5)' }}>
                    <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', border: '4px solid #fff' }}><Image src={userProfile.image} width={100} height={100} alt="Me" style={{ objectFit: 'cover' }} /></div>
                 </div>
               </div>

@@ -84,7 +84,7 @@ export default function CareerCoachingPortal({ overridePath, onBack }: { overrid
 // ==========================================
 function RecommendedView({ data, onSelectPath, savedPaths, toggleSave }: any) {
   const lanes = [
-    { path: data.categories[0].paths[0], label: "Primary path", color: "#EC4899", icon: <Star size={16} fill="#fff" /> },
+    { path: data.categories[0].paths[0], label: "Primary path", color: "#10B981", icon: <Star size={16} fill="#fff" /> },
     { path: data.categories[1].paths[0], label: "Trending path", color: "#F59E0B", icon: <TrendingUp size={16} color="#fff" /> },
     { path: data.categories[2].paths[0], label: "Rapid pivot", color: "#3B82F6", icon: <Zap size={16} fill="#fff" /> }
   ];
@@ -182,7 +182,7 @@ function ExpandedJourneyView({ path, goBack, isSaved, toggleSave }: any) {
          <button onClick={goBack} style={{ display: 'flex', alignItems: 'center', background: 'rgba(255,255,255,0.5)', border: '1px solid #E2E8F0', padding: '14px 24px', borderRadius: 16, cursor: 'pointer', fontWeight: 900, color: '#475569', fontSize: 15, textTransform: 'uppercase', letterSpacing: '0.05em', backdropFilter: 'blur(10px)' }}>
             <ArrowLeft size={18} style={{ marginRight: 12 }} /> Exit Experience
          </button>
-         <button onClick={toggleSave} style={{ display: 'flex', alignItems: 'center', padding: '16px 36px', borderRadius: 18, background: isSaved ? '#EC4899' : '#111827', color: '#fff', border: 'none', fontWeight: 1000, cursor: 'pointer', boxShadow: '0 15px 35px -10px rgba(0,0,0,0.2)', transition: 'all 0.3s' }}>
+         <button onClick={toggleSave} style={{ display: 'flex', alignItems: 'center', padding: '16px 36px', borderRadius: 18, background: isSaved ? '#10B981' : '#111827', color: '#fff', border: 'none', fontWeight: 1000, cursor: 'pointer', boxShadow: '0 15px 35px -10px rgba(0,0,0,0.2)', transition: 'all 0.3s' }}>
            <Bookmark size={20} fill={isSaved ? '#fff' : 'none'} style={{ marginRight: 12 }} /> {isSaved ? 'Syncing Pathway' : 'Lock Progress'}
          </button>
       </div>
@@ -200,7 +200,7 @@ function ExpandedJourneyView({ path, goBack, isSaved, toggleSave }: any) {
 
            <div style={{ position: 'relative', paddingLeft: 60 }}>
               {/* Animated Spine */}
-              <div style={{ position: 'absolute', left: 88, top: 0, bottom: 0, width: 6, background: 'linear-gradient(180deg, #E2E8F0 0%, #EC4899 20%, #F59E0B 50%, #3B82F6 100%)', zIndex: 1, borderRadius: 3 }} />
+              <div style={{ position: 'absolute', left: 88, top: 0, bottom: 0, width: 6, background: 'linear-gradient(180deg, #E2E8F0 0%, #10B981 20%, #F59E0B 50%, #3B82F6 100%)', zIndex: 1, borderRadius: 3 }} />
               
               {path.nodes.map((node: any, idx: number) => {
                 const isSelected = selectedNode?.role === node.role;

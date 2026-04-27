@@ -88,7 +88,7 @@ export default function CareerTreePage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             {suggestedMoves.map((move, i) => {
               const theme = [
-                { badgeBg: '#EC4899', bg: '#fff', border: '#F1F5F9', label: 'Desired path' },
+                { badgeBg: '#10B981', bg: '#fff', border: '#F1F5F9', label: 'Desired path' },
                 { badgeBg: '#14B8A6', bg: '#fff', border: '#F1F5F9', label: 'Popular path' },
                 { badgeBg: '#3B82F6', bg: '#EFF6FF', border: '#BFDBFE', label: 'Promoted Lane' },
                 { badgeBg: '#8B5CF6', bg: '#fff', border: '#F1F5F9', label: 'Wild Card' }
@@ -153,7 +153,7 @@ export default function CareerTreePage() {
   if (selectedMove && !journeyStarted) {
     const selectedMoveIndex = suggestedMoves.findIndex(m => m.id === selectedMove.id);
     const activeTheme = [
-      { badgeBg: '#EC4899', bg: '#FDF2F8', border: '#FBCFE8' },
+      { badgeBg: '#10B981', bg: '#F0FDF4', border: '#DCFCE7' },
       { badgeBg: '#14B8A6', bg: '#F0FDFA', border: '#CCFBF1' },
       { badgeBg: '#3B82F6', bg: '#EFF6FF', border: '#BFDBFE' },
       { badgeBg: '#8B5CF6', bg: '#F5F3FF', border: '#DDD6FE' }
@@ -214,7 +214,7 @@ export default function CareerTreePage() {
   const progress = calculateProgress(selectedMove.learningPath);
   const selectedMoveIndexView3 = suggestedMoves.findIndex(m => m.id === selectedMove.id);
   const activeTheme = [
-    { badgeBg: '#EC4899', bg: '#FDF2F8', border: '#FBCFE8' },
+    { badgeBg: '#10B981', bg: '#F0FDF4', border: '#DCFCE7' },
     { badgeBg: '#14B8A6', bg: '#F0FDFA', border: '#CCFBF1' },
     { badgeBg: '#3B82F6', bg: '#EFF6FF', border: '#BFDBFE' },
     { badgeBg: '#8B5CF6', bg: '#F5F3FF', border: '#DDD6FE' }

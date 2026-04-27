@@ -394,7 +394,7 @@ function LaneRow({ card, pathData, t, setPortalActivePath, isPromoted = false }:
   
   if (!pathData) return null;
   const isDesired = card.label === 'Desired path';
-  const accentColor = isPromoted ? '#3B82F6' : (isDesired ? '#EC4899' : '#10B981');
+  const accentColor = isPromoted ? '#3B82F6' : (isDesired ? '#10B981' : '#059669');
 
   const getLearningResources = (role: string) => {
     const resources: Record<string, any[]> = {
@@ -471,7 +471,7 @@ function LaneRow({ card, pathData, t, setPortalActivePath, isPromoted = false }:
                   <div style={{ color: selectedNode === card.role ? accentColor : '#CBD5E1', transition: 'all 0.3s' }}><Info size={14} /></div>
                 </div>
                 <div style={{ height: 6, background: '#F1F5F9', borderRadius: 3, overflow: 'hidden', marginTop: 12, width: 140 }}>
-                  <div style={{ width: '68%', height: '100%', background: `linear-gradient(90deg, ${accentColor}, #EC4899)` }}></div>
+                  <div style={{ width: '68%', height: '100%', background: `linear-gradient(90deg, ${accentColor}, #059669)` }}></div>
                 </div>
                 <div style={{ color: accentColor, fontSize: 9, fontWeight: 950, textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 12, display: 'flex', alignItems: 'center', gap: 6 }}>
                   <Sparkles size={10} fill={accentColor} /> High Match Potential
@@ -591,11 +591,11 @@ function LaneRow({ card, pathData, t, setPortalActivePath, isPromoted = false }:
         }}>
            {/* Decorative Background Elements */}
            <div style={{ position: 'absolute', top: -100, right: -100, width: 300, height: 300, background: `${accentColor}10`, borderRadius: '50%', filter: 'blur(80px)' }} />
-           <div style={{ position: 'absolute', bottom: -50, left: -50, width: 200, height: 200, background: '#EC489910', borderRadius: '50%', filter: 'blur(60px)' }} />
+           <div style={{ position: 'absolute', bottom: -50, left: -50, width: 200, height: 200, background: '#10B98110', borderRadius: '50%', filter: 'blur(60px)' }} />
 
            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 40, position: 'relative', zIndex: 1 }}>
              <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-               <div style={{ background: `linear-gradient(135deg, ${accentColor}, #EC4899)`, color: '#fff', padding: 10, borderRadius: 12, boxShadow: `0 8px 20px ${accentColor}4D` }}><Layers size={20} /></div>
+               <div style={{ background: `linear-gradient(135deg, ${accentColor}, #059669)`, color: '#fff', padding: 10, borderRadius: 12, boxShadow: `0 8px 20px ${accentColor}4D` }}><Layers size={20} /></div>
                <div>
                  <h4 style={{ fontSize: 18, fontWeight: 950, color: '#0F172A', margin: 0 }}>The Career Highway</h4>
                  <p style={{ fontSize: 13, color: '#64748B', margin: '4px 0 0 0' }}>Your personalized high-speed route to {filteredNodes[filteredNodes.length - 1]?.role}</p>
@@ -613,7 +613,7 @@ function LaneRow({ card, pathData, t, setPortalActivePath, isPromoted = false }:
                  <defs>
                    <linearGradient id={`roadGrad-${accentColor}`} x1="0%" y1="0%" x2="100%" y2="0%">
                      <stop offset="0%" stopColor={accentColor} />
-                     <stop offset="100%" stopColor="#EC4899" />
+                     <stop offset="100%" stopColor="#059669" />
                    </linearGradient>
                    <filter id="glow">
                      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -758,7 +758,7 @@ export function AIProfileAnalyzer() {
       pathId: 'intelligent-automation-arch',
       role: 'Intelligent Automation Architect',
       label: 'Desired path',
-      labelColor: '#EC4899',
+      labelColor: '#10B981',
       match: 'HIGH_MATCH',
       matchColor: '#10B981',
       badge: 'NEXT_STEP',
@@ -831,9 +831,9 @@ export function AIProfileAnalyzer() {
       }}>
          <div style={{ position: 'absolute', inset: -100, pointerEvents: 'none', zIndex: 0 }}>
             <div className="light-particle" style={{ position: 'absolute', top: '20%', left: '10%', width: 4, height: 4, background: '#f59e0b', borderRadius: '50%', filter: 'blur(2px)', animation: 'floatParticle 8s infinite ease-in-out' }} />
-            <div className="light-particle" style={{ position: 'absolute', top: '70%', left: '20%', width: 6, height: 6, background: '#ec4899', borderRadius: '50%', filter: 'blur(3px)', animation: 'floatParticle 12s infinite ease-in-out', animationDelay: '2s' }} />
+            <div className="light-particle" style={{ position: 'absolute', top: '70%', left: '20%', width: 6, height: 6, background: '#10B981', borderRadius: '50%', filter: 'blur(3px)', animation: 'floatParticle 12s infinite ease-in-out', animationDelay: '2s' }} />
             <div className="light-particle" style={{ position: 'absolute', top: '40%', right: '15%', width: 5, height: 5, background: '#f59e0b', borderRadius: '50%', filter: 'blur(2px)', animation: 'floatParticle 10s infinite ease-in-out', animationDelay: '1s' }} />
-            <div className="light-particle" style={{ position: 'absolute', bottom: '10%', right: '30%', width: 4, height: 4, background: '#ec4899', borderRadius: '50%', filter: 'blur(2px)', animation: 'floatParticle 9s infinite ease-in-out', animationDelay: '3s' }} />
+            <div className="light-particle" style={{ position: 'absolute', bottom: '10%', right: '30%', width: 4, height: 4, background: '#10B981', borderRadius: '50%', filter: 'blur(2px)', animation: 'floatParticle 9s infinite ease-in-out', animationDelay: '3s' }} />
          </div>
 
          <div style={{
@@ -901,7 +901,7 @@ export function AIProfileAnalyzer() {
                     position: 'absolute',
                     inset: -24,
                     borderRadius: '50%',
-                    border: '1px solid rgba(236, 72, 153, 0.15)',
+                    border: '1px solid rgba(16, 185, 129, 0.15)',
                     animation: 'pulseOrbital 6s infinite linear reverse'
                   }} />
                   
@@ -933,7 +933,7 @@ export function AIProfileAnalyzer() {
                   </button>
                </div>
                <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-                  <button onClick={selectedFile ? handleAnalyze : () => { localStorage.setItem('hertz_profile_analyzed', 'true'); setStep('results'); }} style={{ flex: 1, background: 'linear-gradient(135deg, #f59e0b, #ec4899)', color: '#fff', padding: '14px 16px', borderRadius: 12, fontWeight: 900, border: 'none', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, boxShadow: '0 8px 20px rgba(236,72,153,0.25)' }}>
+                  <button onClick={selectedFile ? handleAnalyze : () => { localStorage.setItem('hertz_profile_analyzed', 'true'); setStep('results'); }} style={{ flex: 1, background: 'linear-gradient(135deg, #f59e0b, #10B981)', color: '#fff', padding: '14px 16px', borderRadius: 12, fontWeight: 900, border: 'none', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, boxShadow: '0 8px 20px rgba(16, 185, 129, 0.25)' }}>
                     {selectedFile ? 'Submit Analysis' : 'Skip & Submit'} <ArrowRight size={16} />
                   </button>
                   <button onClick={() => setSelectedFile(null)} style={{ flex: 1, background: '#fff', color: '#64748B', padding: '14px 16px', borderRadius: 12, fontWeight: 900, border: '1px solid #E2E8F0', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'pointer' }}>Reset</button>
@@ -1004,9 +1004,9 @@ export function AIProfileAnalyzer() {
             <div style={{ flex: 1 }}>
                <p style={{ fontWeight: 900, fontSize: '1.1rem', color: '#fff', margin: 0 }}>John</p>
                <p style={{ fontSize: '0.75rem', color: '#94A3B8', margin: '0.2rem 0 0.5rem' }}>Your profile is looking awesome</p>
-               <button style={{ color: '#ec4899', background: 'none', border: 'none', padding: 0, fontSize: '0.75rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>Elevate your potential <ArrowRight size={12} /></button>
+               <button style={{ color: '#10B981', background: 'none', border: 'none', padding: 0, fontSize: '0.75rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>Elevate your potential <ArrowRight size={12} /></button>
             </div>
-            <div style={{ width: 52, height: 52, background: 'linear-gradient(135deg, #f59e0b, #ec4899)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 2 }}>
+            <div style={{ width: 52, height: 52, background: 'linear-gradient(135deg, #f59e0b, #10B981)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 2 }}>
                <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}><Image src="/john_profile.png" alt="John" width={52} height={52} style={{ objectFit: 'cover' }} /></div>
             </div>
           </div>
@@ -1020,12 +1020,12 @@ export function AIProfileAnalyzer() {
            {!portalActivePath && !showNewJourney && (
              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', position: 'relative', zIndex: 10, animation: 'cardIn 0.8s ease' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 340, position: 'relative' }}>
-                  <div style={{ borderRadius: '50%', padding: 4, background: 'linear-gradient(135deg, #f59e0b, #ec4899)', boxShadow: '0 0 20px rgba(236,72,153,0.2)' }}>
+                  <div style={{ borderRadius: '50%', padding: 4, background: 'linear-gradient(135deg, #f59e0b, #10B981)', boxShadow: '0 0 20px rgba(16, 185, 129, 0.2)' }}>
                     <div style={{ width: 160, height: 160, borderRadius: '50%', overflow: 'hidden', border: '4px solid #fff', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
                       <Image src="/john_profile.png" alt="You" width={160} height={160} style={{ objectFit: 'cover', transform: 'scale(1.1) translateY(5%)' }} priority />
                     </div>
                   </div>
-                  <button onClick={() => setShowSurprise(!showSurprise)} style={{ background: '#EC4899', color: '#fff', border: 'none', padding: '14px 32px', borderRadius: 12, fontWeight: 800, fontSize: 16, boxShadow: '0 8px 20px rgba(236,72,153,0.3)', cursor: 'pointer', marginTop: 30 }}>{t('SIMULATE_PATHWAY')}</button>
+                  <button onClick={() => setShowSurprise(!showSurprise)} style={{ background: '#10B981', color: '#fff', border: 'none', padding: '14px 32px', borderRadius: 12, fontWeight: 800, fontSize: 16, boxShadow: '0 8px 20px rgba(16, 185, 129, 0.3)', cursor: 'pointer', marginTop: 30 }}>{t('SIMULATE_PATHWAY')}</button>
                 </div>
              </div>
 
@@ -1038,25 +1038,25 @@ export function AIProfileAnalyzer() {
                       <div style={{ position: 'relative', height: 180, width: '100%', marginBottom: 20, marginTop: -20, pointerEvents: 'none', zIndex: 10 }}>
                           <svg width="100%" height="100%" viewBox="0 0 1000 180" preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
                              <defs>
-                               <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#f59e0b" /><stop offset="100%" stopColor="#ec4899" /></linearGradient>
+                               <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#f59e0b" /><stop offset="100%" stopColor="#10B981" /></linearGradient>
                                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                                 <path d="M 0 0 L 10 5 L 0 10 z" fill="#ec4899" />
+                                 <path d="M 0 0 L 10 5 L 0 10 z" fill="#10B981" />
                                </marker>
                              </defs>
                              {/* Curved, black dotted lines for a more elegant flow */}
-                             <path d="M 500 0 C 500 80, 125 40, 125 180" fill="none" stroke="#EC4899" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
+                             <path d="M 500 0 C 500 80, 125 40, 125 180" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
                                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
                                <animate attributeName="opacity" from="0" to="0.9" dur="0.5s" begin="0s" fill="freeze" />
                              </path>
-                             <path d="M 500 0 C 500 80, 375 40, 375 180" fill="none" stroke="#EC4899" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
+                             <path d="M 500 0 C 500 80, 375 40, 375 180" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
                                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
                                <animate attributeName="opacity" from="0" to="0.9" dur="0.5s" begin="1s" fill="freeze" />
                              </path>
-                             <path d="M 500 0 C 500 80, 625 40, 625 180" fill="none" stroke="#EC4899" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
+                             <path d="M 500 0 C 500 80, 625 40, 625 180" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
                                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
                                <animate attributeName="opacity" from="0" to="0.9" dur="0.5s" begin="2s" fill="freeze" />
                              </path>
-                             <path d="M 500 0 C 500 80, 875 40, 875 180" fill="none" stroke="#EC4899" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
+                             <path d="M 500 0 C 500 80, 875 40, 875 180" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
                                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
                                <animate attributeName="opacity" from="0" to="0.9" dur="0.5s" begin="3s" fill="freeze" />
                              </path>
@@ -1116,7 +1116,7 @@ export function AIProfileAnalyzer() {
                                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 40, paddingTop: 40 }}>
                                    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                                       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginLeft: 20 }}>
-                                        <div style={{ background: '#EC4899', color: '#fff', fontSize: 10, fontWeight: 900, padding: '4px 12px', borderRadius: 6, textTransform: 'uppercase' }}>Desired Path</div>
+                                        <div style={{ background: '#10B981', color: '#fff', fontSize: 10, fontWeight: 900, padding: '4px 12px', borderRadius: 6, textTransform: 'uppercase' }}>Desired Path</div>
                                       </div>
                                       <LaneRow card={lane1} pathData={path1} t={t} setPortalActivePath={setPortalActivePath} />
                                    </div>
