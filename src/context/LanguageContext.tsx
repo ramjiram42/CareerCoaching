@@ -12,6 +12,13 @@ interface Translations {
 
 const translations: Translations = {
   // NavBar
+  'HOME': {
+    EN: 'Home',
+    DE: 'Startseite',
+    FR: 'Accueil',
+    ES: 'Inicio',
+    IT: 'Home'
+  },
   'JOURNEY': {
     EN: 'Journey',
     DE: 'Reise',
@@ -53,6 +60,13 @@ const translations: Translations = {
     FR: 'Mentors',
     ES: 'Mentores',
     IT: 'Mentor'
+  },
+  'LEARN': {
+    EN: 'Learn',
+    DE: 'Lernen',
+    FR: 'Apprendre',
+    ES: 'Aprender',
+    IT: 'Impara'
   },
   'LEARN+': {
     EN: 'Learn+',
@@ -175,6 +189,13 @@ const translations: Translations = {
     ES: 'MEJOR OPCIÓN',
     IT: 'MIGLIORE SCELTA'
   },
+  'BEST_FIT': {
+    EN: 'HIGH MATCH',
+    DE: 'IDEALER KANDIDAT',
+    FR: 'MEILLEUR CHOIX',
+    ES: 'MEJOR AJUSTE',
+    IT: 'MIGLIORE CORRISPONDENZA'
+  },
   'ADJACENT': {
     EN: 'POTENTIAL',
     DE: 'POTENZIAL',
@@ -216,6 +237,125 @@ const translations: Translations = {
     FR: 'Profil',
     ES: 'Perfil',
     IT: 'Profilo'
+  },
+  'INSPIRATION': {
+    EN: 'Inspiration for the day',
+    DE: 'Inspiration für den Tag',
+    FR: 'Inspiration du jour',
+    ES: 'Inspiración del día',
+    IT: 'Ispirazione del giorno'
+  },
+  'DRIVE_YOUR_CAREER_FORWARD': {
+    EN: 'DRIVE YOUR\nCAREER FORWARD.',
+    DE: 'BRINGEN SIE IHRE\nKARRIERE VORAN.',
+    FR: 'PROPULSEZ VOTRE\nCARRIÈRE.',
+    ES: 'IMPULSA TU\nCARRERA.',
+    IT: 'GUIDA LA TUA\nCARRIERA.'
+  },
+  'EXPLORE_JOURNEYS': {
+    EN: 'Explore Journeys',
+    DE: 'Reisen erkunden',
+    FR: 'Explorer les parcours',
+    ES: 'Explorar trayectos',
+    IT: 'Esplora i percorsi'
+  },
+  'VIEW_VACANCIES': {
+    EN: 'View Vacancies',
+    DE: 'Vakanzen ansehen',
+    FR: 'Voir les postes vacants',
+    ES: 'Ver vacantes',
+    IT: 'Vedi le posizioni aperte'
+  },
+  'PROFILE_AWESOME': {
+    EN: 'Your profile is looking awesome',
+    DE: 'Dein Profil sieht fantastisch aus',
+    FR: 'Votre profil a fière allure',
+    ES: 'Tu perfil se ve increíble',
+    IT: 'Il tuo profilo ha un aspetto fantastico'
+  },
+  'ELEVATE_POTENTIAL': {
+    EN: 'Elevate your potential',
+    DE: 'Steigere dein Potenzial',
+    FR: 'Élevez votre potentiel',
+    ES: 'Eleva tu potencial',
+    IT: 'Eleva il tuo potenziale'
+  },
+  'EXPLORE_FUTURE': {
+    EN: 'Explore Future with ',
+    DE: 'Entdecke die Zukunft mit ',
+    FR: 'Explorez l\'avenir avec ',
+    ES: 'Explora el futuro con ',
+    IT: 'Esplora il futuro con '
+  },
+  'HUB_DESCRIPTION': {
+    EN: 'Welcome to your AI-powered career mobility hub. Discover tailored pathways for upskilling, reskilling, and internal job opportunities designed entirely around your potential.',
+    DE: 'Willkommen in deinem KI-gestützten Career Mobility Hub. Entdecke maßgeschneiderte Wege für Upskilling, Reskilling und interne Jobmöglichkeiten, die ganz auf dein Potenzial abgestimmt sind.',
+    FR: 'Bienvenue dans votre centre de mobilité professionnelle alimenté par l\'IA. Découvrez des parcours sur mesure pour le perfectionnement, la reconversion et les opportunités d\'emploi internes, entièrement conçus autour de votre potentiel.',
+    ES: 'Bienvenido a tu centro de movilidad profesional impulsado por IA. Descubre vías personalizadas de mejora de capacidades, reciclaje profesional y oportunidades de empleo interno diseñadas enteramente en torno a tu potencial.',
+    IT: 'Benvenuto nel tuo hub di mobilità professionale basato sull\'IA. Scopri percorsi su misura per l\'aggiornamento, la riqualificazione e le opportunità di lavoro interne, pensati interamente intorno al tuo potenziale.'
+  },
+  'JOURNEYS_DESC': {
+    EN: 'Explore journeys and discover potential career paths.',
+    DE: 'Erkunde Reisen und entdecke mögliche Karrierewege.',
+    FR: 'Explorez des parcours et découvrez des cheminements de carrière potentiels.',
+    ES: 'Explora trayectos y descubre posibles trayectorias profesionales.',
+    IT: 'Esplora i percorsi e scopri potenziali percorsi di carriera.'
+  },
+  'SKILLS': {
+    EN: 'SKILLS',
+    DE: 'FÄHIGKEITEN',
+    FR: 'COMPÉTENCES',
+    ES: 'HABILIDADES',
+    IT: 'COMPETENZE'
+  },
+  'SKILLS_DESC': {
+    EN: 'Manage skills required for your role and career.',
+    DE: 'Verwalte die für deine Rolle und Karriere erforderlichen Fähigkeiten.',
+    FR: 'Gérez les compétences requises pour votre rôle et votre carrière.',
+    ES: 'Gestiona las habilidades requeridas para tu puesto y carrera.',
+    IT: 'Gestisci le competenze richieste per il tuo ruolo e la tua carriera.'
+  },
+  'GIGS_DESC': {
+    EN: 'Explore gigs and projects to grow your talents.',
+    DE: 'Erkunde Gigs und Projekte, um deine Talente zu fördern.',
+    FR: 'Explorez des missions et des projets pour développer vos talents.',
+    ES: 'Explora proyectos y tareas para desarrollar tus talentos.',
+    IT: 'Esplora lavoretti e progetti per accrescere i tuoi talenti.'
+  },
+  'MENTORS_DESC': {
+    EN: 'Discover mentors ready to guide your growth.',
+    DE: 'Entdecke Mentoren, die bereit sind, dein Wachstum zu begleiten.',
+    FR: 'Découvrez des mentors prêts à guider votre croissance.',
+    ES: 'Descubre mentores dispuestos a guiar tu crecimiento.',
+    IT: 'Scopri mentori pronti a guidare la tua crescita.'
+  },
+  'MILESTONES_DESC': {
+    EN: 'Track your career milestones and achievements.',
+    DE: 'Verfolge deine Meilensteine und Erfolge in der Karriere.',
+    FR: 'Suivez les jalons et les réalisations de votre carrière.',
+    ES: 'Sigue los hitos y logros de tu carrera.',
+    IT: 'Tieni traccia dei traguardi e dei successi della tua carriera.'
+  },
+  'MASTERY_DESC': {
+    EN: 'Develop mastery through curated learning paths.',
+    DE: 'Entwickle Meisterschaft durch kuratierte Lernpfade.',
+    FR: 'Développez la maîtrise grâce à des parcours d\'apprentissage organisés.',
+    ES: 'Desarrolla el dominio a través de rutas de aprendizaje seleccionadas.',
+    IT: 'Sviluppa la maestria attraverso percorsi di apprendimento curati.'
+  },
+  'PROFILE_DESC': {
+    EN: 'Manage your professional identity and preferences.',
+    DE: 'Verwalte deine berufliche Identität und Vorlieben.',
+    FR: 'Gérez votre identité et vos préférences professionnelles.',
+    ES: 'Gestiona tu identidad y preferencias profesionales.',
+    IT: 'Gestisci la tua identità e le tue preferenze professionali.'
+  },
+  'VACANCIES_DESC': {
+    EN: 'Explore open positions and new opportunities at Hertz.',
+    DE: 'Entdecke offene Stellen und neue Möglichkeiten bei Hertz.',
+    FR: 'Explorez les postes vacants et les nouvelles opportunités chez Hertz.',
+    ES: 'Explora puestos vacantes y nuevas oportunidades en Hertz.',
+    IT: 'Esplora posizioni aperte e nuove opportunità in Hertz.'
   }
 };
 

@@ -1,214 +1,137 @@
 {
   "profileInfo": {
-    "currentRole": "RPA Solution Architect",
+    "currentRole": "Incentive Analyst",
     "experience": "10+ years",
-    "certifications": ["PMP", "CSM", "CSPO", "CSP-SM", "Automation Anywhere Certified Professional"],
-    "skills": ["Automation Anywhere A360", "UiPath", "Workato", "Jira", "Azure DevOps", "GitHub", "Solution Architecture", "Program Management", "Team Leadership", "Process Optimization", "UAT", "Deployment Support", "Cloud awareness (Azure/AWS)", "Product Ownership", "Scrum Master", "Technical Project Management"],
-    "interests": ["CTO path", "AI-driven engineering", "intelligent automation", "scalable architecture", "cloud platforms", "business-aligned technology strategy"]
+    "certifications": ["PMP", "CSM", "CSPO", "CSP-SM"],
+    "skills": ["Data Analysis", "Project Management", "Team Leadership"],
+    "interests": ["Business Strategy", "Leadership", "Technology"]
   },
   "categories": [
     {
-      "id": "high-match",
-      "type": "High Match 🔥",
-      "style": "green",
-      "color": "#10B981",
+      "id": "best-fit",
+      "type": "Best Fit 🔥",
+      "style": "pink",
+      "color": "#EC4899",
       "paths": [
         {
-          "id": "intelligent-automation-arch",
-          "name": "Intelligent Automation Architect",
+          "id": "incentive-comp",
+          "name": "Incentive Compensation",
           "matchScore": 9.5,
           "readiness": "Short term (0–2 years)",
-          "whyItFits": "Strong RPA architecture background. Experience building scalable automation frameworks and strong interest in AI-driven engineering.",
-          "alignedSkills": ["RPA architecture", "scalable architecture", "intelligent automation"],
-          "missingSkills": ["Python", "Machine Learning Basics"],
+          "whyItFits": "Strong alignment with your current analytical skills.",
+          "alignedSkills": ["Excel", "Power BI", "Data Analysis"],
+          "missingSkills": ["Advanced Power BI", "Strategic Communication"],
           "defaultHighlight": true,
           "nodes": [
-            { "role": "RPA Trainee", "status": "past" },
-            { "role": "RPA Developer", "status": "past" },
-            { "role": "Senior RPA Developer", "status": "past" },
-            { "role": "Lead RPA Developer", "status": "past" },
-            { "role": "RPA Solution Architect", "status": "current" },
-            { "role": "Intelligent Automation Architect", "status": "next" },
-            { "role": "AI Automation Lead", "status": "future" },
-            { "role": "Head of Intelligent Automation", "status": "future" },
-            { "role": "CTO", "status": "future" }
-          ]
-        },
-        {
-          "id": "enterprise-automation-arch",
-          "name": "Enterprise Automation Architect",
-          "matchScore": 9.0,
-          "readiness": "Short term (0–2 years)",
-          "whyItFits": "Strong enterprise architecture and automation delivery experience. Governance and cross-functional leadership focus.",
-          "alignedSkills": ["Enterprise Architecture", "Governance", "Cross-functional leadership"],
-          "missingSkills": ["Advanced Cloud Architecture"],
-          "defaultHighlight": false,
-          "nodes": [
-            { "role": "RPA Trainee", "status": "past" },
-            { "role": "RPA Developer", "status": "past" },
-            { "role": "Senior RPA Developer", "status": "past" },
-            { "role": "Lead RPA Developer", "status": "past" },
-            { "role": "RPA Solution Architect", "status": "current" },
-            { "role": "Enterprise Automation Architect", "status": "next" },
-            { "role": "Automation Practice Head", "status": "future" },
-            { "role": "Director of Automation", "status": "future" },
-            { "role": "CTO", "status": "future" }
-          ]
-        },
-        {
-          "id": "automation-eng-manager",
-          "name": "Engineering Manager (Automation)",
-          "matchScore": 8.5,
-          "readiness": "Mid term (2-4 years)",
-          "whyItFits": "Team leadership and mentoring coupled with delivery ownership and engineering background.",
-          "alignedSkills": ["Team Leadership", "Delivery ownership", "Engineering background"],
-          "missingSkills": ["People Management Frameworks", "Budgeting"],
-          "defaultHighlight": false,
-          "nodes": [
-            { "role": "RPA Trainee", "status": "past" },
-            { "role": "RPA Developer", "status": "past" },
-            { "role": "Senior Automation Developer", "status": "past" },
-            { "role": "Lead Automation Engineer", "status": "past" },
-            { "role": "RPA Solution Architect", "status": "current" },
-            { "role": "Engineering Manager (Automation)", "status": "next" },
-            { "role": "Senior Engineering Manager", "status": "future" },
-            { "role": "VP Engineering", "status": "future" },
-            { "role": "CTO", "status": "future" }
+            { "role": "Incentive Analyst", "status": "current", "skills_to_master": ["Data Entry", "Basic Analytics", "Reporting", "Excel"], "learning_path": [
+              { "name": "Microsoft Excel Mastery: From Basics to Pro Skills", "url": "https://www.coursera.org/specializations/excel", "type": "Course" },
+              { "name": "Master Microsoft Excel with Copilot", "url": "https://www.coursera.org/programs/leadership-advancement-program-ops-vnyo5/learn/microsoft-excel-copilot?authProvider=hertz&collectionId=skill~microsoft-excel&source=search", "type": "Course" },
+              { "name": "Everyday Excel Specialization", "url": "https://www.coursera.org/specializations/everyday-excel", "type": "Course" }
+            ]},
+            { "role": "Senior Compensation Analyst", "status": "next", "skills_to_master": ["Power BI", "Data Modeling", "Market Pricing", "Virtual Collaboration"], "learning_path": [
+              { "name": "Introduction to Power BI Bootcamp", "url": "https://www.udemy.com/course/microsoft-power-bi-up-running-with-power-bi-desktop/", "type": "Course" },
+              { "name": "Power BI: Data Analysis, Reporting, and Connecting", "url": "https://www.coursera.org/programs/leadership-advancement-program-ops-vnyo5/learn/power-bi-data-analysis-reporting-connecting-lo095214?authProvider=hertz&collectionId=skill~power-bi&source=related-skill", "type": "Course" },
+              { "name": "Optimizing Virtual Collaboration", "url": "https://hertz.csod.com/ui/lms-learning-details/app/onlineContent/94ca3da0-371f-5370-864c-2de081f09b9c", "type": "Course" }
+            ]},
+            { "role": "Manager Incentive Compensation", "status": "future", "skills_to_master": ["Team Leadership", "Strategic Communication", "Compensation Strategy", "Stakeholder Management"], "learning_path": [
+              { "name": "Becoming a Better Communicator", "url": "https://hertz.csod.com/ui/lms-learning-details/app/course/e0166029-4678-46d4-99c5-e5ec03c4db75", "type": "Course" }
+            ]},
+            { "role": "Director Compensation", "status": "future", "skills_to_master": ["Executive Communication", "Budget Planning", "Global Strategy", "Organizational Design"], "learning_path": [
+              { "name": "Communicating Strategy", "url": "https://hertz.csod.com/ui/lms-learning-details/app/onlineContent/ba129890-6ef9-5591-8961-9ed64e99ef9d", "type": "Course" }
+            ]}
           ]
         }
       ]
     },
     {
-      "id": "adjacent-domain",
-      "type": "Adjacent Domain ⚡",
+      "id": "high-match",
+      "type": "High Match ⚡",
       "style": "orange",
       "color": "#F59E0B",
       "paths": [
         {
-          "id": "tech-program-manager",
-          "name": "Technical Program Manager",
-          "matchScore": 8.0,
-          "readiness": "Short term (0–2 years)",
-          "whyItFits": "PMP and Agile certifications, combined with strong project leadership and delivery governance.",
-          "alignedSkills": ["PMP", "Agile", "Delivery Governance", "Scrum Master"],
-          "missingSkills": ["Large scale program budgeting"],
-          "defaultHighlight": false,
-          "nodes": [
-            { "role": "RPA Developer", "status": "past" },
-            { "role": "Lead RPA Developer", "status": "past" },
-            { "role": "Solution Architect", "status": "past" },
-            { "role": "Technical Project Manager", "status": "current" },
-            { "role": "Technical Program Manager", "status": "next" },
-            { "role": "Program Director", "status": "future" },
-            { "role": "VP Delivery", "status": "future" },
-            { "role": "COO / CTO", "status": "future" }
-          ]
-        },
-        {
-          "id": "product-manager-ai",
-          "name": "Product Manager (Automation / AI)",
-          "matchScore": 7.5,
-          "readiness": "Mid term (3-5 years)",
-          "whyItFits": "Product ownership exposure and strong business-technical alignment suitable for automation platforms.",
-          "alignedSkills": ["Product Ownership", "Business alignment", "Automation strategy"],
-          "missingSkills": ["Go-to-market strategy", "Customer discovery techniques"],
-          "defaultHighlight": false,
-          "nodes": [
-            { "role": "RPA Developer", "status": "past" },
-            { "role": "Lead RPA Developer", "status": "past" },
-            { "role": "Solution Architect", "status": "past" },
-            { "role": "Product Owner", "status": "current" },
-            { "role": "Product Manager (Automation / AI)", "status": "next" },
-            { "role": "Senior Product Manager", "status": "future" },
-            { "role": "Head of Product", "status": "future" },
-            { "role": "Chief Product Officer", "status": "future" }
-          ]
-        },
-        {
-          "id": "delivery-head",
-          "name": "Delivery Manager / Delivery Head",
-          "matchScore": 8.0,
+          "id": "it-path",
+          "name": "IT Career Path",
+          "matchScore": 8.5,
           "readiness": "Mid term (2-4 years)",
-          "whyItFits": "Strong delivery governance, leadership across teams, and execution management strength.",
-          "alignedSkills": ["Delivery management", "Agile execution", "Governance"],
-          "missingSkills": ["P&L Management"],
+          "whyItFits": "Leverages your project management and agile background.",
+          "alignedSkills": ["Agile", "Scrum", "Confluence"],
+          "missingSkills": ["Jira Advanced", "Business Process Mapping"],
           "defaultHighlight": false,
           "nodes": [
-            { "role": "RPA Developer", "status": "past" },
-            { "role": "Lead RPA Developer", "status": "past" },
-            { "role": "Scrum Master / Delivery Lead", "status": "past" },
-            { "role": "Solution Architect & Project Manager", "status": "current" },
-            { "role": "Delivery Manager", "status": "next" },
-            { "role": "Senior Delivery Manager", "status": "future" },
-            { "role": "Delivery Head", "status": "future" },
-            { "role": "COO / CTO", "status": "future" }
+            { "role": "Business Analyst", "status": "next", "skills_to_master": ["Requirements Gathering", "Process Mapping", "UAT Planning", "Stakeholder Interviewing"], "learning_path": [
+              { "name": "The Complete Business Analysis Fundamentals Course", "url": "https://www.udemy.com/course/business-analysis-fundamentals/", "type": "Course", "content_covered": ["Business Analysis Fundamentals", "Requirements Engineering & Analysis", "Stakeholder Interviewing Techniques", "Business Communication & Documentation"] },
+              { "name": "Agile Business Analyst (The Power of the Agile BA)", "url": "https://www.udemy.com/course/agile-business-analyst/", "type": "Course", "content_covered": ["User Stories & Acceptance Criteria"] },
+              { "name": "Fundamentals of Business Process Mapping", "url": "https://www.linkedin.com/learning/business-process-modeling", "type": "Course", "content_covered": ["Process Mapping (Swimlanes, Flow Diagrams)"] },
+              { "name": "Understanding User Acceptance Testing (UAT)", "url": "https://www.linkedin.com/learning/user-acceptance-testing", "type": "Course", "content_covered": ["UAT Planning", "Test Case Writing"] },
+              { "name": "Learning Confluence", "url": "https://www.linkedin.com/learning/confluence-essential-training", "type": "Course", "content_covered": ["Confluence (Requirements Documentation)"] }
+            ]},
+            { "role": "Scrum Master", "status": "future", "skills_to_master": ["Agile Methodologies", "Servant Leadership", "Sprint Planning", "Jira Management"], "learning_path": [
+              { "name": "Agile with Atlassian Jira", "url": "https://www.coursera.org/learn/agile-atlassian-jira", "type": "Course", "content_covered": ["Jira (Boards, Sprints, Burndown)", "Sprint Planning & Backlog Management", "Agile Metrics & Team Health Metrics", "Continuous Improvement & Retrospectives"] },
+              { "name": "Agile Leadership Principles and Practices", "url": "https://www.coursera.org/learn/agile-leadership", "type": "Course", "content_covered": ["Facilitation & Servant Leadership", "Conflict Resolution & Team Coaching"] },
+              { "name": "Introduction to Agile Development and Scrum", "url": "https://www.coursera.org/learn/agile-development-scrum", "type": "Course", "content_covered": ["Agile Fundamentals (Agile Manifesto, Scrum basics)"] },
+              { "name": "Implement the Scrum Framework", "url": "https://www.coursera.org/learn/scrum-framework", "type": "Course", "content_covered": ["Scrum Framework (Roles, Ceremonies, Artifacts)"] },
+              { "name": "Learning Confluence", "url": "https://www.linkedin.com/learning/confluence-essential-training", "type": "Course", "content_covered": ["Confluence (Team Documentation)"] },
+              { "name": "Scrum Master Certification Preparation (PSM I)", "url": "https://www.udemy.com/course/professional-scrum-master-psm-certification-preparation/", "type": "Certification", "content_covered": ["Preparation for PSM I Certification"] },
+              { "name": "Cultivating Enterprising Agile", "url": "https://www.coursera.org/learn/enterprise-agile", "type": "Course", "content_covered": ["Enterprise Agile Concepts", "Agile Transformation Strategies", "Overcoming Agile Adoption Challenges", "Agile Planning Tools"] }
+            ]}
           ]
         }
       ]
     },
     {
-      "id": "wild-card",
-      "type": "Wild Card 🚀",
+      "id": "potential",
+      "type": "Potential 🌟",
+      "style": "green",
+      "color": "#10B981",
+      "paths": [
+        {
+          "id": "l-and-d",
+          "name": "Learning & Development",
+          "matchScore": 7.5,
+          "readiness": "Mid term (3-5 years)",
+          "whyItFits": "Great fit for those who enjoy mentoring and teaching.",
+          "alignedSkills": ["Presentation", "Project Management"],
+          "missingSkills": ["Adult Learning Theory", "Instructional Design"],
+          "defaultHighlight": false,
+          "nodes": [
+            { "role": "Learning Specialist", "status": "past", "skills_to_master": ["Instructional Design", "Presentation Skills", "Adult Learning"], "learning_path": [
+              { "name": "Successful Presentation", "url": "https://www.coursera.org/learn/presentation-skills", "type": "Course" },
+              { "name": "Adult Learning Fundamentals", "url": "https://www.linkedin.com/learning/effectively-teaching-adults", "type": "Course" }
+            ]},
+            { "role": "Learning Project Manager", "status": "current", "skills_to_master": ["Project Planning", "Stakeholder Management", "Resource Allocation"], "learning_path": [
+              { "name": "Project Management Specialization", "url": "https://www.coursera.org/specializations/project-management", "type": "Course" },
+              { "name": "Managing Project Stakeholders", "url": "https://www.coursera.org/learn/project-stakeholders", "type": "Course" }
+            ]},
+            { "role": "Learning Manager", "status": "next", "skills_to_master": ["Team Leadership", "Emotional Intelligence", "Curriculum Strategy"], "learning_path": [
+              { "name": "Emotional Intelligence in Leadership", "url": "https://www.coursera.org/learn/emotional-intelligence-leadership", "type": "Course" }
+            ]},
+            { "role": "Director Global Learning", "status": "future", "skills_to_master": ["Strategic Leadership", "Global Deployment", "Executive Influence"], "learning_path": [
+              { "name": "Strategic Leadership and Management", "url": "https://www.coursera.org/specializations/strategic-leadership", "type": "Course" }
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "new-horizon",
+      "type": "New Horizon 🚀",
       "style": "purple",
       "color": "#8B5CF6",
       "paths": [
         {
-          "id": "ai-architect",
-          "name": "AI Architect",
-          "matchScore": 6.5,
-          "readiness": "Long term (5-10 years)",
-          "whyItFits": "Automation base with exposure to intelligent document processing. Significant upskilling required in ML.",
-          "alignedSkills": ["IQ Bot / IDP", "AI interest", "Automation algorithms"],
-          "missingSkills": ["Python", "SQL", "Data engineering basics", "ML fundamentals", "LLM architecture", "Azure AI/OpenAI"],
-          "defaultHighlight": false,
-          "nodes": [
-            { "role": "RPA Developer", "status": "past" },
-            { "role": "IQ Bot / IDP Specialist", "status": "past" },
-            { "role": "Automation Data Analyst", "status": "past" },
-            { "role": "Data Engineer", "status": "current" },
-            { "role": "AI Engineer", "status": "next" },
-            { "role": "AI Solutions Architect", "status": "future" },
-            { "role": "AI Architect", "status": "future" },
-            { "role": "CTO (AI-first company)", "status": "future" }
-          ]
-        },
-        {
-          "id": "cloud-architect",
-          "name": "Cloud / Enterprise Architect",
+          "id": "operations",
+          "name": "Operations",
           "matchScore": 7.0,
-          "readiness": "Mid term (3-5 years)",
-          "whyItFits": "General solution architecture background present, needs deeper focus strictly on Cloud (AWS/Azure) integration paradigms.",
-          "alignedSkills": ["Solution Architecture", "Cloud awareness"],
-          "missingSkills": ["Microservices", "Containers", "Deep networking & security", "Enterprise integration patterns"],
+          "readiness": "Long term (5-10 years)",
+          "whyItFits": "Opportunity to scale leadership and process management.",
+          "alignedSkills": ["Leadership", "Process Optimization"],
+          "missingSkills": ["Operations Management", "Supply Chain"],
           "defaultHighlight": false,
           "nodes": [
-            { "role": "Automation Engineer", "status": "past" },
-            { "role": "Integration Specialist", "status": "past" },
-            { "role": "Solution Architect", "status": "current" },
-            { "role": "Cloud Architect", "status": "next" },
-            { "role": "Enterprise Architect", "status": "future" },
-            { "role": "Chief Architect", "status": "future" },
-            { "role": "CTO", "status": "future" }
-          ]
-        },
-        {
-          "id": "digital-transformation-consultant",
-          "name": "Digital Transformation Consultant",
-          "matchScore": 7.5,
-          "readiness": "Mid term (3-5 years)",
-          "whyItFits": "Strong stakeholder management and business strategy interest. Good transition to executive advisory.",
-          "alignedSkills": ["Stakeholder Management", "Governance", "Tech Strategy"],
-          "missingSkills": ["Operating model design", "Business case dev", "Executive storytelling", "Consulting frameworks"],
-          "defaultHighlight": false,
-          "nodes": [
-            { "role": "RPA Developer", "status": "past" },
-            { "role": "Lead RPA Developer", "status": "past" },
-            { "role": "Solution Architect", "status": "current" },
-            { "role": "Digital Transformation Consultant", "status": "next" },
-            { "role": "Senior Consultant", "status": "future" },
-            { "role": "Principal Consultant", "status": "future" },
-            { "role": "Partner / Strategy Head", "status": "future" },
-            { "role": "CTO", "status": "future" }
+            { "role": "Operations Manager", "status": "next", "skills_to_master": ["Process Optimization", "Performance Metrics", "Change Management"], "learning_path": [
+              { "name": "Leadership Evolution: RAC Level 1", "url": "#", "type": "Course" }
+            ]}
           ]
         }
       ]
