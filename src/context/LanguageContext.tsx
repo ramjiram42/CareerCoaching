@@ -165,7 +165,7 @@ const translations: Translations = {
     EN: 'Make a new Journey',
     DE: 'Eine neue Reise erstellen',
     FR: 'Créer un nouveau parcours',
-    ES: 'Crear una nueva trayectoria',
+    ES: 'Crear una nuova trayectoria',
     IT: 'Crea un nuovo percorso'
   },
   'RE_ALIGN_PROFILE': {
@@ -252,21 +252,12 @@ const translations: Translations = {
     ES: 'Explorar trayectos',
     IT: 'Esplora i percorsi'
   },
-<<<<<<< HEAD
-  'VIEW_VACANCIES': {
-    EN: 'View Vacancies',
-    DE: 'Vakanzen ansehen',
-    FR: 'Voir les postes vacants',
-    ES: 'Ver vacantes',
-    IT: 'Vedi le posizioni aperte'
-=======
   'VIEW_HERTZ_CAREERS': {
     EN: 'View Hertz Careers',
     DE: 'Hertz-Karrieren ansehen',
     FR: 'Voir les carrières Hertz',
     ES: 'Ver carreras en Hertz',
     IT: 'Vedi carriere Hertz'
->>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
   },
   'PROFILE_AWESOME': {
     EN: 'Your profile is looking awesome',
@@ -314,10 +305,9 @@ const translations: Translations = {
     EN: 'Manage skills required for your role and career.',
     DE: 'Verwalte die für deine Rolle und Karriere erforderlichen Fähigkeiten.',
     FR: 'Gérez les compétences requises pour votre rôle et votre carrière.',
-    ES: 'Gestiona las habilidades requeridas para tu puesto y carrera.',
+    ES: 'Gestiona las habilidades requeridas para tu posto y carrera.',
     IT: 'Gestisci le competenze richieste per il tuo ruolo e la tua carriera.'
   },
-<<<<<<< HEAD
   'GIGS_DESC': {
     EN: 'Explore gigs and projects to grow your talents.',
     DE: 'Erkunde Gigs und Projekte, um deine Talente zu fördern.',
@@ -325,9 +315,6 @@ const translations: Translations = {
     ES: 'Explora proyectos y tareas para desarrollar tus talentos.',
     IT: 'Esplora lavoretti e progetti per accrescere i tuoi talenti.'
   },
-=======
-
->>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
   'MENTORS_DESC': {
     EN: 'Discover mentors ready to guide your growth.',
     DE: 'Entdecke Mentoren, die bereit sind, dein Wachstum zu begleiten.',
@@ -356,11 +343,7 @@ const translations: Translations = {
     ES: 'Gestiona tu identidad y preferencias profesionales.',
     IT: 'Gestisci la tua identità e le tue preferenze professionali.'
   },
-<<<<<<< HEAD
-  'VACANCIES_DESC': {
-=======
   'HERTZ_CAREERS_DESC': {
->>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
     EN: 'Explore open positions and new opportunities at Hertz.',
     DE: 'Entdecke offene Stellen und neue Möglichkeiten bei Hertz.',
     FR: 'Explorez les postes vacants et les nouvelles opportunités chez Hertz.',

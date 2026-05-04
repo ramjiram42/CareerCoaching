@@ -63,7 +63,7 @@
               { "name": "The Complete Business Analysis Fundamentals Course", "url": "https://www.udemy.com/course/business-analysis-fundamentals/", "type": "Course", "content_covered": ["Business Analysis Fundamentals", "Requirements Engineering & Analysis", "Stakeholder Interviewing Techniques", "Business Communication & Documentation"] },
               { "name": "Agile Business Analyst (The Power of the Agile BA)", "url": "https://www.udemy.com/course/agile-business-analyst/", "type": "Course", "content_covered": ["User Stories & Acceptance Criteria"] },
               { "name": "Fundamentals of Business Process Mapping", "url": "https://www.linkedin.com/learning/business-process-modeling", "type": "Course", "content_covered": ["Process Mapping (Swimlanes, Flow Diagrams)"] },
-              { "name": "Understanding User Acceptance Testing (UAT)", "url": "https://www.linkedin.com/learning/user-acceptance-testing", "type": "Course", "content_covered": ["UAT Planning", "Test Case Writing"] },
+              { "name": "User Acceptance Testing (UAT)", "url": "https://www.linkedin.com/learning/user-acceptance-testing", "type": "Course", "content_covered": ["UAT Planning", "Test Case Writing"] },
               { "name": "Learning Confluence", "url": "https://www.linkedin.com/learning/confluence-essential-training", "type": "Course", "content_covered": ["Confluence (Requirements Documentation)"] }
             ]},
             { "role": "Scrum Master", "status": "future", "skills_to_master": ["Agile Methodologies", "Servant Leadership", "Sprint Planning", "Jira Management"], "learning_path": [
@@ -95,21 +95,6 @@
           "missingSkills": ["Adult Learning Theory", "Instructional Design"],
           "defaultHighlight": false,
           "nodes": [
-<<<<<<< HEAD
-            { "role": "Learning Specialist", "status": "past", "skills_to_master": ["Instructional Design", "Presentation Skills", "Adult Learning"], "learning_path": [
-              { "name": "Successful Presentation", "url": "https://www.coursera.org/learn/presentation-skills", "type": "Course" },
-              { "name": "Adult Learning Fundamentals", "url": "https://www.linkedin.com/learning/effectively-teaching-adults", "type": "Course" }
-            ]},
-            { "role": "Learning Project Manager", "status": "current", "skills_to_master": ["Project Planning", "Stakeholder Management", "Resource Allocation"], "learning_path": [
-              { "name": "Project Management Specialization", "url": "https://www.coursera.org/specializations/project-management", "type": "Course" },
-              { "name": "Managing Project Stakeholders", "url": "https://www.coursera.org/learn/project-stakeholders", "type": "Course" }
-            ]},
-            { "role": "Learning Manager", "status": "next", "skills_to_master": ["Team Leadership", "Emotional Intelligence", "Curriculum Strategy"], "learning_path": [
-              { "name": "Emotional Intelligence in Leadership", "url": "https://www.coursera.org/learn/emotional-intelligence-leadership", "type": "Course" }
-            ]},
-            { "role": "Director Global Learning", "status": "future", "skills_to_master": ["Strategic Leadership", "Global Deployment", "Executive Influence"], "learning_path": [
-              { "name": "Strategic Leadership and Management", "url": "https://www.coursera.org/specializations/strategic-leadership", "type": "Course" }
-=======
             { "role": "Learning Specialist", "status": "next", "skills_to_master": ["Instructional Design", "Presentation Skills", "Adult Learning"], "learning_path": [
               { "name": "Successful Presentation", "url": "https://www.coursera.org/learn/presentation-skills", "type": "Course" },
               { "name": "Effectively Teaching Employees: The Basics of Adult Learning", "url": "https://hertz.csod.com/ui/lms-learning-details/app/course/a2feee2a-5997-5300-a7b2-e0ab821db367", "type": "Course" }
@@ -128,7 +113,6 @@
             { "role": "Director Global Learning", "status": "future", "skills_to_master": ["Strategic Leadership", "Global Deployment", "Executive Influence"], "learning_path": [
               { "name": "Strategic Leadership and Management Specialization", "url": "https://www.coursera.org/programs/hr-taajp/specializations/strategic-leadership?authProvider=hertz&source=search", "type": "Course" },
               { "name": "Having Difficult Conversations", "url": "https://hertz.csod.com/ui/lms-learning-details/app/course/62b893bd-6c6b-5c0d-b31b-9526922c23f3", "type": "Course" }
->>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
             ]}
           ]
         }
@@ -151,12 +135,8 @@
           "defaultHighlight": false,
           "nodes": [
             { "role": "Operations Manager", "status": "next", "skills_to_master": ["Process Optimization", "Performance Metrics", "Change Management"], "learning_path": [
-<<<<<<< HEAD
-              { "name": "Leadership Evolution: RAC Level 1", "url": "#", "type": "Course" }
-=======
               { "name": "Leadership Evolution: RAC Level 1", "url": "https://hertz.csod.com/ui/lms-learning-details/app/curriculum/e3f5f791-6a45-4f1b-b1c0-8a8a832cbe6e", "type": "Course" },
               { "name": "Leadership Evolution: RAC Level 1 Participant Guide", "url": "https://hertz.sharepoint.com/sites/GlobalLearning/Leadership%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FGlobalLearning%2FLeadership%20Documents%2FFoundations%2FHLE%20Level%201%20Participant%20Guide%2Epdf&parent=%2Fsites%2FGlobalLearning%2FLeadership%20Documents%2FFoundations", "type": "Guide" }
->>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
             ]}
           ]
         }

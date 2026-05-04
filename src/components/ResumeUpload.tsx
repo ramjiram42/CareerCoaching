@@ -123,11 +123,7 @@ export function ResumeUploadSection() {
                    </div>
                 </div>
                 <p style={{ fontSize: 18, color: '#94A3B8', fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', margin: '4px 0', opacity: 0.8 }}>
-<<<<<<< HEAD
-                   Customer Service Rep
-=======
                    High School Tutor & Server
->>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
                    <Cpu size={14} color="#f59e0b" />

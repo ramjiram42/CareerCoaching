@@ -239,11 +239,7 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
       <div style={{ display: 'flex', gap: 30, justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap' }}>
          <div style={{ flex: 1, minWidth: '320px' }}>
             <div style={{ padding: '4px 10px', fontSize: 11, fontWeight: 700, color: '#6B7280', letterSpacing: '0.05em', marginBottom: 8, textTransform: 'uppercase' }}>Current Designation</div>
-<<<<<<< HEAD
-            <input readOnly value="Customer Service Rep" style={{ width: '100%', padding: '18px 24px', borderRadius: 16, border: '1px solid #E5E7EB', fontSize: 16, fontWeight: 700, color: '#111827', background: '#F9FAFB', outline: 'none' }} />
-=======
             <input readOnly value="High School Tutor & Server" style={{ width: '100%', padding: '18px 24px', borderRadius: 16, border: '1px solid #E5E7EB', fontSize: 16, fontWeight: 700, color: '#111827', background: '#F9FAFB', outline: 'none' }} />
->>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
          </div>
 
          <div style={{ position: 'relative', flex: 1, minWidth: '320px' }}>

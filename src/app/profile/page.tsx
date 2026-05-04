@@ -12,31 +12,14 @@ import Image from 'next/image';
 // ─── Profile Data for John (Resume Focused) ─────────────────────────
 const PROFILE = {
   name: 'John Smith',
-<<<<<<< HEAD
-  title: 'Customer Service Rep',
-  bio: 'Love helping People!!',
-  location: 'Miami, FL',
-  type: 'Full-Time',
-=======
   title: 'High School Tutor & Server',
   bio: 'Varsity Lacrosse Team Captain | State Championship Winner',
   location: 'Gnaw Bone, IN',
   type: 'Service Professional',
->>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
   country: 'United States',
   region: 'North America',
   program: 'MBA Summer Associate Program',
   skills: [
-<<<<<<< HEAD
-    "Automation Anywhere A360", 
-    "Intelligent Automation",
-    "UiPath", 
-    "Workato", 
-    "Customer Service Repure", 
-    "Process Optimization", 
-    "Cloud awareness (Azure/AWS)", 
-    "Technical Project Management"
-=======
     "Tutoring & Academic Support", 
     "Clear Communication", 
     "Rapport Building", 
@@ -45,7 +28,6 @@ const PROFILE = {
     "Time Management", 
     "Teamwork", 
     "Peer Leadership"
->>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
   ],
   certifications: [
     "Reliability", 
