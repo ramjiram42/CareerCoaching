@@ -4,7 +4,11 @@ import { useState, useRef, useEffect } from 'react'
 import { MessageCircle, X, Send, ChevronRight, Sparkles, ArrowRight } from 'lucide-react'
 
 const advisorResponses: Record<string, string> = {
+<<<<<<< HEAD
   default: "Great question! Based on John's profile — Customer Service Rep with strong operational leadership — let me analyse the best next moves across Hertz verticals.",
+=======
+  default: "Great question! Based on John's profile — High School Tutor & Server with strong operational leadership — let me analyse the best next moves across Hertz verticals.",
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
   match: "Based on John's profile: **Operations Supervisor (Core Ops)** is your strongest match at ~87% readiness. You have people leadership and high-volume execution experience that directly maps to this role. Key gap: formal P&L accountability.",
   skills: "Your top 3 skill gaps to close are: **1.** P&L and budget ownership **2.** Fleet management systems (e.g. inTouched) **3.** Formal performance coaching frameworks. Each can be addressed in 4–6 weeks with focused development.",
   mentor: "For Fleet Management, I recommend **Diana Prince** (EVP Digital Transformation, 20 years, ⭐ 5.0) or checking the Mentors page for someone with a Fleet Operations background. Both have active availability.",

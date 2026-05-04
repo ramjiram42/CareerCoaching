@@ -95,6 +95,7 @@
           "missingSkills": ["Adult Learning Theory", "Instructional Design"],
           "defaultHighlight": false,
           "nodes": [
+<<<<<<< HEAD
             { "role": "Learning Specialist", "status": "past", "skills_to_master": ["Instructional Design", "Presentation Skills", "Adult Learning"], "learning_path": [
               { "name": "Successful Presentation", "url": "https://www.coursera.org/learn/presentation-skills", "type": "Course" },
               { "name": "Adult Learning Fundamentals", "url": "https://www.linkedin.com/learning/effectively-teaching-adults", "type": "Course" }
@@ -108,6 +109,26 @@
             ]},
             { "role": "Director Global Learning", "status": "future", "skills_to_master": ["Strategic Leadership", "Global Deployment", "Executive Influence"], "learning_path": [
               { "name": "Strategic Leadership and Management", "url": "https://www.coursera.org/specializations/strategic-leadership", "type": "Course" }
+=======
+            { "role": "Learning Specialist", "status": "next", "skills_to_master": ["Instructional Design", "Presentation Skills", "Adult Learning"], "learning_path": [
+              { "name": "Successful Presentation", "url": "https://www.coursera.org/learn/presentation-skills", "type": "Course" },
+              { "name": "Effectively Teaching Employees: The Basics of Adult Learning", "url": "https://hertz.csod.com/ui/lms-learning-details/app/course/a2feee2a-5997-5300-a7b2-e0ab821db367", "type": "Course" }
+            ]},
+            { "role": "Learning Project Manager", "status": "future", "skills_to_master": ["Project Planning", "Stakeholder Management", "Resource Allocation"], "learning_path": [
+              { "name": "Project Management Specialization", "url": "https://www.coursera.org/programs/hr-taajp/specializations/meem-project-management?authProvider=hertz&source=search", "type": "Course" },
+              { "name": "Managing Project Stakeholders", "url": "https://hertz.csod.com/ui/lms-learning-details/app/course/e9e8b5a9-96f5-5d4d-b51d-e9a785f0a7ef", "type": "Course" },
+              { "name": "Effectively Teaching Employees: The Basics of Adult Learning", "url": "https://hertz.csod.com/ui/lms-learning-details/app/course/a2feee2a-5997-5300-a7b2-e0ab821db367", "type": "Course" },
+              { "name": "Excel for Project Management", "url": "https://hertz.csod.com/ui/lms-learning-details/app/course/79b5ec19-fe62-5469-a7b0-bf0adc734d83", "type": "Course" }
+            ]},
+            { "role": "Learning Manager", "status": "future", "skills_to_master": ["Team Leadership", "Emotional Intelligence", "Curriculum Strategy"], "learning_path": [
+              { "name": "Leading and Motivating People with Different Personalities", "url": "https://hertz.csod.com/ui/lms-learning-details/app/course/081d42ed-57ba-5412-9ffe-0e9e9c3645f5", "type": "Course" },
+              { "name": "Project Management: The Basics for Success", "url": "https://www.coursera.org/programs/hr-taajp/learn/project-management-basics?authProvider=hertz&source=search", "type": "Course" },
+              { "name": "Emotional Intelligence in Leadership", "url": "https://www.coursera.org/programs/hr-taajp/learn/emotional-intelligence-in-leadership-1?authProvider=hertz&source=search", "type": "Course" }
+            ]},
+            { "role": "Director Global Learning", "status": "future", "skills_to_master": ["Strategic Leadership", "Global Deployment", "Executive Influence"], "learning_path": [
+              { "name": "Strategic Leadership and Management Specialization", "url": "https://www.coursera.org/programs/hr-taajp/specializations/strategic-leadership?authProvider=hertz&source=search", "type": "Course" },
+              { "name": "Having Difficult Conversations", "url": "https://hertz.csod.com/ui/lms-learning-details/app/course/62b893bd-6c6b-5c0d-b31b-9526922c23f3", "type": "Course" }
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
             ]}
           ]
         }
@@ -130,7 +151,12 @@
           "defaultHighlight": false,
           "nodes": [
             { "role": "Operations Manager", "status": "next", "skills_to_master": ["Process Optimization", "Performance Metrics", "Change Management"], "learning_path": [
+<<<<<<< HEAD
               { "name": "Leadership Evolution: RAC Level 1", "url": "#", "type": "Course" }
+=======
+              { "name": "Leadership Evolution: RAC Level 1", "url": "https://hertz.csod.com/ui/lms-learning-details/app/curriculum/e3f5f791-6a45-4f1b-b1c0-8a8a832cbe6e", "type": "Course" },
+              { "name": "Leadership Evolution: RAC Level 1 Participant Guide", "url": "https://hertz.sharepoint.com/sites/GlobalLearning/Leadership%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FGlobalLearning%2FLeadership%20Documents%2FFoundations%2FHLE%20Level%201%20Participant%20Guide%2Epdf&parent=%2Fsites%2FGlobalLearning%2FLeadership%20Documents%2FFoundations", "type": "Guide" }
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
             ]}
           ]
         }

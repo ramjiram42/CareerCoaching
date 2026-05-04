@@ -5,7 +5,7 @@ import { Search, Filter, BookOpen, Clock, Star, Play, CheckCircle, Award, Compas
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const CATEGORIES = ['All', 'Automation & RPA', 'Agentic AI & IPA', 'IT & Software', 'Fleet & Ops', 'Leadership & HR'];
+const CATEGORIES = ['All', 'Incentive Compensation', 'IT Career Path', 'Learning & Development', 'Operations', 'Public Learning'];
 
 // Optimized, stable Unsplash collection for high-fidelity course cards
 const courseImages = [
@@ -24,40 +24,33 @@ const courseImages = [
 ];
 
 const courseDefinitions = [
-  // Automation & RPA
-  { title: 'Advanced UiPath Orchestrator Management', category: 'Automation & RPA', level: 'Advanced', tags: ['RPA', 'UiPath'] },
-  { title: 'Blue Prism Professional Developer', category: 'Automation & RPA', level: 'Advanced', tags: ['RPA', 'Blue Prism'] },
-  { title: 'Automation Anywhere: Master Class', category: 'Automation & RPA', level: 'Intermediate', tags: ['RPA', 'AA'] },
+  // Incentive Compensation
+  { title: 'Advanced Sales Compensation Design', category: 'Incentive Compensation', level: 'Advanced', tags: ['Comp', 'Strategy'], provider: 'Hertz Academy' },
+  { title: 'Quota Setting & Performance Analytics', category: 'Incentive Compensation', level: 'Intermediate', tags: ['Data', 'Incentives'], provider: 'Global COE' },
+  { title: 'Global Incentive Compliance Frameworks', category: 'Incentive Compensation', level: 'Advanced', tags: ['Legal', 'Finance'], provider: 'Hertz Academy' },
   
-  // Agentic AI & IPA
-  { title: 'Building Autonomous AI Agents with LangChain', category: 'Agentic AI & IPA', level: 'Advanced', tags: ['Agentic', 'AI'] },
-  { title: 'IPA: Combining AI and RPA for Business Value', category: 'Agentic AI & IPA', level: 'Intermediate', tags: ['IPA', 'Cognitive'] },
-  { title: 'Agentic Workflows for Enterprise Automation', category: 'Agentic AI & IPA', level: 'Advanced', tags: ['Agents', 'Automation'] },
+  // IT Career Path
+  { title: 'Full Stack Enterprise Development with Next.js', category: 'IT Career Path', level: 'Advanced', tags: ['React', 'Next.js'], provider: 'Tech Institute' },
+  { title: 'Cloud Architecture & Infrastructure for Hertz', category: 'IT Career Path', level: 'Advanced', tags: ['AWS', 'Azure'], provider: 'Global COE' },
+  { title: 'Cybersecurity Protocols for Global Systems', category: 'IT Career Path', level: 'Intermediate', tags: ['Security', 'IT'], provider: 'Tech Institute' },
   
-  // Fleet & Ops
-  { title: 'Global Fleet Logistics & Asset ROI', category: 'Fleet & Ops', level: 'Intermediate', tags: ['Fleet', 'Logistics'] },
-  { title: 'EV Fleet Management & Infrastructure', category: 'Fleet & Ops', level: 'Advanced', tags: ['EV', 'Ops'] },
-  { title: 'Predictive Maintenance in Fleet Tech', category: 'Fleet & Ops', level: 'Advanced', tags: ['AI', 'Fleet'] },
+  // Learning & Development
+  { title: 'Strategic Talent Development & Coaching', category: 'Learning & Development', level: 'Advanced', tags: ['L&D', 'Leadership'], provider: 'Hertz Academy' },
+  { title: 'Instructional Design for Digital Learning', category: 'Learning & Development', level: 'Intermediate', tags: ['Training', 'E-learning'], provider: 'Global COE' },
+  { title: 'Measuring Training ROI & Impact', category: 'Learning & Development', level: 'Advanced', tags: ['Analytics', 'L&D'], provider: 'Hertz Academy' },
 
-  // Leadership & HR
-  { title: 'Strategic HRBP: Driving Organizational Value', category: 'Leadership & HR', level: 'Advanced', tags: ['HR', 'Business'] },
-  { title: 'People Analytics for HR Leaders', category: 'Leadership & HR', level: 'Intermediate', tags: ['Data', 'HR'] },
-  { title: 'Modern Talent Acquisition Strategies', category: 'Leadership & HR', level: 'Beginner', tags: ['Recruitment', 'HR'] },
+  // Operations
+  { title: 'Fleet Logistics & Supply Chain Mastery', category: 'Operations', level: 'Advanced', tags: ['Logistics', 'Fleet'], provider: 'Hertz Academy' },
+  { title: 'Operational Excellence & Lean Management', category: 'Operations', level: 'Intermediate', tags: ['Six Sigma', 'Lean'], provider: 'Global COE' },
+  { title: 'Branch Management & Profitability Systems', category: 'Operations', level: 'Advanced', tags: ['Ops', 'Leadership'], provider: 'Hertz Academy' },
 
-  // Program Management & Solutions Architect
-  { title: 'Technical Program Management: The TPM Playbook', category: 'IT & Software', level: 'Advanced', tags: ['Program', 'PM'] },
-  { title: 'Enterprise Solutions Architecture Foundations', category: 'IT & Software', level: 'Intermediate', tags: ['Architecture', 'IT'] },
-  { title: 'Cloud-Native Solutions Architect Certification', category: 'IT & Software', level: 'Advanced', tags: ['Cloud', 'Architect'] },
-
-  ...Array.from({ length: 45 }, (_, i) => ({
-    title: [
-      `Advanced ${['RPA', 'Agentic AI', 'IPA', 'Fleet', 'HR', 'Program Mgmt', 'Architecture'][i % 7]} Specialization ${i + 1}`,
-      `${['Strategic', 'Modern', 'Technical', 'Enterprise'][i % 4]} ${['Leadership', 'Development', 'Analysis', 'Strategy'][i % 4]} ${i + 1}`
-    ][i % 2],
-    category: CATEGORIES[Math.floor(Math.random() * (CATEGORIES.length - 1)) + 1],
-    level: ['Beginner', 'Intermediate', 'Advanced'][i % 3],
-    tags: ['Core', 'Advanced', 'Specialization']
-  }))
+  // Public Learning
+  { title: 'LinkedIn Learning: Executive Presence Foundations', category: 'Public Learning', level: 'Beginner', tags: ['Leadership', 'LinkedIn'], provider: 'LinkedIn Learning', url: 'https://www.linkedin.com/learning/' },
+  { title: 'Coursera: Data Science Specialization', category: 'Public Learning', level: 'Advanced', tags: ['Data', 'Python'], provider: 'Coursera', url: 'https://www.coursera.org/' },
+  { title: 'Udemy: Project Management Professional (PMP)', category: 'Public Learning', level: 'Advanced', tags: ['PMP', 'PM'], provider: 'Udemy', url: 'https://www.udemy.com/' },
+  { title: 'LinkedIn Learning: Strategic Thinking', category: 'Public Learning', level: 'Intermediate', tags: ['Strategy', 'LinkedIn'], provider: 'LinkedIn Learning', url: 'https://www.linkedin.com/learning/' },
+  { title: 'Coursera: Google Project Management Certificate', category: 'Public Learning', level: 'Intermediate', tags: ['Google', 'PM'], provider: 'Coursera', url: 'https://www.coursera.org/' },
+  { title: 'Udemy: Complete SQL Bootcamp', category: 'Public Learning', level: 'Beginner', tags: ['SQL', 'Data'], provider: 'Udemy', url: 'https://www.udemy.com/' }
 ];
 
 const ALL_COURSES = courseDefinitions.map((c, i) => ({
@@ -68,9 +61,10 @@ const ALL_COURSES = courseDefinitions.map((c, i) => ({
   students: (Math.random() * 4 + 1).toFixed(1) + 'k',
   duration: (Math.floor(Math.random() * 15) + 4) + 'h ' + (Math.floor(Math.random() * 59)) + 'm',
   image: courseImages[i % courseImages.length],
-  provider: ['Hertz Academy', 'Global COE', 'Tech Institute'][i % 3],
+  provider: c.provider || ['Hertz Academy', 'Global COE', 'Tech Institute'][i % 3],
   level: c.level,
-  tags: c.tags
+  tags: c.tags,
+  url: c.url || '#'
 }));
 
 export default function LearningHubPage() {
@@ -185,18 +179,28 @@ export default function LearningHubPage() {
                          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Clock size={12} /> {course.duration}</div>
                          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}><Users size={12} /> {course.students}</div>
                       </div>
-                      <button style={{ 
-                        width: '100%', 
-                        padding: '12px', 
-                        borderRadius: 14, 
-                        border: 'none', 
-                        background: 'linear-gradient(90deg, #f59e0b, #ec4899)', 
-                        color: '#fff', 
-                        fontSize: 12, 
-                        fontWeight: 900, 
-                        textTransform: 'uppercase', 
-                        cursor: 'pointer' 
-                      }}>Start Learning</button>
+                      <a 
+                        href={course.url}
+                        target={course.url !== '#' ? "_blank" : undefined}
+                        rel={course.url !== '#' ? "noopener noreferrer" : undefined}
+                        style={{ 
+                          width: '100%', 
+                          padding: '12px', 
+                          borderRadius: 14, 
+                          border: 'none', 
+                          background: 'linear-gradient(90deg, #f59e0b, #ec4899)', 
+                          color: '#fff', 
+                          fontSize: 12, 
+                          fontWeight: 900, 
+                          textTransform: 'uppercase', 
+                          cursor: 'pointer',
+                          display: 'block',
+                          textAlign: 'center',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        {course.category === 'Public Learning' ? 'Go to Platform' : 'Start Learning'}
+                      </a>
                    </div>
                 </motion.div>
              ))}

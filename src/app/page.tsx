@@ -32,12 +32,15 @@ export default function HomePage() {
       image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80' 
     },
     { 
+<<<<<<< HEAD
       title: 'GIGS', 
       desc: 'GIGS_DESC', 
       href: '/gigs', 
       image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80' 
     },
     { 
+=======
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
       title: 'MENTORS', 
       desc: 'MENTORS_DESC', 
       href: '/mentorship', 
@@ -62,8 +65,13 @@ export default function HomePage() {
       image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80' 
     },
     { 
+<<<<<<< HEAD
       title: 'VACANCIES', 
       desc: 'VACANCIES_DESC', 
+=======
+      title: 'HERTZ CAREERS', 
+      desc: 'HERTZ_CAREERS_DESC', 
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
       href: '/jobs', 
       image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80' 
     },
@@ -126,7 +134,11 @@ export default function HomePage() {
               letterSpacing: '0.05em',
               border: '1px solid rgba(255,255,255,0.2)'
             }}>
+<<<<<<< HEAD
               {t('VIEW_VACANCIES')}
+=======
+              {t('VIEW_HERTZ_CAREERS')}
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
             </Link>
           </div>
         </div>

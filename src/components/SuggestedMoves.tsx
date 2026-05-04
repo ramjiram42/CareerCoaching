@@ -41,7 +41,11 @@ export default function SuggestedMoves({ onBack, userProfile }: SuggestedMovesPr
 
   // Specific pathways from user request
   const careerJourneys = [
+<<<<<<< HEAD
     { title: 'Intelligent Automation Architect', description: 'Master RPA and cognitive automation at scale.', level: 'Milestone', match: 'High Match Potential', color: '#f59e0b', target: 'Customer Service Rep' },
+=======
+    { title: 'Intelligent Automation Architect', description: 'Master RPA and cognitive automation at scale.', level: 'Milestone', match: 'High Match Potential', color: '#f59e0b', target: 'High School Tutor & Server' },
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
     { title: 'Enterprise Automation Architect', description: 'Design end-to-end automated business processes.', level: 'Milestone', match: 'High Match Potential', color: '#7c3aed', target: 'Technical Program Manager' },
     { title: 'Technical Project Manager', description: 'Lead high-complexity technical delivery teams.', level: 'Target', match: 'NEXT LVL', color: '#3b82f6', target: 'Technical Program Manager' },
     { title: 'AI Architect', description: 'Implement neural networks and LLMs for enterprise.', level: 'Milestone', match: 'High Match Potential', color: '#ec4899', target: 'Data Engineer' },
@@ -65,7 +69,11 @@ export default function SuggestedMoves({ onBack, userProfile }: SuggestedMovesPr
 
   const reportingLines = [
     { name: 'Sarah Jenkins', role: 'VP of Global Technology', level: 'Leader', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop' },
+<<<<<<< HEAD
     { name: 'John Smith (You)', role: 'Customer Service Rep', level: 'Me', image: userProfile.image },
+=======
+    { name: 'John Smith (You)', role: 'High School Tutor & Server', level: 'Me', image: userProfile.image },
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
     ...Array.from({ length: 50 }, (_, i) => ({
       name: `Peer Specialist ${i + 1}`,
       role: ['Automation Lead', 'RPA Developer', 'Data Engineer', 'Product Owner'][i % 4],

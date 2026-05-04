@@ -7,6 +7,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const DOMAINS = [
+<<<<<<< HEAD
   'Fleet Management', 'Branch Operations', 'Customer Experience', 'Revenue Management', 
   'Vehicle Maintenance', 'EV & Electrification', 'Corporate Strategy', 'Technology & Engineering'
 ];
@@ -58,6 +59,20 @@ const MENTORS = [
     domain: DOMAINS[i % DOMAINS.length],
     avatar: mentorImages[i % mentorImages.length]
   }))
+=======
+  'Learning & Development', 'Operations', 'IT Career Path', 'Incentive Compensation'
+];
+
+const MENTORS = [
+  { id: 'm1', name: 'Megan Grose', expertiseArea: 'Sr Mgr Learning Projects', domain: 'Learning & Development', location: 'Cleveland, OH', avatar: '/mentors/megan.png', rating: 4.9, yearsExperience: 12, sessionsDone: 85 },
+  { id: 'm2', name: 'Rayanna Hansford', expertiseArea: 'GM Customer Ops', domain: 'Operations', location: 'Cincinnati, OH', avatar: '/mentors/rayanna.png', rating: 5.0, yearsExperience: 15, sessionsDone: 120 },
+  { id: 'm3', name: 'Brian Jones', expertiseArea: 'Sr Mgr Customer Ops', domain: 'Operations', location: 'Nashville, TN', avatar: '/mentors/brian.png', rating: 4.8, yearsExperience: 14, sessionsDone: 95 },
+  { id: 'm4', name: 'Shanu Kommula', expertiseArea: 'Dir Technology', domain: 'IT Career Path', location: 'Denver, CO', avatar: '/mentors/shanu.png', rating: 4.9, yearsExperience: 18, sessionsDone: 150 },
+  { id: 'm5', name: 'Esther Mcwherter', expertiseArea: 'Mgr Customer Ops', domain: 'Operations', location: 'Burbank, CA', avatar: '/mentors/esther.png', rating: 4.9, yearsExperience: 20, sessionsDone: 200 },
+  { id: 'm6', name: 'Zoraya Sander', expertiseArea: 'Mgr VAS Sales', domain: 'Operations', location: 'Orlando, FL', avatar: '/mentors/zoraya.png', rating: 4.8, yearsExperience: 11, sessionsDone: 65 },
+  { id: 'm7', name: 'Bryan Vachereau', expertiseArea: 'GM Customer Ops', domain: 'Operations', location: 'Burlington, VT', avatar: '/mentors/bryan.png', rating: 4.7, yearsExperience: 13, sessionsDone: 45 },
+  { id: 'm8', name: 'Nicholas Vanaman', expertiseArea: 'Mgr Incentive Comp', domain: 'Incentive Compensation', location: 'Estero, FL', avatar: '/mentors/nicholas.png', rating: 4.9, yearsExperience: 16, sessionsDone: 110 }
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
 ];
 
 export default function MentorshipPage() {
@@ -170,6 +185,10 @@ export default function MentorshipPage() {
                  <div style={{ marginBottom: 16 }}>
                     <h3 style={{ fontWeight: 900, fontSize: 16, color: '#111827', margin: '0 0 2px' }}>{mentor.name}</h3>
                     <p style={{ color: '#f59e0b', fontWeight: 900, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.05em', margin: 0 }}>{mentor.domain}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 4 }}>
+                      <MapPin size={10} color="#94a3b8" />
+                      <span style={{ fontSize: 10, color: '#94a3b8', fontWeight: 700 }}>{mentor.location}</span>
+                    </div>
                  </div>
 
                  <div style={{ flex: 1, marginBottom: 20 }}>

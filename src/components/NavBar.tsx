@@ -48,10 +48,9 @@ export const NavBar = () => {
   const navLinks = [
     { name: 'HOME', href: '/' },
     { name: 'JOURNEYS', href: '/your-move' },
-    { name: 'GIGS', href: '/gigs' },
     { name: 'MENTORS', href: '/mentorship' },
     { name: 'LEARN', href: '/learn' },
-    { name: 'VACANCIES', href: '/jobs' },
+    { name: 'HERTZ CAREERS', href: '/jobs' },
   ];
 
   const appsMenuItems = [
@@ -60,11 +59,9 @@ export const NavBar = () => {
     { name: 'Journeys', icon: <Compass size={18} />, href: '/your-move' },
     { name: 'Goals', icon: <Target size={18} />, href: '/goals' },
     { name: 'Feedback', icon: <RefreshCw size={18} />, href: '/feedback' },
-    { name: 'Gigs', icon: <Globe size={18} />, href: '/gigs' },
-    { name: 'Create Gigs', icon: <Radio size={18} />, href: '/gigs/create' },
     { name: 'Mentors', icon: <Users size={18} />, href: '/mentorship' },
     { name: 'Learn+', icon: <GraduationCap size={18} />, href: '/learn' },
-    { name: 'Vacancies', icon: <Briefcase size={18} />, href: '/jobs' },
+    { name: 'Hertz Careers', icon: <Briefcase size={18} />, href: '/jobs' },
     { name: 'Resources', icon: <Box size={18} />, href: '/resources' },
     { name: 'Skills', icon: <Layers size={18} />, href: '/skills' },
     { name: 'Leader View', icon: <ShieldCheck size={18} />, href: '/leader-view' },

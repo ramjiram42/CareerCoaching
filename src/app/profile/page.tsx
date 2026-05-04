@@ -12,17 +12,22 @@ import Image from 'next/image';
 // ─── Profile Data for John (Resume Focused) ─────────────────────────
 const PROFILE = {
   name: 'John Smith',
+<<<<<<< HEAD
   title: 'Customer Service Rep',
   bio: 'Love helping People!!',
   location: 'Miami, FL',
   type: 'Full-Time',
+=======
+  title: 'High School Tutor & Server',
+  bio: 'Varsity Lacrosse Team Captain | State Championship Winner',
+  location: 'Gnaw Bone, IN',
+  type: 'Service Professional',
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
   country: 'United States',
-  ethnicity: 'Caucasian',
-  gender: 'Male/Man',
-  veteran: 'Veterans & Military',
-  region: 'Americas',
+  region: 'North America',
   program: 'MBA Summer Associate Program',
   skills: [
+<<<<<<< HEAD
     "Automation Anywhere A360", 
     "Intelligent Automation",
     "UiPath", 
@@ -31,8 +36,22 @@ const PROFILE = {
     "Process Optimization", 
     "Cloud awareness (Azure/AWS)", 
     "Technical Project Management"
+=======
+    "Tutoring & Academic Support", 
+    "Clear Communication", 
+    "Rapport Building", 
+    "Customer Service", 
+    "Conflict De-escalation", 
+    "Time Management", 
+    "Teamwork", 
+    "Peer Leadership"
+>>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
   ],
-  certifications: ["PMP", "CSM", "CSPO", "CSP-SM", "Automation Anywhere Certified Professional"]
+  certifications: [
+    "Reliability", 
+    "Professionalism", 
+    "Strong Work Ethic"
+  ]
 }
 
 const TabIcon = ({ icon: Icon, color, isActive }: { icon: any, color: string, isActive: boolean }) => (
@@ -223,9 +242,6 @@ export default function ProfilePage() {
                <Badge text={PROFILE.location} icon={<MapPin size={12} />} color="rgba(26, 32, 44, 0.05)" textColor="#4A5568" />
                <Badge text={PROFILE.type} icon={<Briefcase size={12} />} color="rgba(26, 32, 44, 0.05)" textColor="#4A5568" />
                <Badge text={PROFILE.country} color="rgba(26, 32, 44, 0.05)" textColor="#4A5568" />
-               <Badge text={PROFILE.ethnicity} color="rgba(26, 32, 44, 0.05)" textColor="#4A5568" />
-               <Badge text={PROFILE.gender} color="rgba(26, 32, 44, 0.05)" textColor="#4A5568" />
-               <Badge text={PROFILE.veteran} color="rgba(26, 32, 44, 0.05)" textColor="#4A5568" />
                <Badge text={PROFILE.region} color="rgba(26, 32, 44, 0.05)" textColor="#4A5568" />
                <Badge text={PROFILE.program} color="rgba(26, 32, 44, 0.05)" textColor="#4A5568" />
             </div>
