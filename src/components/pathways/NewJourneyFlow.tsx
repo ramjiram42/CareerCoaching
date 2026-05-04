@@ -27,12 +27,67 @@ const NEXT_STEPS_DATA = [
 ];
 
 export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFlowProps) {
-  const [stage, setStage] = useState<'form' | 'results'>('form');
+  const [stage, setStage] = useState<'form' | 'simulating' | 'results'>('form');
   const [targetRole, setTargetRole] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
   const [activeTab, setActiveTab] = useState('In my function');
 
   const filteredRoles = TARGET_ROLE_OPTIONS.find(t => t.label === activeTab)?.roles || [];
+
+  const handleSimulate = () => {
+    if (!targetRole) return;
+    setStage('simulating');
+    setTimeout(() => {
+      setStage('results');
+    }, 5000);
+  };
+
+  if (stage === 'simulating') {
+    return (
+      <div style={{ 
+        background: '#fff', 
+        borderRadius: 32, 
+        padding: '100px 50px', 
+        border: '1px solid #E5E7EB', 
+        boxShadow: '0 40px 100px -20px rgba(0, 0, 0, 0.12)',
+        textAlign: 'center',
+        maxWidth: '1000px',
+        margin: '20px auto',
+        minHeight: '600px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative'
+      }}>
+        <div style={{ position: 'relative', width: 200, height: 200, marginBottom: 40 }}>
+           <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid #3B82F6', opacity: 0.2, animation: 'ping 2s infinite' }} />
+           <div style={{ position: 'absolute', inset: 20, borderRadius: '50%', border: '2px solid #EC4899', opacity: 0.3, animation: 'ping 2.5s infinite reverse' }} />
+           <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ position: 'relative', zIndex: 2 }}>
+                 <Rocket size={80} color="#3B82F6" style={{ animation: 'float 3s ease-in-out infinite' }} />
+              </div>
+           </div>
+           {/* Scanning line */}
+           <div style={{ position: 'absolute', top: '50%', left: '-20%', right: '-20%', height: 2, background: 'linear-gradient(90deg, transparent, #3B82F6, transparent)', boxShadow: '0 0 15px #3B82F6', animation: 'scan 2s linear infinite' }} />
+        </div>
+        
+        <h2 style={{ fontSize: 32, fontWeight: 900, color: '#111827', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Calibrating Trajectory</h2>
+        <p style={{ fontSize: 18, color: '#6B7280', fontWeight: 500, maxWidth: 500 }}>Our AI engine is analyzing 15,000+ career data points to optimize your next move into <span style={{ color: '#3B82F6', fontWeight: 800 }}>{targetRole}</span>...</p>
+        
+        <div style={{ marginTop: 40, width: 300, height: 6, background: '#F3F4F6', borderRadius: 3, overflow: 'hidden' }}>
+           <div style={{ height: '100%', background: 'linear-gradient(90deg, #3B82F6, #EC4899)', width: '0%', animation: 'progress 5s linear forwards' }} />
+        </div>
+
+        <style>{`
+           @keyframes ping { 0% { transform: scale(1); opacity: 0.3; } 100% { transform: scale(1.5); opacity: 0; } }
+           @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+           @keyframes scan { 0% { top: 0%; opacity: 0; } 50% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+           @keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }
+        `}</style>
+      </div>
+    );
+  }
 
   if (stage === 'results') {
     return (
@@ -209,7 +264,7 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
             )}
          </div>
 
-         <button onClick={() => targetRole && onFindJourney(targetRole)} style={{ background: targetRole ? '#111827' : '#E5E7EB', color: '#fff', border: 'none', padding: '18px 50px', borderRadius: 16, fontSize: 18, fontWeight: 800, textTransform: 'uppercase', cursor: targetRole ? 'pointer' : 'not-allowed', marginTop: 38, transition: 'all 0.2s' }}>Simulate Path</button>
+         <button onClick={handleSimulate} style={{ background: targetRole ? '#111827' : '#E5E7EB', color: '#fff', border: 'none', padding: '18px 50px', borderRadius: 16, fontSize: 18, fontWeight: 800, textTransform: 'uppercase', cursor: targetRole ? 'pointer' : 'not-allowed', marginTop: 38, transition: 'all 0.2s' }}>Simulate Path</button>
       </div>
 
       <div style={{ marginTop: 90, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

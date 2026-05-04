@@ -664,7 +664,7 @@ function LaneRow({ card, pathData, t, setPortalActivePath, isPromoted = false, h
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                 {(pathData.nodes.find((n: any) => n.role === selectedNode)?.skills_to_master || ['Data Analysis', 'Strategic Planning']).map((skill: string, sIdx: number) => (
-                  <div key={sIdx} style={{ background: '#fff', border: '1px solid #E2E8F0', padding: '10px 18px', borderRadius: 12, fontSize: 12, fontWeight: 850, color: '#475569', boxShadow: '0 2px 5px rgba(0,0,0,0.02)' }}>{skill}</div>
+                  <div key={sIdx} style={{ background: accentColor, padding: '10px 18px', borderRadius: 12, fontSize: 12, fontWeight: 850, color: '#fff', boxShadow: `0 4px 15px ${accentColor}33`, border: 'none' }}>{skill}</div>
                 ))}
               </div>
             </div>
@@ -716,8 +716,36 @@ export function AIProfileAnalyzer() {
   const [showNewJourney, setShowNewJourney] = useState(false);
   const [expandedPathId, setExpandedPathId] = useState<string | null>(null);
   const [showSuggestedMoves, setShowSuggestedMoves] = useState(false);
+  const [isAnalyzingPathway, setIsAnalyzingPathway] = useState(false);
+  const [analysisPathwayStep, setAnalysisPathwayStep] = useState(0);
   const journeysRef = useRef<HTMLDivElement>(null);
   const roadmapRef = useRef<HTMLDivElement>(null);
+
+  const handleSimulatePathway = () => {
+    setIsAnalyzingPathway(true);
+    setShowSurprise(false);
+    setAnalysisPathwayStep(0);
+    
+    const steps = [
+      "Initializing Strategic Analysis...",
+      "Correlating Skill Matrix...",
+      "Scanning Market Vacancies...",
+      "Calibrating Career Velocity...",
+      "Optimizing Path Trajectory..."
+    ];
+    
+    let currentStep = 0;
+    const interval = setInterval(() => {
+      currentStep++;
+      if (currentStep < steps.length) {
+        setAnalysisPathwayStep(currentStep);
+      } else {
+        clearInterval(interval);
+        setIsAnalyzingPathway(false);
+        setShowSurprise(true);
+      }
+    }, 1000);
+  };
 
   useEffect(() => {
     if (showSurprise && journeysRef.current) {
@@ -1013,7 +1041,7 @@ export function AIProfileAnalyzer() {
         <div style={{ textAlign: 'center', marginBottom: 60, position: 'relative' }}>
            <h2 style={{ fontSize: 44, fontWeight: 900, color: '#1E293B', marginBottom: 30, letterSpacing: '-0.02em' }}>{t('EXPLORE_FUTURE_MOVES')}</h2>
            
-           {!portalActivePath && !showNewJourney && (
+           {!portalActivePath && !showNewJourney && !isAnalyzingPathway && !showSurprise && (
              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', position: 'relative', zIndex: 10, animation: 'cardIn 0.8s ease' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 340, position: 'relative' }}>
                   <div style={{ borderRadius: '50%', padding: 4, background: 'linear-gradient(135deg, #f59e0b, #ec4899)', boxShadow: '0 0 20px rgba(236,72,153,0.2)' }}>
@@ -1021,11 +1049,43 @@ export function AIProfileAnalyzer() {
                       <Image src="/john_profile.png" alt="You" width={160} height={160} style={{ objectFit: 'cover', transform: 'scale(1.1) translateY(5%)' }} priority />
                     </div>
                   </div>
-                  <button onClick={() => setShowSurprise(!showSurprise)} style={{ background: '#EC4899', color: '#fff', border: 'none', padding: '14px 32px', borderRadius: 12, fontWeight: 800, fontSize: 16, boxShadow: '0 8px 20px rgba(236,72,153,0.3)', cursor: 'pointer', marginTop: 30 }}>{t('SIMULATE_PATHWAY')}</button>
+                  <button onClick={handleSimulatePathway} style={{ background: '#EC4899', color: '#fff', border: 'none', padding: '14px 32px', borderRadius: 12, fontWeight: 800, fontSize: 16, boxShadow: '0 8px 20px rgba(236,72,153,0.3)', cursor: 'pointer', marginTop: 30 }}>{t('SIMULATE_PATHWAY')}</button>
                 </div>
              </div>
+            )}
 
-           )}
+
+
+            {isAnalyzingPathway && (
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 400, animation: 'cardIn 0.5s ease' }}>
+                 <div style={{ position: 'relative', width: 180, height: 180, marginBottom: 40 }}>
+                    <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', border: '2px solid #EC4899', opacity: 0.2, animation: 'ping 2s infinite' }} />
+                    <div style={{ position: 'absolute', inset: 20, borderRadius: '50%', border: '2px solid #f59e0b', opacity: 0.3, animation: 'ping 2.5s infinite reverse' }} />
+                    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                       <div style={{ width: 100, height: 100, borderRadius: '50%', overflow: 'hidden', border: '4px solid #fff', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
+                          <Image src="/john_profile.png" alt="Analyzing" width={100} height={100} style={{ objectFit: 'cover' }} />
+                       </div>
+                    </div>
+                    {/* Scanning radar line */}
+                    <div style={{ position: 'absolute', inset: -10, borderRadius: '50%', border: '2px solid transparent', borderTopColor: '#EC4899', animation: 'spin 1.5s linear infinite' }} />
+                 </div>
+                 
+                 <h3 style={{ fontSize: 24, fontWeight: 900, color: '#0F172A', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                    { [
+                      "Initializing Strategic Analysis...",
+                      "Correlating Skill Matrix...",
+                      "Scanning Market Vacancies...",
+                      "Calibrating Career Velocity...",
+                      "Optimizing Path Trajectory..."
+                    ][analysisPathwayStep] }
+                 </h3>
+                 <div style={{ width: 240, height: 4, background: '#F1F5F9', borderRadius: 2, overflow: 'hidden' }}>
+                    <div style={{ height: '100%', background: 'linear-gradient(90deg, #f59e0b, #EC4899)', width: `${(analysisPathwayStep + 1) * 20}%`, transition: 'all 0.5s ease' }} />
+                 </div>
+              </div>
+            )}
+
+
 
            {showSurprise && !portalActivePath && !showNewJourney && (
              <div style={{ animation: 'cardIn 0.8s ease' }}>
@@ -1045,22 +1105,22 @@ export function AIProfileAnalyzer() {
                              </path>
                              <path d="M 500 0 C 500 80, 375 40, 375 180" fill="none" stroke="#1E293B" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
                                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
-                               <animate attributeName="opacity" from="0" to="0.6" dur="0.5s" begin="0.25s" fill="freeze" />
+                               <animate attributeName="opacity" from="0" to="0.6" dur="0.5s" begin="2s" fill="freeze" />
                              </path>
                              <path d="M 500 0 C 500 80, 625 40, 625 180" fill="none" stroke="#1E293B" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
                                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
-                               <animate attributeName="opacity" from="0" to="0.6" dur="0.5s" begin="0.5s" fill="freeze" />
+                               <animate attributeName="opacity" from="0" to="0.6" dur="0.5s" begin="4s" fill="freeze" />
                              </path>
                              <path d="M 500 0 C 500 80, 875 40, 875 180" fill="none" stroke="#1E293B" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
                                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
-                               <animate attributeName="opacity" from="0" to="0.6" dur="0.5s" begin="0.75s" fill="freeze" />
+                               <animate attributeName="opacity" from="0" to="0.6" dur="0.5s" begin="6s" fill="freeze" />
                              </path>
                           </svg>
                       </div>
 
                       <div ref={journeysRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, width: '100%', transition: 'all 0.5s ease', marginBottom: expandedPathId ? 60 : 0 }}>
                         {careerCards.map((card, idx) => (
-                          <div key={card.id} className="path-card-tree" onClick={() => setExpandedPathId(expandedPathId === card.pathId ? null : card.pathId)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', animation: 'popIn 0.5s ease forwards', animationDelay: `${idx * 0.25}s`, opacity: 0, width: '100%', background: expandedPathId === card.pathId ? '#fff' : 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(10px)', border: expandedPathId === card.pathId ? `2px solid ${card.matchColor}` : '1px solid rgba(226, 232, 240, 0.8)', borderRadius: 32, padding: '32px 24px', boxShadow: expandedPathId === card.pathId ? `0 20px 40px ${card.matchColor}20` : '0 10px 30px rgba(0,0,0,0.03)', transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)', position: 'relative', overflow: 'hidden' }}>
+                          <div key={card.id} className="path-card-tree" onClick={() => setExpandedPathId(expandedPathId === card.pathId ? null : card.pathId)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', animation: 'popIn 0.5s ease forwards', animationDelay: `${idx * 2}s`, opacity: 0, width: '100%', background: expandedPathId === card.pathId ? '#fff' : 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(10px)', border: expandedPathId === card.pathId ? `2px solid ${card.matchColor}` : '1px solid rgba(226, 232, 240, 0.8)', borderRadius: 32, padding: '32px 24px', boxShadow: expandedPathId === card.pathId ? `0 20px 40px ${card.matchColor}20` : '0 10px 30px rgba(0,0,0,0.03)', transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)', position: 'relative', overflow: 'hidden' }}>
                              {/* Vibrant Top Accent */}
                              <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 8, background: card.matchColor }} />
                              
