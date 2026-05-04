@@ -1089,9 +1089,17 @@ export function AIProfileAnalyzer() {
 
            {showSurprise && !portalActivePath && !showNewJourney && (
              <div style={{ animation: 'cardIn 0.8s ease' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 20 }}>
+                  <div style={{ borderRadius: '50%', padding: 4, background: 'linear-gradient(135deg, #f59e0b, #ec4899)', boxShadow: '0 0 20px rgba(236,72,153,0.2)' }}>
+                    <div style={{ width: 140, height: 140, borderRadius: '50%', overflow: 'hidden', border: '4px solid #fff', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
+                      <Image src="/john_profile.png" alt="You" width={140} height={140} style={{ objectFit: 'cover', transform: 'scale(1.1) translateY(5%)' }} priority />
+                    </div>
+                  </div>
+                </div>
                 <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
                     <React.Fragment>
                       <div style={{ position: 'relative', height: 180, width: '100%', marginBottom: 20, marginTop: -20, pointerEvents: 'none', zIndex: 10 }}>
+
                           <svg width="100%" height="100%" viewBox="0 0 1000 180" preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
                              <defs>
                                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
