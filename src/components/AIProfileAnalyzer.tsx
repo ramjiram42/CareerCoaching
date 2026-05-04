@@ -1,6 +1,6 @@
 'use client';
 
-import { UploadCloud, Cpu, Search, X, CheckCircle2, ArrowRight, Target, TrendingUp, Info, Award, BookOpen, Layers, Zap, Sparkles, User, HelpCircle, Compass, Heart, Share2, ChevronRight, BarChart3, ChevronDown, UserCheck, Briefcase, Rocket, Car, Bus, Bike, Plane, MoreHorizontal } from "lucide-react"
+import { UploadCloud, Cpu, Search, X, CheckCircle2, ArrowRight, Target, TrendingUp, Info, Award, BookOpen, Layers, Zap, Sparkles, User, HelpCircle, Compass, Heart, Share2, ChevronRight, BarChart3, ChevronDown, UserCheck, Briefcase, Rocket, Car, Bus, Bike, Plane, ShieldCheck } from "lucide-react"
 import { useState, useRef, useEffect, useMemo } from 'react'
 import Image from 'next/image'
 import CareerCoachingPortal from './pathways/CareerCoachingPortal';
@@ -22,12 +22,27 @@ const GlobalStyles = () => (
       0%, 100% { transform: scale(1); opacity: 0.5; }
       50% { transform: scale(1.1); opacity: 0.2; }
     }
+    @keyframes pulse {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
     @keyframes popIn {
       0% { transform: scale(0.9) translateY(20px); opacity: 0; }
       100% { transform: scale(1) translateY(0); opacity: 1; }
     }
     .hover-scale { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
     .hover-scale:hover { transform: scale(1.05); }
+    .btn-close-roadmap { 
+      transition: all 0.2s ease;
+    }
+    .btn-close-roadmap:hover {
+      filter: brightness(0.9);
+      transform: scale(1.05);
+    }
+    .btn-close-roadmap:active {
+      transform: scale(0.95);
+    }
   `}} />
 );
 
@@ -382,109 +397,313 @@ const DAILY_QUOTES = [
   "The future belongs to those who prepare for it today.",
   "Persistence is the key to success.",
   "Every mountain top is within reach if you just keep climbing.",
+  "Your future is as bright as your faith.",
+  "Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence.",
+  "Be humble. Be hungry. And always be the hardest worker in the room.",
   "Success is not about the destination, it's about the climb.",
 ];
 
-function PathNode({ node, isStart, color }: any) {
-  return (
-    <div style={{ 
-      background: '#fff', 
-      border: '1px solid #E2E8F0', 
-      borderRadius: 16, 
-      padding: isStart ? '24px' : '18px 24px', 
-      minWidth: isStart ? 320 : 200,
-      position: 'relative',
-      boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
-      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 12
-    }} className="hover-scale">
-      <div style={{ position: 'absolute', top: 16, right: 16, color: '#CBD5E1', cursor: 'pointer' }}><MoreHorizontal size={18} /></div>
-      
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <h4 style={{ fontSize: isStart ? 18 : 15, fontWeight: 900, color: '#1E293B', margin: 0, lineHeight: 1.2 }}>{node.role}</h4>
-        
-        {isStart && (
-          <div style={{ marginTop: 8 }}>
-            <p style={{ fontSize: 12, color: '#64748B', margin: '0 0 8px 0', fontWeight: 600 }}>You have 8 of 15 most common skills for role</p>
-            <div style={{ height: 6, background: '#F1F5F9', borderRadius: 3, overflow: 'hidden', width: '100%', marginBottom: 12 }}>
-              <div style={{ width: '68%', height: '100%', background: color }} />
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: '#FFF7ED', color: '#C2410C', padding: '6px 12px', borderRadius: 8, width: 'fit-content' }}>
-              <Sparkles size={12} fill="#C2410C" />
-              <span style={{ fontSize: 10, fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.02em' }}>Leadership role</span>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function BranchingLane({ card, pathData, color, t }: any) {
+function LaneRow({ card, pathData, t, setPortalActivePath, isPromoted = false, hideBridge = false }: any) {
+  const [selectedNode, setSelectedNode] = useState<string | null>(null);
+  const [showFullRoadmap, setShowFullRoadmap] = useState(false);
+  const detailsRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    if (selectedNode && detailsRef.current) {
+      setTimeout(() => {
+        detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, [selectedNode]);
+  
   if (!pathData) return null;
-  const nodes = pathData.nodes.filter((n: any) => n.status !== 'past');
-  const isPromoted = card.label === 'Promoted Lane';
+  const accentColor = card.matchColor || '#10B981';
 
-  return (
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      gap: 20, 
-      width: '100%', 
-      animation: 'popIn 0.6s ease-out',
-      background: isPromoted ? '#F0F7FF' : 'transparent',
-      padding: isPromoted ? '24px 0 24px 0' : '0',
-      borderRadius: isPromoted ? 20 : 0,
-      marginLeft: isPromoted ? -20 : 0,
-      paddingLeft: isPromoted ? 20 : 0
-    }}>
-      {/* Lane Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%', paddingLeft: 40, paddingRight: 20 }}>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-            <div style={{ background: color, color: '#fff', fontSize: 11, fontWeight: 950, padding: '5px 14px', borderRadius: 8, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{card.label}</div>
-            <div style={{ background: color + '15', color: color, fontSize: 11, fontWeight: 950, padding: '5px 10px', borderRadius: 8, display: 'flex', alignItems: 'center', gap: 4 }}>
-               <Share2 size={10} /> 5
+  const getLearningResources = (role: string) => {
+    const node = pathData.nodes.find((n: any) => n.role === role);
+    if (node && node.learning_path) {
+      return node.learning_path;
+    }
+    return [
+      { name: `${role} Professional Certification`, url: '#', type: 'Certification' },
+      { name: `Advanced ${role} Strategy`, url: '#', type: 'Course' }
+    ];
+  };
+
+  const nextNodes = pathData.nodes.filter((n: any) => n.status !== 'past').slice(0, 2);
+  const allNodes = pathData.nodes;
+  const filteredNodes = allNodes;
+
+    return (
+    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 32, position: 'relative' }}>
+      {/* Connector line from spine to the whole block */}
+      <div style={{ width: 40, height: 2, background: `linear-gradient(90deg, #E2E8F0, ${accentColor}44)`, position: 'absolute', left: -40, top: 40 }} />
+
+      {/* Row 1: Main Role Profile - Professional Control Panel */}
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: 40,
+        background: '#fff',
+        border: '1.5px solid #0F172A',
+        borderRadius: 24,
+        padding: '32px 48px',
+        boxShadow: '0 20px 50px rgba(0,0,0,0.04)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        {/* Vibrant Accent Stripe */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: 8, height: '100%', background: `linear-gradient(180deg, ${accentColor}, ${accentColor}88)` }} />
+        
+        <div style={{ position: 'relative' }}>
+          <div style={{ width: 90, height: 90, borderRadius: 20, overflow: 'hidden', border: '4px solid #F8FAFC', flexShrink: 0, boxShadow: '0 10px 25px rgba(0,0,0,0.08)', position: 'relative' }}>
+            <Image src={card.image} width={90} height={90} alt="" style={{ objectFit: 'cover' }} />
+          </div>
+        </div>
+
+        <div style={{ flex: 1 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12 }}>
+            <h3 style={{ fontSize: 26, fontWeight: 1000, color: '#0F172A', margin: 0, letterSpacing: '-0.02em' }}>{card.role}</h3>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, background: `${accentColor}10`, color: accentColor, padding: '6px 14px', borderRadius: 20, fontSize: 10, fontWeight: 900, textTransform: 'uppercase' }}>
+              <Zap size={14} fill={accentColor} /> AI Verified Path
             </div>
           </div>
-          <p style={{ fontSize: 13, color: '#64748B', fontWeight: 600, margin: 0 }}>Based on your Desired Role <span style={{ color: '#1E293B', fontWeight: 800 }}>Senior Eng Manager <ChevronRight size={14} style={{ display: 'inline', verticalAlign: 'middle' }} /></span></p>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+             <div style={{ flex: 1, maxWidth: 320 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+                   <span style={{ fontSize: 10, fontWeight: 1000, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Success Probability</span>
+                   <span style={{ fontSize: 11, fontWeight: 1000, color: accentColor }}>88%</span>
+                </div>
+                <div style={{ height: 10, background: '#F1F5F9', borderRadius: 6, overflow: 'hidden' }}>
+                   <div style={{ width: '88%', height: '100%', background: `linear-gradient(90deg, ${accentColor}, ${accentColor}88)`, borderRadius: 6 }}></div>
+                </div>
+             </div>
+             <div style={{ color: accentColor, fontSize: 11, fontWeight: 950, textTransform: 'uppercase', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: 8, background: `${accentColor}08`, padding: '10px 20px', borderRadius: 12, border: `1px solid ${accentColor}22` }}>
+                <ShieldCheck size={16} /> Optimal Career Match
+             </div>
+          </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#64748B', cursor: 'pointer', padding: '8px 16px', borderRadius: 10, background: '#fff', border: '1px solid #E2E8F0', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }} className="hover-heart">
-          <Heart size={16} />
-          <span style={{ fontSize: 13, fontWeight: 800 }}>Save path</span>
+
+        <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
+           <div style={{ display: 'flex', alignItems: 'center', gap: 10, color: '#64748B', cursor: 'pointer', padding: '12px 24px', borderRadius: 16, border: '1px solid #E2E8F0', background: '#fff', fontSize: 13, fontWeight: 900, transition: 'all 0.2s' }} className="hover-scale">
+             <Heart size={20} /> Save
+           </div>
+           <button onClick={() => {
+               if (!showFullRoadmap) {
+                 setShowFullRoadmap(true);
+                 setSelectedNode(null);
+               } else {
+                 setShowFullRoadmap(false);
+               }
+             }} style={{ 
+               background: '#0F172A', 
+               color: '#fff', border: 'none', padding: '18px 36px', borderRadius: 16, fontSize: 13, fontWeight: 1000, 
+               textTransform: 'uppercase', letterSpacing: '0.08em', cursor: 'pointer', transition: 'all 0.3s', 
+               boxShadow: '0 10px 25px rgba(15, 23, 42, 0.15)' 
+             }}>
+             {showFullRoadmap ? 'Hide Details' : 'Full Roadmap'}
+           </button>
         </div>
       </div>
 
-      {/* Path Sequence */}
-      <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-        {/* Horizontal Connection line from Branching Anchor */}
-        <div style={{ width: 40, height: 2, background: '#E2E8F0', position: 'absolute', left: -40, top: '50%' }} />
-        
-        <div style={{ display: 'flex', alignItems: 'center', gap: 0, flex: 1 }}>
-          {nodes.map((node: any, idx: number) => (
-            <React.Fragment key={idx}>
-              <PathNode node={node} isStart={idx === 0} color={color} />
-              {idx < nodes.length - 1 && (
-                <div style={{ display: 'flex', alignItems: 'center', padding: '0 30px', position: 'relative' }}>
-                  <div style={{ width: 80, height: 2, background: '#E2E8F0' }} />
-                  {/* Double Circle Connection */}
-                  <div style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: 14, height: 14, borderRadius: '50%', background: '#fff', border: '1px solid #CBD5E1', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                     <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#94A3B8' }} />
-                  </div>
-                  <div style={{ position: 'absolute', bottom: -24, left: '50%', transform: 'translateX(-50%)', fontSize: 11, fontWeight: 800, color: '#94A3B8', whiteSpace: 'nowrap' }}>
-                    +{idx + 1} role
-                  </div>
-                </div>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
+       {/* Row 2: Pathway Progression */}
+      <div style={{ display: 'flex', alignItems: 'center', paddingLeft: 60, position: 'relative' }}>
+           {/* Vertical Bridge with Node - High Tech Look */}
+           {!hideBridge && (
+             <div style={{ position: 'absolute', left: 100, top: -40, width: 2, height: 40, background: `linear-gradient(180deg, transparent, ${accentColor}88, ${accentColor})` }}>
+               <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)', width: 22, height: 22, borderRadius: '50%', background: '#fff', border: `2px solid ${accentColor}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 20px ${accentColor}33`, zIndex: 2 }}>
+                  <div style={{ width: 8, height: 8, borderRadius: '50%', background: accentColor, animation: 'pulse 2s infinite' }} />
+               </div>
+               <div style={{ position: 'absolute', bottom: -5, left: -4, width: 10, height: 10, borderBottom: `2px solid ${accentColor}`, borderRight: `2px solid ${accentColor}`, transform: 'rotate(45deg)' }} />
+             </div>
+           )}
+
+          <div style={{ display: 'flex', alignItems: 'center', flex: 1, gap: 32 }}>
+              {nextNodes.map((node: any, nIdx: number) => (
+                <React.Fragment key={nIdx}>
+                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, minWidth: 100, opacity: 0.7 }}>
+                      <div style={{ position: 'relative', width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#F8FAFC', borderRadius: '50%', border: '1px solid #E2E8F0' }}>
+                         <ArrowRight size={16} color="#64748B" />
+                      </div>
+                      <div style={{ fontSize: 9, fontWeight: 1000, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Next Level</div>
+                   </div>
+
+
+
+                   <div onClick={() => setSelectedNode(selectedNode === node.role ? null : node.role)}
+                        style={{ 
+                          background: '#fff',
+                          border: `1px solid ${selectedNode === node.role ? accentColor : '#E2E8F0'}`, 
+                          borderRadius: 24, 
+                          padding: '24px 32px', 
+                          minWidth: 280,
+                          boxShadow: selectedNode === node.role ? `0 20px 40px ${accentColor}15` : '0 10px 30px rgba(0,0,0,0.03)', 
+                          position: 'relative',
+                          transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                          cursor: 'pointer',
+                          zIndex: selectedNode === node.role ? 10 : 1
+                        }} className="progression-box-premium">
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                        <div style={{ background: accentColor, color: '#fff', fontSize: 9, fontWeight: 1000, padding: '4px 14px', borderRadius: 20, width: 'fit-content', textTransform: 'uppercase', letterSpacing: '0.05em', boxShadow: `0 4px 10px ${accentColor}33` }}>
+                          {nIdx === 0 ? 'Strategic Milestone' : 'Target Position'}
+                        </div>
+                        <h4 style={{ fontSize: 19, fontWeight: 1000, color: '#0F172A', margin: 0, lineHeight: 1.2, letterSpacing: '-0.01em' }}>{node.role}</h4>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: accentColor, fontSize: 11, fontWeight: 900 }}>
+                          <Compass size={14} /> <span style={{ textDecoration: 'underline' }}>View Learning Path</span>
+                        </div>
+                      </div>
+
+                   </div>
+                </React.Fragment>
+              ))}
+          </div>
       </div>
+
+      {/* Full Roadmap Expansion (The "Career Highway") */}
+      {showFullRoadmap && (
+        <div style={{ background: 'linear-gradient(180deg, #F8FAFC 0%, #F1F5F9 100%)', borderRadius: 40, padding: '48px', border: '1.5px solid #0F172A', marginLeft: 40, position: 'relative', overflow: 'hidden', animation: 'popIn 0.6s cubic-bezier(0.16, 1, 0.3, 1)' }}>
+           <div style={{ position: 'absolute', top: -100, right: -100, width: 300, height: 300, background: `${accentColor}10`, borderRadius: '50%', filter: 'blur(80px)' }} />
+           
+           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 48, position: 'relative', zIndex: 1 }}>
+             <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+               <div style={{ background: accentColor, color: '#fff', padding: 14, borderRadius: 16, boxShadow: `0 10px 25px ${accentColor}4D` }}><Layers size={24} /></div>
+               <div>
+                 <h4 style={{ fontSize: 22, fontWeight: 950, color: '#0F172A', margin: 0 }}>The Career Highway</h4>
+                 <p style={{ fontSize: 14, color: '#64748B', margin: '4px 0 0 0', fontWeight: 600 }}>Multitiered executive path visualization</p>
+               </div>
+             </div>
+             <button 
+                onClick={() => setShowFullRoadmap(false)} 
+                style={{ 
+                  background: accentColor, 
+                  padding: '12px 32px', 
+                  borderRadius: 16, 
+                  border: 'none', 
+                  fontSize: 12, 
+                  fontWeight: 1000, 
+                  color: '#fff', 
+                  cursor: 'pointer', 
+                  boxShadow: `0 8px 20px ${accentColor}33`,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em'
+                }} className="btn-close-roadmap">
+                CLOSE
+              </button>
+           </div>
+           
+           <div style={{ display: 'flex', flexDirection: 'column', gap: 64, position: 'relative', zIndex: 1 }}>
+              {/* Row 1: Early to Mid Path */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', width: '100%', position: 'relative' }}>
+                {filteredNodes.slice(0, 3).map((node: any, idx: number) => (
+                  <div key={idx} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+                    <div style={{ background: node.status === 'current' ? accentColor : '#fff', padding: '6px 14px', borderRadius: 10, border: `1px solid ${node.status === 'current' ? accentColor : 'rgba(226, 232, 240, 0.8)'}`, marginBottom: 12, fontSize: 10, fontWeight: 1000, color: node.status === 'current' ? '#fff' : accentColor, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{node.status}</div>
+                    <div onClick={() => setSelectedNode(node.role)} style={{ width: 200, background: '#fff', border: `2px solid ${node.status === 'current' ? accentColor : '#F1F5F9'}`, borderRadius: 28, padding: '24px 20px', boxShadow: node.status === 'current' ? `0 15px 35px ${accentColor}1A` : '0 10px 25px rgba(0,0,0,0.03)', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s' }} className="hover-scale">
+                      <div style={{ width: 52, height: 52, borderRadius: '50%', background: node.status === 'current' ? accentColor : `${accentColor}10`, color: node.status === 'current' ? '#fff' : accentColor, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', boxShadow: node.status === 'current' ? `0 8px 16px ${accentColor}33` : 'none' }}>
+                        {idx === 0 ? <Award size={26} /> : <Rocket size={26} />}
+                      </div>
+                      <h5 style={{ fontSize: 15, fontWeight: 1000, color: '#0F172A', margin: '0 0 10px 0', lineHeight: 1.2 }}>{node.role}</h5>
+                      <div style={{ fontSize: 11, color: accentColor, fontWeight: 900, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center', opacity: 0.8 }}>Explore <ArrowRight size={14} /></div>
+                    </div>
+                    {/* Horizontal Directional Arrow */}
+                    {idx < 2 && (
+                      <div style={{ position: 'absolute', right: '-15%', top: '68%', width: '30%', height: 2, background: `linear-gradient(90deg, ${accentColor}00, ${accentColor}, ${accentColor}00)` }}>
+                         <div style={{ position: 'absolute', right: 0, top: -4, width: 10, height: 10, borderTop: `2px solid ${accentColor}66`, borderRight: `2px solid ${accentColor}66`, transform: 'rotate(45deg)' }} />
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {/* Vertical Bridge with Node - Career Highway Bridge */}
+                <div style={{ position: 'absolute', right: 60, bottom: -64, width: 2, height: 64, background: `linear-gradient(180deg, ${accentColor}, ${accentColor}88, transparent)` }}>
+                   <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 24, height: 24, borderRadius: '50%', background: '#fff', border: `2px solid ${accentColor}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 0 20px ${accentColor}33`, zIndex: 2 }}>
+                      <div style={{ width: 10, height: 10, borderRadius: '50%', background: accentColor, animation: 'pulse 2s infinite' }} />
+                   </div>
+                   <div style={{ position: 'absolute', bottom: 0, left: -4, width: 10, height: 10, borderBottom: `2px solid ${accentColor}`, borderRight: `2px solid ${accentColor}`, transform: 'rotate(45deg)' }} />
+                </div>
+              </div>
+
+              {/* Row 2: Advanced to Executive Path */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end', width: '100%', gap: 64, paddingRight: 0 }}>
+                {filteredNodes.slice(3).reverse().map((node: any, idx: number) => (
+                  <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+                    <div style={{ background: node.status === 'current' ? accentColor : '#fff', padding: '6px 14px', borderRadius: 10, border: `1px solid ${node.status === 'current' ? accentColor : 'rgba(226, 232, 240, 0.8)'}`, marginBottom: 12, fontSize: 10, fontWeight: 1000, color: node.status === 'current' ? '#fff' : accentColor, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{node.status}</div>
+                    <div onClick={() => setSelectedNode(node.role)} style={{ width: 200, background: '#fff', border: '2px solid #F1F5F9', borderRadius: 28, padding: '24px 20px', boxShadow: '0 10px 30px rgba(0,0,0,0.03)', textAlign: 'center', cursor: 'pointer', transition: 'all 0.3s' }} className="hover-scale">
+                      <div style={{ width: 52, height: 52, borderRadius: '50%', background: `${accentColor}10`, color: accentColor, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}><Layers size={26} /></div>
+                      <h5 style={{ fontSize: 15, fontWeight: 1000, color: '#0F172A', margin: '0 0 10px 0', lineHeight: 1.2 }}>{node.role}</h5>
+                      <div style={{ fontSize: 11, color: accentColor, fontWeight: 900, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center', opacity: 0.8 }}>Explore <ArrowRight size={14} /></div>
+                    </div>
+                    {/* Horizontal Directional Arrow (Reverse) */}
+                    {idx < filteredNodes.slice(3).length - 1 && (
+                      <div style={{ position: 'absolute', left: -64, top: '68%', width: 64, height: 2, background: `linear-gradient(270deg, ${accentColor}00, ${accentColor}, ${accentColor}00)` }}>
+                         <div style={{ position: 'absolute', left: 0, top: -4, width: 10, height: 10, borderBottom: `2px solid ${accentColor}66`, borderLeft: `2px solid ${accentColor}66`, transform: 'rotate(45deg)' }} />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+           </div>
+        </div>
+      )}
+
+      {/* Expanded Node Details */}
+      {selectedNode && (
+        <div ref={detailsRef} style={{ background: '#fff', borderRadius: 24, padding: '24px 32px', border: '1.5px solid #0F172A', marginLeft: 40, marginTop: 24, boxShadow: '0 10px 30px rgba(0,0,0,0.03)', animation: 'popIn 0.4s ease-out' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
+            <div>
+              <h4 style={{ fontSize: 18, fontWeight: 900, color: '#1E293B', margin: '0 0 4px 0' }}>{selectedNode} Roadmap</h4>
+              <p style={{ fontSize: 13, color: '#64748B', margin: 0 }}>Step-by-step guide and learning resources to master this role.</p>
+            </div>
+            <button onClick={() => setSelectedNode(null)} style={{ background: accentColor, border: 'none', padding: '10px 24px', borderRadius: 12, cursor: 'pointer', color: '#fff', fontSize: 11, fontWeight: 1000, textTransform: 'uppercase', letterSpacing: '0.08em', boxShadow: `0 4px 15px ${accentColor}33` }} className="btn-close-roadmap">CLOSE</button>
+          </div>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+                <div style={{ background: `${accentColor}15`, color: accentColor, padding: 8, borderRadius: 10 }}><Target size={18} /></div>
+                <h5 style={{ fontSize: 14, fontWeight: 850, color: '#334155', margin: 0 }}>Skills to Master</h5>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                {(pathData.nodes.find((n: any) => n.role === selectedNode)?.skills_to_master || ['Data Analysis', 'Strategic Planning']).map((skill: string, sIdx: number) => (
+                  <div key={sIdx} style={{ background: '#fff', border: '1px solid #E2E8F0', padding: '10px 18px', borderRadius: 12, fontSize: 12, fontWeight: 850, color: '#475569', boxShadow: '0 2px 5px rgba(0,0,0,0.02)' }}>{skill}</div>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+                <div style={{ background: `${accentColor}15`, color: accentColor, padding: 8, borderRadius: 10 }}><BookOpen size={18} /></div>
+                <h5 style={{ fontSize: 14, fontWeight: 850, color: '#334155', margin: 0 }}>Learning Path</h5>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {getLearningResources(selectedNode).map((res, rIdx) => (
+                  <a key={rIdx} href={res.url} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#F8FAFC', padding: '12px 16px', borderRadius: 12, textDecoration: 'none', border: '1px solid #F1F5F9', transition: 'all 0.2s' }} className="hover-scale">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                      <div style={{ background: '#fff', width: 32, height: 32, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid #E2E8F0', color: accentColor }}><Rocket size={16} /></div>
+                      <div>
+                        <p style={{ fontSize: 13, fontWeight: 800, color: '#1E293B', margin: 0 }}>{res.name}</p>
+                        {res.content_covered && (
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginTop: 6 }}>
+                            {res.content_covered.map((topic: string, i: number) => (
+                              <span key={i} style={{ background: '#E2E8F0', color: '#475569', fontSize: 10, padding: '2px 6px', borderRadius: 6, fontWeight: 600 }}>{topic}</span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <ArrowRight size={14} color="#0F172A" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+
     </div>
-  );
+    );
 }
+
 
 export function AIProfileAnalyzer() {
   const { t } = useLanguage();
@@ -497,6 +716,24 @@ export function AIProfileAnalyzer() {
   const [showNewJourney, setShowNewJourney] = useState(false);
   const [expandedPathId, setExpandedPathId] = useState<string | null>(null);
   const [showSuggestedMoves, setShowSuggestedMoves] = useState(false);
+  const journeysRef = useRef<HTMLDivElement>(null);
+  const roadmapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (showSurprise && journeysRef.current) {
+      setTimeout(() => {
+        journeysRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 400);
+    }
+  }, [showSurprise]);
+
+  useEffect(() => {
+    if (expandedPathId && roadmapRef.current) {
+      setTimeout(() => {
+        roadmapRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  }, [expandedPathId]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -518,51 +755,51 @@ export function AIProfileAnalyzer() {
   const careerCards = [
     {
       id: '1',
-      pathId: 'intelligent-automation-arch',
-      role: 'Intelligent Automation Architect',
-      label: 'Desired path',
-      labelColor: '#10B981',
-      match: 'HIGH_MATCH',
-      matchColor: '#10B981',
+      pathId: 'incentive-comp',
+      role: 'Incentive Compensation',
+      label: 'Best Fit',
+      labelColor: '#EC4899',
+      match: 'BEST_FIT',
+      matchColor: '#EC4899',
       badge: 'NEXT_STEP',
-      badgeColor: '#10B981',
-      image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=400&fit=crop'
+      badgeColor: '#EC4899',
+      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=400&fit=crop'
     },
     {
       id: '2',
-      pathId: 'enterprise-automation-arch',
-      role: 'Enterprise Automation Architect',
-      label: 'Popular path',
-      labelColor: '#14B8A6',
+      pathId: 'it-path',
+      role: 'IT Career Path',
+      label: 'High Match',
+      labelColor: '#F59E0B',
       match: 'HIGH_MATCH',
-      matchColor: '#14B8A6',
+      matchColor: '#F59E0B',
       badge: 'NEXT_STEP',
-      badgeColor: '#14B8A6',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=400&fit=crop'
+      badgeColor: '#F59E0B',
+      image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop'
     },
     {
       id: '3',
-      pathId: 'tech-program-manager',
-      role: 'Technical Program Manager',
-      label: 'Suggested path',
-      labelColor: '#F59E0B',
-      match: 'ADJACENT',
-      matchColor: '#F59E0B',
+      pathId: 'l-and-d',
+      role: 'Learning & Development',
+      label: 'Potential',
+      labelColor: '#10B981',
+      match: 'POTENTIAL',
+      matchColor: '#10B981',
       badge: 'EXPLORE',
-      badgeColor: '#F59E0B',
-      image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=400&fit=crop'
+      badgeColor: '#10B981',
+      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=400&fit=crop'
     },
     {
       id: '4',
-      pathId: 'ai-architect',
-      role: 'AI Architect',
-      label: 'Promoted Lane',
-      labelColor: '#3B82F6',
-      match: 'WILD_CARD',
-      matchColor: '#3B82F6',
+      pathId: 'operations',
+      role: 'Operations',
+      label: 'New Horizon',
+      labelColor: '#8B5CF6',
+      match: 'NEW_HORIZON',
+      matchColor: '#8B5CF6',
       badge: 'EXPLORE',
-      badgeColor: '#3B82F6',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop'
+      badgeColor: '#8B5CF6',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop'
     }
   ];
 
@@ -594,9 +831,9 @@ export function AIProfileAnalyzer() {
       }}>
          <div style={{ position: 'absolute', inset: -100, pointerEvents: 'none', zIndex: 0 }}>
             <div className="light-particle" style={{ position: 'absolute', top: '20%', left: '10%', width: 4, height: 4, background: '#f59e0b', borderRadius: '50%', filter: 'blur(2px)', animation: 'floatParticle 8s infinite ease-in-out' }} />
-            <div className="light-particle" style={{ position: 'absolute', top: '70%', left: '20%', width: 6, height: 6, background: '#10B981', borderRadius: '50%', filter: 'blur(3px)', animation: 'floatParticle 12s infinite ease-in-out', animationDelay: '2s' }} />
+            <div className="light-particle" style={{ position: 'absolute', top: '70%', left: '20%', width: 6, height: 6, background: '#ec4899', borderRadius: '50%', filter: 'blur(3px)', animation: 'floatParticle 12s infinite ease-in-out', animationDelay: '2s' }} />
             <div className="light-particle" style={{ position: 'absolute', top: '40%', right: '15%', width: 5, height: 5, background: '#f59e0b', borderRadius: '50%', filter: 'blur(2px)', animation: 'floatParticle 10s infinite ease-in-out', animationDelay: '1s' }} />
-            <div className="light-particle" style={{ position: 'absolute', bottom: '10%', right: '30%', width: 4, height: 4, background: '#10B981', borderRadius: '50%', filter: 'blur(2px)', animation: 'floatParticle 9s infinite ease-in-out', animationDelay: '3s' }} />
+            <div className="light-particle" style={{ position: 'absolute', bottom: '10%', right: '30%', width: 4, height: 4, background: '#ec4899', borderRadius: '50%', filter: 'blur(2px)', animation: 'floatParticle 9s infinite ease-in-out', animationDelay: '3s' }} />
          </div>
 
          <div style={{
@@ -664,7 +901,7 @@ export function AIProfileAnalyzer() {
                     position: 'absolute',
                     inset: -24,
                     borderRadius: '50%',
-                    border: '1px solid rgba(16, 185, 129, 0.15)',
+                    border: '1px solid rgba(236, 72, 153, 0.15)',
                     animation: 'pulseOrbital 6s infinite linear reverse'
                   }} />
                   
@@ -675,32 +912,28 @@ export function AIProfileAnalyzer() {
 
                <div style={{ animation: 'fadeSlideRight 0.8s both' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                     <h1 style={{ fontSize: 52, color: '#111827', margin: 0, letterSpacing: '-0.04em', fontWeight: 1000 }}>John</h1>
+                     <h1 style={{ fontSize: 52, color: '#111827', margin: 0, letterSpacing: '-0.04em', fontWeight: 1000 }}>John Smith</h1>
                   </div>
                   <p style={{ fontSize: 19, color: '#6B7280', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', margin: '4px 0' }}>
-                     Solution Architect
+                     High School Tutor & Server
                   </p>
                </div>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16, position: 'relative', zIndex: 1, animation: 'fadeSlideLeft 0.8s both' }}>
                <input type="file" id="resume-upload" hidden onChange={handleFileChange} accept=".pdf,.doc,.docx" />
-               <div style={{ display: 'flex', gap: 16 }}>
-                  <button onClick={() => document.getElementById('resume-upload')?.click()} style={{ flex: 1, background: '#fff', color: '#1e293b', padding: '24px 20px', borderRadius: 16, fontWeight: 800, border: '1px solid rgba(226, 232, 240, 0.8)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.06em', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, boxShadow: '0 4px 10px rgba(0, 0, 0, 0.02)', minWidth: 160 }}>
-                    <div style={{ background: '#F1F5F9', padding: '10px', borderRadius: '50%', color: '#0369a1' }}><User size={22} /></div>
-                    FIRST TIME USER
-                  </button>
-                  <button onClick={() => document.getElementById('resume-upload')?.click()} style={{ flex: 1, background: '#fff', color: '#1e293b', padding: '24px 20px', borderRadius: 16, fontWeight: 800, border: '1px solid rgba(226, 232, 240, 0.8)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.06em', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, boxShadow: '0 4px 10px rgba(0, 0, 0, 0.02)', minWidth: 160 }}>
-                    <div style={{ background: '#F1F5F9', padding: '10px', borderRadius: '50%', color: '#0369a1' }}><Search size={22} /></div>
-                    RE-EVALUATE
-                  </button>
-               </div>
-               <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-                  <button onClick={selectedFile ? handleAnalyze : () => { localStorage.setItem('hertz_profile_analyzed', 'true'); setStep('results'); }} style={{ flex: 1, background: 'linear-gradient(135deg, #f59e0b, #10B981)', color: '#fff', padding: '14px 16px', borderRadius: 12, fontWeight: 900, border: 'none', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, boxShadow: '0 8px 20px rgba(16, 185, 129, 0.25)' }}>
-                    {selectedFile ? 'Submit Analysis' : 'Skip & Submit'} <ArrowRight size={16} />
-                  </button>
-                  <button onClick={() => setSelectedFile(null)} style={{ flex: 1, background: '#fff', color: '#64748B', padding: '14px 16px', borderRadius: 12, fontWeight: 900, border: '1px solid #E2E8F0', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'pointer' }}>Reset</button>
-               </div>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
+                   <button onClick={() => document.getElementById('resume-upload')?.click()} style={{ background: '#fff', color: '#1e293b', padding: '24px 40px', borderRadius: 16, fontWeight: 800, border: '1px solid rgba(226, 232, 240, 0.8)', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.06em', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, boxShadow: '0 4px 10px rgba(0, 0, 0, 0.02)', minWidth: 200 }}>
+                     <div style={{ background: '#F1F5F9', padding: '12px', borderRadius: '50%', color: '#ec4899' }}><Search size={24} /></div>
+                     RE-EVALUATE
+                   </button>
+                </div>
+                <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
+                   <button onClick={selectedFile ? handleAnalyze : () => { localStorage.setItem('hertz_profile_analyzed', 'true'); setStep('results'); }} style={{ flex: 1, background: 'linear-gradient(135deg, #f59e0b, #ec4899)', color: '#fff', padding: '14px 16px', borderRadius: 12, fontWeight: 900, border: 'none', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, boxShadow: '0 8px 20px rgba(236,72,153,0.25)' }}>
+                     {selectedFile ? 'Submit Analysis' : 'Skip & Submit'} <ArrowRight size={16} />
+                   </button>
+                   <button onClick={() => setSelectedFile(null)} style={{ flex: 1, background: '#fff', color: '#64748B', padding: '14px 16px', borderRadius: 12, fontWeight: 900, border: '1px solid #E2E8F0', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.05em', cursor: 'pointer' }}>Reset</button>
+                </div>
             </div>
          </div>
 
@@ -759,17 +992,17 @@ export function AIProfileAnalyzer() {
           <div style={{ position: 'absolute', left: '2.5rem', top: '50%', transform: 'translateY(-50%)' }}>
             <h2 style={{ fontSize: '2rem', fontWeight: 900, color: '#fff', textTransform: 'uppercase', letterSpacing: '-0.02em', lineHeight: 1.1, margin: 0, whiteSpace: 'pre-line' }}>{t('NAVIGATE_YOUR_NEXT_MOVE')}</h2>
                <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
-                <button onClick={() => { setStep('upload'); setSelectedFile(null); }} style={{ background: 'linear-gradient(90deg, #f59e0b, #10B981)', color: '#fff', padding: '0.5rem 1.25rem', borderRadius: 8, fontWeight: 900, fontSize: '0.75rem', border: 'none', textTransform: 'uppercase', letterSpacing: '0.08em', cursor: 'pointer' }}>{t('UPLOAD_RESUME')}</button>
+                <button onClick={() => { setStep('upload'); setSelectedFile(null); }} style={{ background: 'linear-gradient(90deg, #f59e0b, #ec4899)', color: '#fff', padding: '0.5rem 1.25rem', borderRadius: 8, fontWeight: 900, fontSize: '0.75rem', border: 'none', textTransform: 'uppercase', letterSpacing: '0.08em', cursor: 'pointer' }}>{t('UPLOAD_RESUME')}</button>
                 <button onClick={() => { localStorage.removeItem('hertz_profile_analyzed'); setStep('upload'); setSelectedFile(null); }} style={{ background: 'rgba(255,255,255,0.05)', color: '#fff', padding: '0.5rem 1.25rem', borderRadius: 8, fontWeight: 700, fontSize: '0.75rem', textTransform: 'uppercase', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)' }}>{t('REVALIDATE')}</button>
                </div>
           </div>
           <div style={{ position: 'absolute', right: '2.5rem', top: '50%', transform: 'translateY(-50%)', background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(20px)', borderRadius: 16, padding: '1.25rem 1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', boxShadow: '0 20px 40px rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)' }}>
             <div style={{ flex: 1 }}>
-               <p style={{ fontWeight: 900, fontSize: '1.1rem', color: '#fff', margin: 0 }}>John</p>
-               <p style={{ fontSize: '0.75rem', color: '#94A3B8', margin: '0.2rem 0 0.5rem' }}>Your profile is looking awesome</p>
-               <button style={{ color: '#10B981', background: 'none', border: 'none', padding: 0, fontSize: '0.75rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>Elevate your potential <ArrowRight size={12} /></button>
+               <p style={{ fontWeight: 900, fontSize: '1.1rem', color: '#fff', margin: 0 }}>John Smith</p>
+               <p style={{ fontSize: '0.75rem', color: '#94A3B8', margin: '0.2rem 0 0.5rem' }}>{t('PROFILE_AWESOME')}</p>
+               <button style={{ color: '#ec4899', background: 'none', border: 'none', padding: 0, fontSize: '0.75rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>{t('ELEVATE_POTENTIAL')} <ArrowRight size={12} /></button>
             </div>
-            <div style={{ width: 52, height: 52, background: 'linear-gradient(135deg, #f59e0b, #10B981)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 2 }}>
+            <div style={{ width: 52, height: 52, background: 'linear-gradient(135deg, #f59e0b, #ec4899)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, padding: 2 }}>
                <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden' }}><Image src="/john_profile.png" alt="John" width={52} height={52} style={{ objectFit: 'cover' }} /></div>
             </div>
           </div>
@@ -783,64 +1016,116 @@ export function AIProfileAnalyzer() {
            {!portalActivePath && !showNewJourney && (
              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', position: 'relative', zIndex: 10, animation: 'cardIn 0.8s ease' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 340, position: 'relative' }}>
-                  <div style={{ borderRadius: '50%', padding: 4, background: 'linear-gradient(135deg, #f59e0b, #10B981)', boxShadow: '0 0 20px rgba(16, 185, 129, 0.2)' }}>
+                  <div style={{ borderRadius: '50%', padding: 4, background: 'linear-gradient(135deg, #f59e0b, #ec4899)', boxShadow: '0 0 20px rgba(236,72,153,0.2)' }}>
                     <div style={{ width: 160, height: 160, borderRadius: '50%', overflow: 'hidden', border: '4px solid #fff', boxShadow: '0 10px 25px rgba(0,0,0,0.1)' }}>
                       <Image src="/john_profile.png" alt="You" width={160} height={160} style={{ objectFit: 'cover', transform: 'scale(1.1) translateY(5%)' }} priority />
                     </div>
                   </div>
-                  <button onClick={() => setShowSurprise(!showSurprise)} style={{ background: '#10B981', color: '#fff', border: 'none', padding: '14px 32px', borderRadius: 12, fontWeight: 800, fontSize: 16, boxShadow: '0 8px 20px rgba(16, 185, 129, 0.3)', cursor: 'pointer', marginTop: 30 }}>{t('SIMULATE_PATHWAY')}</button>
+                  <button onClick={() => setShowSurprise(!showSurprise)} style={{ background: '#EC4899', color: '#fff', border: 'none', padding: '14px 32px', borderRadius: 12, fontWeight: 800, fontSize: 16, boxShadow: '0 8px 20px rgba(236,72,153,0.3)', cursor: 'pointer', marginTop: 30 }}>{t('SIMULATE_PATHWAY')}</button>
                 </div>
              </div>
 
            )}
 
-            {showSurprise && !portalActivePath && !showNewJourney && (
-              <div style={{ animation: 'cardIn 0.8s ease', marginTop: 40 }}>
-                 <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', display: 'flex', gap: 0 }}>
-                    
-                    {/* Left side: Profile Central Node with Branching Lines */}
-                    <div style={{ width: 100, position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 80 }}>
-                       <div style={{ borderRadius: '50%', padding: 3, background: '#fff', boxShadow: '0 4px 15px rgba(0,0,0,0.1)', border: '1px solid #E2E8F0', zIndex: 2 }}>
-                         <div style={{ width: 64, height: 64, borderRadius: '50%', overflow: 'hidden' }}>
-                           <Image src="/john_profile.png" alt="You" width={64} height={64} style={{ objectFit: 'cover' }} priority />
-                         </div>
-                       </div>
-                       
-                       {/* High-Fidelity Branching SVG */}
-                       <svg width="100" height="700" style={{ position: 'absolute', left: 66, top: 112, overflow: 'visible', pointerEvents: 'none' }}>
-                          <path d="M 0 0 L 20 0 C 40 0, 40 10, 60 10" fill="none" stroke="#E2E8F0" strokeWidth="3" strokeLinecap="round" />
-                          <path d="M 20 0 L 20 200 C 20 210, 40 210, 60 210" fill="none" stroke="#E2E8F0" strokeWidth="3" strokeLinecap="round" />
-                          <path d="M 20 210 L 20 450 C 20 460, 40 460, 60 460" fill="none" stroke="#E2E8F0" strokeWidth="3" strokeLinecap="round" />
-                       </svg>
-                    </div>
+           {showSurprise && !portalActivePath && !showNewJourney && (
+             <div style={{ animation: 'cardIn 0.8s ease' }}>
+                <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
+                    <React.Fragment>
+                      <div style={{ position: 'relative', height: 180, width: '100%', marginBottom: 20, marginTop: -20, pointerEvents: 'none', zIndex: 10 }}>
+                          <svg width="100%" height="100%" viewBox="0 0 1000 180" preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
+                             <defs>
+                               <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                 <path d="M 0 0 L 10 5 L 0 10 z" fill="#1E293B" />
+                               </marker>
+                             </defs>
+                             {/* Curved, dark dotted lines for a more elegant flow */}
+                             <path d="M 500 0 C 500 80, 125 40, 125 180" fill="none" stroke="#1E293B" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
+                               <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
+                              <animate attributeName="opacity" from="0" to="0.6" dur="0.5s" begin="0s" fill="freeze" />
+                             </path>
+                             <path d="M 500 0 C 500 80, 375 40, 375 180" fill="none" stroke="#1E293B" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
+                               <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
+                               <animate attributeName="opacity" from="0" to="0.6" dur="0.5s" begin="0.25s" fill="freeze" />
+                             </path>
+                             <path d="M 500 0 C 500 80, 625 40, 625 180" fill="none" stroke="#1E293B" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
+                               <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
+                               <animate attributeName="opacity" from="0" to="0.6" dur="0.5s" begin="0.5s" fill="freeze" />
+                             </path>
+                             <path d="M 500 0 C 500 80, 875 40, 875 180" fill="none" stroke="#1E293B" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#arrow)" style={{ opacity: 0 }}>
+                               <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite" />
+                               <animate attributeName="opacity" from="0" to="0.6" dur="0.5s" begin="0.75s" fill="freeze" />
+                             </path>
+                          </svg>
+                      </div>
 
-                    {/* Right side: Pathways List */}
-                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 50, paddingLeft: 60, paddingBottom: 100 }}>
-                       <div style={{ textAlign: 'left', marginBottom: 20 }}>
-                          <h3 style={{ fontSize: 24, fontWeight: 900, color: '#1E293B', margin: 0 }}>Recommended for you</h3>
-                          <p style={{ fontSize: 14, color: '#64748B', margin: '4px 0 0 0', fontWeight: 600 }}>Based on your profile and skills set</p>
-                       </div>
+                      <div ref={journeysRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24, width: '100%', transition: 'all 0.5s ease', marginBottom: expandedPathId ? 60 : 0 }}>
+                        {careerCards.map((card, idx) => (
+                          <div key={card.id} className="path-card-tree" onClick={() => setExpandedPathId(expandedPathId === card.pathId ? null : card.pathId)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', animation: 'popIn 0.5s ease forwards', animationDelay: `${idx * 0.25}s`, opacity: 0, width: '100%', background: expandedPathId === card.pathId ? '#fff' : 'rgba(255, 255, 255, 0.8)', backdropFilter: 'blur(10px)', border: expandedPathId === card.pathId ? `2px solid ${card.matchColor}` : '1px solid rgba(226, 232, 240, 0.8)', borderRadius: 32, padding: '32px 24px', boxShadow: expandedPathId === card.pathId ? `0 20px 40px ${card.matchColor}20` : '0 10px 30px rgba(0,0,0,0.03)', transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)', position: 'relative', overflow: 'hidden' }}>
+                             {/* Vibrant Top Accent */}
+                             <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: 8, background: card.matchColor }} />
+                             
+                             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+                                <div style={{ background: card.matchColor, color: '#fff', fontSize: 10, fontWeight: 1000, padding: '6px 16px', borderRadius: 10, border: '2px solid #fff', textTransform: 'uppercase', marginBottom: 20, zIndex: 2, boxShadow: `0 4px 15px ${card.matchColor}4D`, letterSpacing: '0.05em' }}>{t(card.match)}</div>
+                                
+                                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+                                   <div style={{ position: 'absolute', top: 0, right: 0 }}><Compass size={20} color={card.matchColor} style={{ opacity: 0.3 }} /></div>
+                                   
+                                   <div style={{ position: 'relative', width: 110, height: 110, marginBottom: 24 }}>
+                                      <div style={{ position: 'absolute', inset: -6, borderRadius: '50%', border: `1px dashed ${card.matchColor}`, opacity: 0.2, animation: 'spin 12s infinite linear' }} />
+                                      <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', border: '4px solid #fff', boxShadow: '0 8px 25px rgba(0,0,0,0.08)' }}>
+                                        <Image src={card.image} width={110} height={110} alt="" style={{ objectFit: 'cover' }} />
+                                      </div>
+                                   </div>
+                                   
+                                   <div style={{ fontSize: 20, fontWeight: 1000, color: '#0F172A', lineHeight: 1.1, textAlign: 'center', marginBottom: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', letterSpacing: '-0.02em', height: 50 }}>{card.role}</div>
+                                   
+                                   <button onClick={(e) => { e.stopPropagation(); setExpandedPathId(expandedPathId === card.pathId ? null : card.pathId); }} style={{ width: 'fit-content', minWidth: 160, background: card.badgeColor, color: '#fff', fontSize: 12, fontWeight: 950, padding: '12px 32px', borderRadius: 20, textTransform: 'uppercase', boxShadow: `0 10px 25px ${card.badgeColor}4D`, border: 'none', cursor: 'pointer', letterSpacing: '0.06em', transition: 'all 0.3s' }}>{expandedPathId === card.pathId ? 'CLOSE VIEW' : t(card.badge)}</button>
+                                </div>
+                             </div>
+                          </div>
+                        ))}
+                      </div>
+                    </React.Fragment>
 
-                       {careerCards.map((card, idx) => {
-                         const getPath = (pId: string) => careerPathsData.categories.flatMap(c => c.paths).find(p => p.id === pId);
-                         const pathData = getPath(card.pathId);
-                         // Assign colors based on index for visual variety (following second image pattern)
-                         const colors = ['#10B981', '#14B8A6', '#3B82F6', '#8B5CF6'];
-                         return (
-                           <BranchingLane 
-                             key={card.id} 
-                             card={card} 
-                             pathData={pathData} 
-                             color={colors[idx % colors.length]} 
-                             t={t} 
-                           />
-                         );
-                       })}
-                    </div>
-                 </div>
-              </div>
-            )}
-
+                    {expandedPathId && (
+                      <div ref={roadmapRef} style={{ width: '100%', transition: 'all 0.5s ease', animation: 'popIn 0.6s ease-out forwards', paddingTop: 40, borderTop: '2px dashed #E2E8F0', marginTop: 20 }}>
+                         {careerCards.map((selectedCardInLoop) => {
+                           if (expandedPathId !== selectedCardInLoop.pathId) return null;
+                           const cardIdx = careerCards.findIndex(c => c.pathId === expandedPathId);
+                           const lane1 = careerCards[cardIdx];
+                           const getPath = (pId: string) => careerPathsData.categories.flatMap(c => c.paths).find(p => p.id === pId);
+                           const path1 = getPath(lane1.pathId);
+                           
+                           return (
+                             <div key="discovery-dashboard" style={{ position: 'relative' }}>
+                               <div style={{ marginBottom: 32, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                 <div>
+                                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                                     <div style={{ background: lane1.matchColor, width: 4, height: 24, borderRadius: 2 }} />
+                                     <h2 style={{ fontSize: 28, fontWeight: 900, color: '#1E293B', margin: 0 }}>Path Simulation: <span style={{ color: lane1.matchColor }}>{selectedCardInLoop.role}</span></h2>
+                                   </div>
+                                   <p style={{ fontSize: 14, color: '#94A3B8', fontWeight: 600, marginLeft: 16 }}>Detailed career roadmap based on your current expertise</p>
+                                 </div>
+                                 <button onClick={() => setExpandedPathId(null)} style={{ background: lane1.matchColor, border: 'none', padding: '10px 24px', borderRadius: 12, fontSize: 12, fontWeight: 1000, color: '#fff', cursor: 'pointer', boxShadow: `0 4px 10px ${lane1.matchColor}33`, textTransform: 'uppercase', letterSpacing: '0.05em' }} className="btn-close-roadmap">CLOSE</button>
+                               </div>
+                               <div style={{ display: 'flex', gap: 0, position: 'relative', background: '#F8FAFC', padding: '40px 32px', borderRadius: 24, border: '1.5px solid #0F172A' }}>
+                                 <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 32 }}>
+                                   <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                                      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                                        <div style={{ background: '#F0F4FF', color: '#6366F1', fontSize: 10, fontWeight: 1000, padding: '6px 16px', borderRadius: 20, textTransform: 'uppercase', letterSpacing: '0.05em', border: '1px solid #E0E7FF' }}>{lane1.label}</div>
+                                      </div>
+                                      <LaneRow card={lane1} pathData={path1} t={t} setPortalActivePath={setPortalActivePath} hideBridge={cardIdx === careerCards.length - 1} />
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                           );
+                         })}
+                      </div>
+                    )}
+                </div>
+             </div>
+           )}
         </div>
 
         <style>{`
@@ -854,7 +1139,7 @@ export function AIProfileAnalyzer() {
       </div>
       
       {showNewJourney && (
-        <NewJourneyFlow onFindJourney={(role) => { const roleMap: Record<string, string> = { 'Automation Architect': 'intelligent-automation-arch', 'Head of Automation': 'enterprise-automation-arch', 'Chief AI Officer': 'ai-architect' }; setPortalActivePath(roleMap[role] || 'intelligent-automation-arch'); setShowNewJourney(false); setShowSurprise(true); }} onCancel={() => setShowNewJourney(false)} />
+        <NewJourneyFlow onFindJourney={(role) => { const roleMap: Record<string, string> = { 'Incentive Compensation': 'incentive-comp', 'IT Career Path': 'it-path', 'Learning & Development': 'l-and-d', 'Operations': 'operations' }; setPortalActivePath(roleMap[role] || 'incentive-comp'); setShowNewJourney(false); setShowSurprise(true); }} onCancel={() => setShowNewJourney(false)} />
       )}
       
       {showSurprise && portalActivePath && (
@@ -863,7 +1148,7 @@ export function AIProfileAnalyzer() {
 
       {showSuggestedMoves && (
         <SuggestedMoves 
-          userProfile={{ name: 'John', role: 'Solution Architect', image: '/john_profile.png' }} 
+          userProfile={{ name: 'John Smith', role: 'High School Tutor & Server', image: '/john_profile.png' }} 
           onBack={() => setShowSuggestedMoves(false)} 
         />
       )}

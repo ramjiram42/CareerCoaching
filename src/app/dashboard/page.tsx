@@ -49,9 +49,9 @@ export default function DashboardPage() {
                    <p style={{ color: '#F59E0B', fontSize: 13, fontWeight: 950, textTransform: 'uppercase', letterSpacing: '0.3em', margin: 0 }}>Strategic Talent Dashboard</p>
                 </div>
                 <h1 style={{ color: '#fff', fontSize: 84, fontWeight: 1000, letterSpacing: '-0.05em', margin: '0 0 16px', lineHeight: 0.85 }}>
-                   Welcome <br /> <span style={{ background: 'linear-gradient(90deg, #F59E0B, #EC4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>John</span>
+                   Welcome <br /> <span style={{ background: 'linear-gradient(90deg, #F59E0B, #EC4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>John Smith</span>
                 </h1>
-                <p style={{ color: '#BFDBFE', fontSize: 22, maxWidth: 650, fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.5, opacity: 0.8 }}>Solution Architect · Hertz Global operations analysis and path calibration.</p>
+                <p style={{ color: '#BFDBFE', fontSize: 22, maxWidth: 650, fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.5, opacity: 0.8 }}>High School Tutor & Server · Hertz Global operations analysis and path calibration.</p>
              </div>
              <div style={{ textAlign: 'right' }}>
                 <div style={{ fontSize: 96, fontWeight: 1000, color: '#fff', letterSpacing: '-0.05em', lineHeight: 1 }}>{readinessScore}%</div>
@@ -116,7 +116,7 @@ export default function DashboardPage() {
                         <Award size={32} />
                      </div>
                      <div>
-                        <p style={{ fontSize: 18, fontWeight: 1000, color: '#1E293B', margin: 0 }}>Alice Johnson</p>
+                        <p style={{ fontSize: 18, fontWeight: 1000, color: '#1E293B', margin: 0 }}>Megan Grose</p>
                         <p style={{ fontSize: 14, fontWeight: 700, color: '#92400E', margin: 0 }}>Tomorrow, 10:00 AM</p>
                      </div>
                   </div>

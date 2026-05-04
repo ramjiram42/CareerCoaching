@@ -41,11 +41,11 @@ export default function SuggestedMoves({ onBack, userProfile }: SuggestedMovesPr
 
   // Specific pathways from user request
   const careerJourneys = [
-    { title: 'Intelligent Automation Architect', description: 'Master RPA and cognitive automation at scale.', level: 'Milestone', match: 'High Match Potential', color: '#f59e0b', target: 'RPA Solution Architect' },
+    { title: 'Intelligent Automation Architect', description: 'Master RPA and cognitive automation at scale.', level: 'Milestone', match: 'High Match Potential', color: '#f59e0b', target: 'High School Tutor & Server' },
     { title: 'Enterprise Automation Architect', description: 'Design end-to-end automated business processes.', level: 'Milestone', match: 'High Match Potential', color: '#7c3aed', target: 'Technical Program Manager' },
     { title: 'Technical Project Manager', description: 'Lead high-complexity technical delivery teams.', level: 'Target', match: 'NEXT LVL', color: '#3b82f6', target: 'Technical Program Manager' },
-    { title: 'AI Architect', description: 'Implement neural networks and LLMs for enterprise.', level: 'Milestone', match: 'High Match Potential', color: '#10b981', target: 'Data Engineer' },
-    { title: 'AI Engineer', description: 'Develop predictive models and AI-driven solutions.', level: 'Milestone', match: 'High Match Potential', color: '#10b981', target: 'Data Engineer' },
+    { title: 'AI Architect', description: 'Implement neural networks and LLMs for enterprise.', level: 'Milestone', match: 'High Match Potential', color: '#ec4899', target: 'Data Engineer' },
+    { title: 'AI Engineer', description: 'Develop predictive models and AI-driven solutions.', level: 'Milestone', match: 'High Match Potential', color: '#ec4899', target: 'Data Engineer' },
     ...Array.from({ length: 45 }, (_, i) => ({
       title: `Global Pathway ${i + 6}`,
       description: `A strategic roadmap focused on mastering key competencies.`,
@@ -65,7 +65,7 @@ export default function SuggestedMoves({ onBack, userProfile }: SuggestedMovesPr
 
   const reportingLines = [
     { name: 'Sarah Jenkins', role: 'VP of Global Technology', level: 'Leader', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop' },
-    { name: 'John (You)', role: 'Senior Solution Architect', level: 'Me', image: userProfile.image },
+    { name: 'John Smith (You)', role: 'High School Tutor & Server', level: 'Me', image: userProfile.image },
     ...Array.from({ length: 50 }, (_, i) => ({
       name: `Peer Specialist ${i + 1}`,
       role: ['Automation Lead', 'RPA Developer', 'Data Engineer', 'Product Owner'][i % 4],

@@ -107,7 +107,7 @@ export function ResumeUploadSection() {
 
              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                   <h1 style={{ fontSize: 44, color: '#fff', margin: 0, fontWeight: 1000, fontFamily: '"Outfit", sans-serif', letterSpacing: '-0.02em', lineHeight: 0.9 }}>John</h1>
+                   <h1 style={{ fontSize: 44, color: '#fff', margin: 0, fontWeight: 1000, fontFamily: '"Outfit", sans-serif', letterSpacing: '-0.02em', lineHeight: 0.9 }}>John Smith</h1>
                    <div style={{ 
                       padding: '4px 12px', 
                       background: 'rgba(16, 185, 129, 0.1)', 
@@ -123,7 +123,7 @@ export function ResumeUploadSection() {
                    </div>
                 </div>
                 <p style={{ fontSize: 18, color: '#94A3B8', fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', margin: '4px 0', opacity: 0.8 }}>
-                   Solution Architect
+                   High School Tutor & Server
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
                    <Cpu size={14} color="#f59e0b" />

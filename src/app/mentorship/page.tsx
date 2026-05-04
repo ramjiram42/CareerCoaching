@@ -7,57 +7,18 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const DOMAINS = [
-  'AI & Data Science', 'Fleet Operations', 'Finance & Strategy', 'Leadership & HR', 
-  'Product & Engineering', 'Sales & Customer Success', 'Marketing & Branding', 'Logistics & Supply Chain'
-];
-
-const mentorImages = [
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80',
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
-  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80',
-  'https://images.unsplash.com/photo-1506794778242-aff5640707bf?w=200&q=80',
-  'https://images.unsplash.com/photo-1567532939604-b6c5b0ad2e01?w=200&q=80',
-  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80',
-  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80',
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80',
-  'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80',
-  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&q=80',
-  'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80',
-  'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&q=80',
-  'https://images.unsplash.com/photo-1531123897727-8f129e16fd3c?w=200&q=80',
-  'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200&q=80',
-  'https://images.unsplash.com/photo-1598550874175-4d0fe4a2c906?w=200&q=80',
-  'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=200&q=80',
+  'Learning & Development', 'Operations', 'IT Career Path', 'Incentive Compensation'
 ];
 
 const MENTORS = [
-  // Core Mentors
-  { id: '1', name: 'Alice Johnson', expertiseArea: 'Operations to Director Transitions', rating: 4.9, yearsExperience: 18, sessionsDone: 142, domain: 'Fleet Operations', avatar: mentorImages[0] },
-  { id: '2', name: 'Chris Berg', expertiseArea: 'Fleet Management Leadership', rating: 4.8, yearsExperience: 22, sessionsDone: 89, domain: 'Fleet Operations', avatar: mentorImages[1] },
-  { id: '3', name: 'Sandra Lee', expertiseArea: 'HR & People Development', rating: 4.9, yearsExperience: 15, sessionsDone: 201, domain: 'Leadership & HR', avatar: mentorImages[2] },
-  { id: '4', name: 'Arjun Mehta', expertiseArea: 'Scalable Architecture & Node.js', rating: 4.9, yearsExperience: 12, sessionsDone: 156, domain: 'Product & Engineering', avatar: mentorImages[3] },
-  
-  // Indian Mentors (Bangalore/Mumbai Hubs)
-  { id: 'in1', name: 'Priya Sharma', expertiseArea: 'Supply Chain Optimization - Mumbai Hub', rating: 5.0, yearsExperience: 14, sessionsDone: 110, domain: 'Logistics & Supply Chain', avatar: mentorImages[8] },
-  { id: 'in2', name: 'Rajesh Gupta', expertiseArea: 'Digital Transformation & AI - Bangalore COE', rating: 4.9, yearsExperience: 16, sessionsDone: 95, domain: 'AI & Data Science', avatar: mentorImages[9] },
-  { id: 'in3', name: 'Ananya Rao', expertiseArea: 'Cloud Infrastructure & DevSecOps', rating: 4.8, yearsExperience: 11, sessionsDone: 68, domain: 'Product & Engineering', avatar: mentorImages[10] },
-  { id: 'in4', name: 'Vikram Singh', expertiseArea: 'Strategic Finance & P&L Management', rating: 4.7, yearsExperience: 20, sessionsDone: 130, domain: 'Finance & Strategy', avatar: mentorImages[11] },
-  { id: 'in5', name: 'Deepika Iyer', expertiseArea: 'Talent Acquisition & Diversity Programs', rating: 4.9, yearsExperience: 15, sessionsDone: 180, domain: 'Leadership & HR', avatar: mentorImages[12] },
-  { id: 'in6', name: 'Rohan Deshmukh', expertiseArea: 'Customer Success & Regional Growth', rating: 4.8, yearsExperience: 12, sessionsDone: 75, domain: 'Sales & Customer Success', avatar: mentorImages[13] },
-  { id: 'in7', name: 'Sanjay Reddy', expertiseArea: 'Fleet Electrification Strategy', rating: 5.0, yearsExperience: 18, sessionsDone: 120, domain: 'Fleet Operations', avatar: mentorImages[14] },
-  { id: 'in8', name: 'Meera Kapur', expertiseArea: 'Brand Strategy & Marketing Automation', rating: 4.9, yearsExperience: 13, sessionsDone: 88, domain: 'Marketing & Branding', avatar: mentorImages[15] },
-
-  // Generative Expansion to reach 50+
-  ...Array.from({ length: 42 }, (_, i) => ({
-    id: `gen-${i}`,
-    name: [`Mentor ${i + 9}`, `Specialist ${i + 5}`, `Lead ${i + 2}`][i % 3],
-    expertiseArea: `Advanced coaching in ${DOMAINS[i % DOMAINS.length]} and strategic leadership.`,
-    rating: (Math.random() * 0.5 + 4.5).toFixed(1),
-    yearsExperience: Math.floor(Math.random() * 15) + 8,
-    sessionsDone: Math.floor(Math.random() * 200) + 50,
-    domain: DOMAINS[i % DOMAINS.length],
-    avatar: mentorImages[i % mentorImages.length]
-  }))
+  { id: 'm1', name: 'Megan Grose', expertiseArea: 'Sr Mgr Learning Projects', domain: 'Learning & Development', location: 'Cleveland, OH', avatar: '/mentors/megan.png', rating: 4.9, yearsExperience: 12, sessionsDone: 85 },
+  { id: 'm2', name: 'Rayanna Hansford', expertiseArea: 'GM Customer Ops', domain: 'Operations', location: 'Cincinnati, OH', avatar: '/mentors/rayanna.png', rating: 5.0, yearsExperience: 15, sessionsDone: 120 },
+  { id: 'm3', name: 'Brian Jones', expertiseArea: 'Sr Mgr Customer Ops', domain: 'Operations', location: 'Nashville, TN', avatar: '/mentors/brian.png', rating: 4.8, yearsExperience: 14, sessionsDone: 95 },
+  { id: 'm4', name: 'Shanu Kommula', expertiseArea: 'Dir Technology', domain: 'IT Career Path', location: 'Denver, CO', avatar: '/mentors/shanu.png', rating: 4.9, yearsExperience: 18, sessionsDone: 150 },
+  { id: 'm5', name: 'Esther Mcwherter', expertiseArea: 'Mgr Customer Ops', domain: 'Operations', location: 'Burbank, CA', avatar: '/mentors/esther.png', rating: 4.9, yearsExperience: 20, sessionsDone: 200 },
+  { id: 'm6', name: 'Zoraya Sander', expertiseArea: 'Mgr VAS Sales', domain: 'Operations', location: 'Orlando, FL', avatar: '/mentors/zoraya.png', rating: 4.8, yearsExperience: 11, sessionsDone: 65 },
+  { id: 'm7', name: 'Bryan Vachereau', expertiseArea: 'GM Customer Ops', domain: 'Operations', location: 'Burlington, VT', avatar: '/mentors/bryan.png', rating: 4.7, yearsExperience: 13, sessionsDone: 45 },
+  { id: 'm8', name: 'Nicholas Vanaman', expertiseArea: 'Mgr Incentive Comp', domain: 'Incentive Compensation', location: 'Estero, FL', avatar: '/mentors/nicholas.png', rating: 4.9, yearsExperience: 16, sessionsDone: 110 }
 ];
 
 export default function MentorshipPage() {
@@ -70,7 +31,7 @@ export default function MentorshipPage() {
   );
 
   return (
-    <main style={{ background: '#fff', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
+    <main style={{ background: '#fff', minHeight: '100vh', fontFamily: "'Outfit', 'Inter', sans-serif" }}>
       
       {/* 1. Hero Banner */}
       <div style={{ width: '100%', height: 260, position: 'relative', overflow: 'hidden' }}>
@@ -165,14 +126,15 @@ export default function MentorshipPage() {
                           <Image src={mentor.avatar} width={60} height={60} alt={mentor.name} style={{ objectFit: 'cover' }} unoptimized />
                        </div>
                     </div>
-                    <div style={{ background: '#fffbeb', padding: '4px 10px', borderRadius: 10, color: '#b45309', fontWeight: 900, fontSize: 11, display: 'flex', alignItems: 'center', gap: 4, border: '1px solid #fef3c7' }}>
-                       <Star size={10} fill="#f59e0b" color="#f59e0b" /> {mentor.rating}
-                    </div>
                  </div>
 
                  <div style={{ marginBottom: 16 }}>
                     <h3 style={{ fontWeight: 900, fontSize: 16, color: '#111827', margin: '0 0 2px' }}>{mentor.name}</h3>
                     <p style={{ color: '#f59e0b', fontWeight: 900, fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.05em', margin: 0 }}>{mentor.domain}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 4 }}>
+                      <MapPin size={10} color="#94a3b8" />
+                      <span style={{ fontSize: 10, color: '#94a3b8', fontWeight: 700 }}>{mentor.location}</span>
+                    </div>
                  </div>
 
                  <div style={{ flex: 1, marginBottom: 20 }}>
@@ -191,7 +153,7 @@ export default function MentorshipPage() {
                  </div>
 
                  <div style={{ display: 'flex', gap: 10 }}>
-                    <button style={{ flex: 1, padding: '10px', borderRadius: 12, border: 'none', background: 'linear-gradient(90deg, #f59e0b, #ec4899)', color: '#fff', fontSize: 11, fontWeight: 900, letterSpacing: '0.05em', cursor: 'pointer', textTransform: 'uppercase' }}>Book Now</button>
+                    <a href="https://teams.microsoft.com/" target="_blank" rel="noopener noreferrer" style={{ flex: 1, padding: '10px', borderRadius: 12, background: 'linear-gradient(90deg, #f59e0b, #ec4899)', color: '#fff', fontSize: 11, fontWeight: 900, letterSpacing: '0.05em', cursor: 'pointer', textTransform: 'uppercase', textAlign: 'center', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Outfit', 'Inter', sans-serif" }}>CHAT NOW</a>
                     <button style={{ width: 40, height: 40, borderRadius: 12, border: '1px solid #e2e8f0', background: '#fff', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><MessageCircle size={16} /></button>
                  </div>
               </motion.div>

@@ -18,6 +18,26 @@ export const NavBar = () => {
   
   const [isAppsMenuOpen, setIsAppsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [langTab, setLangTab] = useState('LANGUAGE');
+  const [activeHub, setActiveHub] = useState('United States');
+
+  const languages = [
+    { code: 'EN', name: 'English', region: 'USA / UK', flag: '🇺🇸' },
+    { code: 'DE', name: 'Deutsch', region: 'GERMANY', flag: '🇩🇪' },
+    { code: 'FR', name: 'Français', region: 'FRANCE', flag: '🇫🇷' },
+    { code: 'ES', name: 'Español', region: 'SPAIN / LATAM', flag: '🇪🇸' },
+    { code: 'IT', name: 'Italiano', region: 'ITALY', flag: '🇮🇹' },
+  ];
+  const activeLangObj = languages.find(l => l.code === language) || languages[0];
+
+  const hubs = [
+    { name: 'United States', flag: '🇺🇸' },
+    { name: 'United Kingdom', flag: '🇬🇧' },
+    { name: 'Germany', flag: '🇩🇪' },
+    { name: 'France', flag: '🇫🇷' },
+    { name: 'Australia', flag: '🇦🇺' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -28,10 +48,9 @@ export const NavBar = () => {
   const navLinks = [
     { name: 'HOME', href: '/' },
     { name: 'JOURNEYS', href: '/your-move' },
-    { name: 'GIGS', href: '/gigs' },
     { name: 'MENTORS', href: '/mentorship' },
     { name: 'LEARN', href: '/learn' },
-    { name: 'VACANCIES', href: '/jobs' },
+    { name: 'HERTZ CAREERS', href: '/jobs' },
   ];
 
   const appsMenuItems = [
@@ -40,11 +59,9 @@ export const NavBar = () => {
     { name: 'Journeys', icon: <Compass size={18} />, href: '/your-move' },
     { name: 'Goals', icon: <Target size={18} />, href: '/goals' },
     { name: 'Feedback', icon: <RefreshCw size={18} />, href: '/feedback' },
-    { name: 'Gigs', icon: <Globe size={18} />, href: '/gigs' },
-    { name: 'Create Gigs', icon: <Radio size={18} />, href: '/gigs/create' },
     { name: 'Mentors', icon: <Users size={18} />, href: '/mentorship' },
     { name: 'Learn+', icon: <GraduationCap size={18} />, href: '/learn' },
-    { name: 'Vacancies', icon: <Briefcase size={18} />, href: '/jobs' },
+    { name: 'Hertz Careers', icon: <Briefcase size={18} />, href: '/jobs' },
     { name: 'Resources', icon: <Box size={18} />, href: '/resources' },
     { name: 'Skills', icon: <Layers size={18} />, href: '/skills' },
     { name: 'Leader View', icon: <ShieldCheck size={18} />, href: '/leader-view' },
@@ -123,7 +140,7 @@ export const NavBar = () => {
              </div>
              <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: 24, fontWeight: 950, color: '#111827', lineHeight: 0.9 }}>CAREER</span>
-                <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.25em', color: '#ec4899', marginTop: 4 }}>COACHING</span>
+                <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.25em', color: '#ec4899', marginTop: 4 }}>CONNECTIONS</span>
              </div>
           </Link>
         </div>
@@ -158,20 +175,113 @@ export const NavBar = () => {
                    transition: 'all 0.3s ease'
                  }}
                >
-                 {link.name}
+                 {t(link.name)}
                </Link>
              );
            })}
         </div>
 
-        {/* RIGHT: Profile Dropdown */}
-        <div style={{ position: 'relative' }}>
+        {/* RIGHT SECTION: Lang, Profile */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 24, position: 'relative' }}>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+            <div style={{ position: 'relative' }}>
+              <div 
+                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', padding: '6px' }}
+              >
+                <span style={{ fontSize: 20 }}>{activeLangObj.flag}</span>
+                <ChevronDown size={14} color="#f59e0b" style={{ transform: isLangMenuOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+              </div>
+
+              <AnimatePresence>
+                {isLangMenuOpen && (
+                  <>
+                    <div style={{ position: 'fixed', inset: 0, zIndex: 1000 }} onClick={() => setIsLangMenuOpen(false)} />
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }} 
+                      animate={{ opacity: 1, y: 0, scale: 1 }} 
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }} 
+                      style={{ 
+                        position: 'absolute', 
+                        top: '140%', 
+                        right: -40, 
+                        width: 280, 
+                        background: '#0F172A', 
+                        borderRadius: 24, 
+                        boxShadow: '0 20px 40px rgba(0,0,0,0.3)', 
+                        padding: '24px', 
+                        zIndex: 1001, 
+                        overflow: 'hidden'
+                      }}
+                    >
+                      <div style={{ display: 'flex', background: '#1E293B', borderRadius: 16, padding: 4, marginBottom: 24 }}>
+                         <button onClick={() => setLangTab('HUBS')} style={{ flex: 1, padding: '10px', borderRadius: 12, background: langTab === 'HUBS' ? 'linear-gradient(90deg, #f59e0b, #ec4899)' : 'transparent', color: langTab === 'HUBS' ? '#fff' : '#64748B', border: 'none', fontSize: 11, fontWeight: 900, cursor: 'pointer', transition: 'all 0.2s' }}>HUBS</button>
+                         <button onClick={() => setLangTab('LANGUAGE')} style={{ flex: 1, padding: '10px', borderRadius: 12, background: langTab === 'LANGUAGE' ? 'linear-gradient(90deg, #f59e0b, #ec4899)' : 'transparent', color: langTab === 'LANGUAGE' ? '#fff' : '#64748B', border: 'none', fontSize: 11, fontWeight: 900, cursor: 'pointer', transition: 'all 0.2s' }}>LANGUAGE</button>
+                      </div>
+
+                      {langTab === 'HUBS' && (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                           {hubs.map(hub => (
+                             <div 
+                               key={hub.name}
+                               onClick={() => { setActiveHub(hub.name); setIsLangMenuOpen(false); }}
+                               style={{ 
+                                 display: 'flex', 
+                                 alignItems: 'center', 
+                                 gap: 16, 
+                                 cursor: 'pointer', 
+                                 padding: '12px 16px', 
+                                 borderRadius: 12,
+                                 background: activeHub === hub.name ? '#1E293B' : 'transparent',
+                                 transition: 'all 0.2s' 
+                               }}
+                               onMouseEnter={(e) => { if (activeHub !== hub.name) e.currentTarget.style.background = 'rgba(255,255,255,0.05)' }}
+                               onMouseLeave={(e) => { if (activeHub !== hub.name) e.currentTarget.style.background = 'transparent' }}
+                             >
+                               <span style={{ fontSize: 20 }}>{hub.flag}</span>
+                               <span style={{ color: activeHub === hub.name ? '#f59e0b' : '#f8fafc', fontSize: 16, fontWeight: 900 }}>{hub.name}</span>
+                             </div>
+                           ))}
+                        </div>
+                      )}
+
+                      {langTab === 'LANGUAGE' && (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                           {languages.map(lang => (
+                             <div 
+                               key={lang.code}
+                               onClick={() => { setLanguage(lang.code as any); setIsLangMenuOpen(false); }}
+                               style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', padding: '12px 0', borderBottom: lang.code === 'IT' ? 'none' : '1px solid rgba(255,255,255,0.05)', transition: 'all 0.2s' }}
+                               onMouseEnter={(e) => e.currentTarget.style.transform = 'translateX(4px)'}
+                               onMouseLeave={(e) => e.currentTarget.style.transform = 'none'}
+                             >
+                               <div>
+                                 <p style={{ margin: 0, color: '#fff', fontSize: 16, fontWeight: 900 }}>{lang.name}</p>
+                                 <p style={{ margin: 0, color: '#64748B', fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em', marginTop: 4 }}>{lang.region}</p>
+                               </div>
+                               <div style={{ background: language === lang.code ? '#ec4899' : '#1E293B', color: language === lang.code ? '#fff' : '#ec4899', fontSize: 11, fontWeight: 950, padding: '6px 10px', borderRadius: 8, transition: 'all 0.2s' }}>
+                                 {lang.code}
+                               </div>
+                             </div>
+                           ))}
+                        </div>
+                      )}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <div style={{ width: 1, height: 32, background: '#E2E8F0' }} />
+
           <div 
             onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
             style={{ display: 'flex', alignItems: 'center', gap: 16, cursor: 'pointer', padding: '6px 12px', borderRadius: 40, transition: 'all 0.2s', background: isProfileMenuOpen ? '#f9fafb' : 'transparent' }}
           >
             <div style={{ textAlign: 'right' }}>
-              <p style={{ fontSize: 16, fontWeight: 900, color: '#111827', margin: 0 }}>John</p>
+              <p style={{ fontSize: 16, fontWeight: 900, color: '#111827', margin: 0 }}>John Smith</p>
             </div>
             <div style={{ width: 50, height: 50, borderRadius: '50%', padding: 2, background: 'linear-gradient(135deg, #f59e0b, #ec4899)', boxShadow: isProfileMenuOpen ? '0 0 15px rgba(236, 72, 153, 0.3)' : 'none' }}>
               <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', border: '2px solid #fff' }}>

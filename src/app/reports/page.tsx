@@ -2,7 +2,7 @@ import { Award, Download, ShieldCheck } from 'lucide-react'
 
 // Static data — DB removed for Vercel deployment
 const REPORT_DATA = {
-  name: 'John',
+  name: 'John Smith',
   targetRole: 'Regional Operations Director',
   totalHours: 12,
   completedModules: 1,
