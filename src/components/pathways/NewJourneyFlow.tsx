@@ -148,7 +148,7 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
               const y = Math.sin(angle) * dist;
 
               return (
-                 <div key={role.name} style={{ position: 'absolute', transform: `translate(${x}px, ${y}px)`, display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 5 }}>
+                 <div key={role.name} style={{ position: 'absolute', transform: `translate(${x}px, ${y}px)`, display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 5, animation: 'popIn 0.5s ease forwards', animationDelay: `${i * 2}s`, opacity: 0 }}>
                     <div style={{ position: 'relative', cursor: 'pointer' }}>
                        <div style={{ width: 72, height: 72, borderRadius: '50%', background: '#F9FAFB', border: '1px solid #E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
                           <User size={32} color="#9CA3AF" />
