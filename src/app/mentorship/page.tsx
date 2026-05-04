@@ -7,8 +7,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const DOMAINS = [
-  'AI & Data Science', 'Fleet Operations', 'Finance & Strategy', 'Leadership & HR', 
-  'Product & Engineering', 'Sales & Customer Success', 'Marketing & Branding', 'Logistics & Supply Chain'
+  'Fleet Management', 'Branch Operations', 'Customer Experience', 'Revenue Management', 
+  'Vehicle Maintenance', 'EV & Electrification', 'Corporate Strategy', 'Technology & Engineering'
 ];
 
 const mentorImages = [
@@ -32,29 +32,29 @@ const mentorImages = [
 
 const MENTORS = [
   // Core Mentors
-  { id: '1', name: 'Alice Johnson', expertiseArea: 'Operations to Director Transitions', rating: 4.9, yearsExperience: 18, sessionsDone: 142, domain: 'Fleet Operations', avatar: mentorImages[0] },
-  { id: '2', name: 'Chris Berg', expertiseArea: 'Fleet Management Leadership', rating: 4.8, yearsExperience: 22, sessionsDone: 89, domain: 'Fleet Operations', avatar: mentorImages[1] },
-  { id: '3', name: 'Sandra Lee', expertiseArea: 'HR & People Development', rating: 4.9, yearsExperience: 15, sessionsDone: 201, domain: 'Leadership & HR', avatar: mentorImages[2] },
-  { id: '4', name: 'Arjun Mehta', expertiseArea: 'Scalable Architecture & Node.js', rating: 4.9, yearsExperience: 12, sessionsDone: 156, domain: 'Product & Engineering', avatar: mentorImages[3] },
+  { id: '1', name: 'Alice Johnson', expertiseArea: 'Global Fleet Optimization & Logistics', rating: 4.9, yearsExperience: 18, sessionsDone: 142, domain: 'Fleet Management', avatar: mentorImages[0] },
+  { id: '2', name: 'Chris Berg', expertiseArea: 'Regional Branch Operations & Scaling', rating: 4.8, yearsExperience: 22, sessionsDone: 89, domain: 'Branch Operations', avatar: mentorImages[1] },
+  { id: '3', name: 'Sandra Lee', expertiseArea: 'Premium Customer Experience Delivery', rating: 4.9, yearsExperience: 15, sessionsDone: 201, domain: 'Customer Experience', avatar: mentorImages[2] },
+  { id: '4', name: 'Arjun Mehta', expertiseArea: 'Dynamic Pricing & Revenue Management', rating: 4.9, yearsExperience: 12, sessionsDone: 156, domain: 'Revenue Management', avatar: mentorImages[3] },
   
-  // Indian Mentors (Bangalore/Mumbai Hubs)
-  { id: 'in1', name: 'Priya Sharma', expertiseArea: 'Supply Chain Optimization - Mumbai Hub', rating: 5.0, yearsExperience: 14, sessionsDone: 110, domain: 'Logistics & Supply Chain', avatar: mentorImages[8] },
-  { id: 'in2', name: 'Rajesh Gupta', expertiseArea: 'Digital Transformation & AI - Bangalore COE', rating: 4.9, yearsExperience: 16, sessionsDone: 95, domain: 'AI & Data Science', avatar: mentorImages[9] },
-  { id: 'in3', name: 'Ananya Rao', expertiseArea: 'Cloud Infrastructure & DevSecOps', rating: 4.8, yearsExperience: 11, sessionsDone: 68, domain: 'Product & Engineering', avatar: mentorImages[10] },
-  { id: 'in4', name: 'Vikram Singh', expertiseArea: 'Strategic Finance & P&L Management', rating: 4.7, yearsExperience: 20, sessionsDone: 130, domain: 'Finance & Strategy', avatar: mentorImages[11] },
-  { id: 'in5', name: 'Deepika Iyer', expertiseArea: 'Talent Acquisition & Diversity Programs', rating: 4.9, yearsExperience: 15, sessionsDone: 180, domain: 'Leadership & HR', avatar: mentorImages[12] },
-  { id: 'in6', name: 'Rohan Deshmukh', expertiseArea: 'Customer Success & Regional Growth', rating: 4.8, yearsExperience: 12, sessionsDone: 75, domain: 'Sales & Customer Success', avatar: mentorImages[13] },
-  { id: 'in7', name: 'Sanjay Reddy', expertiseArea: 'Fleet Electrification Strategy', rating: 5.0, yearsExperience: 18, sessionsDone: 120, domain: 'Fleet Operations', avatar: mentorImages[14] },
-  { id: 'in8', name: 'Meera Kapur', expertiseArea: 'Brand Strategy & Marketing Automation', rating: 4.9, yearsExperience: 13, sessionsDone: 88, domain: 'Marketing & Branding', avatar: mentorImages[15] },
+  // Additional Mentors
+  { id: 'in1', name: 'Priya Sharma', expertiseArea: 'Predictive Vehicle Maintenance Strategy', rating: 5.0, yearsExperience: 14, sessionsDone: 110, domain: 'Vehicle Maintenance', avatar: mentorImages[8] },
+  { id: 'in2', name: 'Rajesh Gupta', expertiseArea: 'EV Fleet Transition & Infrastructure', rating: 4.9, yearsExperience: 16, sessionsDone: 95, domain: 'EV & Electrification', avatar: mentorImages[9] },
+  { id: 'in3', name: 'Ananya Rao', expertiseArea: 'Car Rental Technology Systems', rating: 4.8, yearsExperience: 11, sessionsDone: 68, domain: 'Technology & Engineering', avatar: mentorImages[10] },
+  { id: 'in4', name: 'Vikram Singh', expertiseArea: 'Corporate Finance & Expansion', rating: 4.7, yearsExperience: 20, sessionsDone: 130, domain: 'Corporate Strategy', avatar: mentorImages[11] },
+  { id: 'in5', name: 'Deepika Iyer', expertiseArea: 'Branch Manager Leadership Training', rating: 4.9, yearsExperience: 15, sessionsDone: 180, domain: 'Branch Operations', avatar: mentorImages[12] },
+  { id: 'in6', name: 'Rohan Deshmukh', expertiseArea: 'B2B Corporate Rental Accounts', rating: 4.8, yearsExperience: 12, sessionsDone: 75, domain: 'Customer Experience', avatar: mentorImages[13] },
+  { id: 'in7', name: 'Sanjay Reddy', expertiseArea: 'Fleet Acquisition & Disposal', rating: 5.0, yearsExperience: 18, sessionsDone: 120, domain: 'Fleet Management', avatar: mentorImages[14] },
+  { id: 'in8', name: 'Meera Kapur', expertiseArea: 'Yield Management & Forecasting', rating: 4.9, yearsExperience: 13, sessionsDone: 88, domain: 'Revenue Management', avatar: mentorImages[15] },
 
   // Generative Expansion to reach 50+
   ...Array.from({ length: 42 }, (_, i) => ({
     id: `gen-${i}`,
     name: [`Mentor ${i + 9}`, `Specialist ${i + 5}`, `Lead ${i + 2}`][i % 3],
-    expertiseArea: `Advanced coaching in ${DOMAINS[i % DOMAINS.length]} and strategic leadership.`,
-    rating: (Math.random() * 0.5 + 4.5).toFixed(1),
-    yearsExperience: Math.floor(Math.random() * 15) + 8,
-    sessionsDone: Math.floor(Math.random() * 200) + 50,
+    expertiseArea: `Advanced coaching in ${DOMAINS[i % DOMAINS.length]} within car rental operations.`,
+    rating: ((i % 5) * 0.1 + 4.5).toFixed(1),
+    yearsExperience: (i * 7) % 15 + 8,
+    sessionsDone: (i * 23) % 200 + 50,
     domain: DOMAINS[i % DOMAINS.length],
     avatar: mentorImages[i % mentorImages.length]
   }))
@@ -70,7 +70,7 @@ export default function MentorshipPage() {
   );
 
   return (
-    <main style={{ background: '#fff', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
+    <main style={{ background: '#fff', minHeight: '100vh', fontFamily: "'Outfit', 'Inter', sans-serif" }}>
       
       {/* 1. Hero Banner */}
       <div style={{ width: '100%', height: 260, position: 'relative', overflow: 'hidden' }}>
@@ -165,9 +165,6 @@ export default function MentorshipPage() {
                           <Image src={mentor.avatar} width={60} height={60} alt={mentor.name} style={{ objectFit: 'cover' }} unoptimized />
                        </div>
                     </div>
-                    <div style={{ background: '#fffbeb', padding: '4px 10px', borderRadius: 10, color: '#b45309', fontWeight: 900, fontSize: 11, display: 'flex', alignItems: 'center', gap: 4, border: '1px solid #fef3c7' }}>
-                       <Star size={10} fill="#f59e0b" color="#f59e0b" /> {mentor.rating}
-                    </div>
                  </div>
 
                  <div style={{ marginBottom: 16 }}>
@@ -191,7 +188,7 @@ export default function MentorshipPage() {
                  </div>
 
                  <div style={{ display: 'flex', gap: 10 }}>
-                    <button style={{ flex: 1, padding: '10px', borderRadius: 12, border: 'none', background: 'linear-gradient(90deg, #f59e0b, #ec4899)', color: '#fff', fontSize: 11, fontWeight: 900, letterSpacing: '0.05em', cursor: 'pointer', textTransform: 'uppercase' }}>Book Now</button>
+                    <a href="https://teams.microsoft.com/" target="_blank" rel="noopener noreferrer" style={{ flex: 1, padding: '10px', borderRadius: 12, background: 'linear-gradient(90deg, #f59e0b, #ec4899)', color: '#fff', fontSize: 11, fontWeight: 900, letterSpacing: '0.05em', cursor: 'pointer', textTransform: 'uppercase', textAlign: 'center', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Outfit', 'Inter', sans-serif" }}>CHAT NOW</a>
                     <button style={{ width: 40, height: 40, borderRadius: 12, border: '1px solid #e2e8f0', background: '#fff', color: '#64748b', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><MessageCircle size={16} /></button>
                  </div>
               </motion.div>

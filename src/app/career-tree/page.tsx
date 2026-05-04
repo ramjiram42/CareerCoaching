@@ -153,7 +153,7 @@ export default function CareerTreePage() {
   if (selectedMove && !journeyStarted) {
     const selectedMoveIndex = suggestedMoves.findIndex(m => m.id === selectedMove.id);
     const activeTheme = [
-      { badgeBg: '#10B981', bg: '#F0FDF4', border: '#DCFCE7' },
+      { badgeBg: '#ec4899', bg: '#FDF2F8', border: '#FCE7F3' },
       { badgeBg: '#14B8A6', bg: '#F0FDFA', border: '#CCFBF1' },
       { badgeBg: '#3B82F6', bg: '#EFF6FF', border: '#BFDBFE' },
       { badgeBg: '#8B5CF6', bg: '#F5F3FF', border: '#DDD6FE' }

@@ -11,7 +11,7 @@ const font = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: 'Hertz CAREER COACHING',
+  title: 'Hertz CAREER CONNECTIONS',
   description: 'Internal mobility platform for Hertz employees.',
 }
 

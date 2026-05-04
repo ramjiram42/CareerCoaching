@@ -5,8 +5,10 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Quote, ChevronRight } from 'lucide-react'
 import { DAILY_QUOTES } from '@/data/quotes';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function HomePage() {
+  const { t } = useLanguage();
   const dailyQuote = useMemo(() => {
     const today = new Date();
     const start = new Date(today.getFullYear(), 0, 0);
@@ -19,49 +21,49 @@ export default function HomePage() {
   const tiles = [
     { 
       title: 'JOURNEYS', 
-      desc: 'Explore journeys and discover potential career paths.', 
+      desc: 'JOURNEYS_DESC', 
       href: '/your-move', 
       image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80' 
     },
     { 
       title: 'SKILLS', 
-      desc: 'Manage skills required for your role and career.', 
+      desc: 'SKILLS_DESC', 
       href: '/skills', 
       image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80' 
     },
     { 
       title: 'GIGS', 
-      desc: 'Explore gigs and projects to grow your talents.', 
+      desc: 'GIGS_DESC', 
       href: '/gigs', 
       image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80' 
     },
     { 
       title: 'MENTORS', 
-      desc: 'Discover mentors ready to guide your growth.', 
+      desc: 'MENTORS_DESC', 
       href: '/mentorship', 
       image: 'https://images.unsplash.com/photo-1515162305285-0293e4767cc2?w=800&q=80' 
     },
     { 
       title: 'MILESTONES', 
-      desc: 'Track your career milestones and achievements.', 
+      desc: 'MILESTONES_DESC', 
       href: '/milestones', 
       image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80' 
     },
     { 
       title: 'MASTERY', 
-      desc: 'Develop mastery through curated learning paths.', 
+      desc: 'MASTERY_DESC', 
       href: '/learn', 
       image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80' 
     },
     { 
       title: 'PROFILE', 
-      desc: 'Manage your professional identity and preferences.', 
+      desc: 'PROFILE_DESC', 
       href: '/profile', 
       image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=800&q=80' 
     },
     { 
       title: 'VACANCIES', 
-      desc: 'Explore open positions and new opportunities at Hertz.', 
+      desc: 'VACANCIES_DESC', 
       href: '/jobs', 
       image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80' 
     },
@@ -91,9 +93,10 @@ export default function HomePage() {
             fontWeight: 900, 
             lineHeight: 1.1,
             margin: '0 0 24px',
-            textShadow: '0 4px 12px rgba(0,0,0,0.3)'
+            textShadow: '0 4px 12px rgba(0,0,0,0.3)',
+            whiteSpace: 'pre-line'
           }}>
-            DRIVE YOUR<br />CAREER FORWARD.
+            {t('DRIVE_YOUR_CAREER_FORWARD')}
           </h1>
           <div style={{ display: 'flex', gap: 16 }}>
             <Link href="/your-move" style={{ 
@@ -108,7 +111,7 @@ export default function HomePage() {
               letterSpacing: '0.05em',
               boxShadow: '0 8px 20px rgba(236, 72, 153, 0.3)'
             }}>
-              Explore Journeys
+              {t('EXPLORE_JOURNEYS')}
             </Link>
             <Link href="/jobs" style={{ 
               background: 'rgba(255,255,255,0.15)',
@@ -123,7 +126,7 @@ export default function HomePage() {
               letterSpacing: '0.05em',
               border: '1px solid rgba(255,255,255,0.2)'
             }}>
-              View Vacancies
+              {t('VIEW_VACANCIES')}
             </Link>
           </div>
         </div>
@@ -143,8 +146,8 @@ export default function HomePage() {
             boxShadow: '0 20px 50px rgba(0,0,0,0.3)'
           }}>
             <div style={{ flex: 1 }}>
-               <h3 style={{ fontSize: 20, fontWeight: 900, color: '#fff', margin: '0 0 4px' }}>John</h3>
-               <p style={{ fontSize: 13, color: '#94A3B8', margin: '0 0 12px' }}>Your profile is looking awesome</p>
+               <h3 style={{ fontSize: 20, fontWeight: 900, color: '#fff', margin: '0 0 4px' }}>John Smith</h3>
+               <p style={{ fontSize: 13, color: '#94A3B8', margin: '0 0 12px' }}>{t('PROFILE_AWESOME')}</p>
                <Link href="/profile" style={{ 
                  display: 'flex', 
                  alignItems: 'center', 
@@ -154,7 +157,7 @@ export default function HomePage() {
                  color: '#ec4899', 
                  textDecoration: 'none' 
                }}>
-                 Elevate your potential <ChevronRight size={16} />
+                 {t('ELEVATE_POTENTIAL')} <ChevronRight size={16} />
                </Link>
             </div>
             <div style={{ 
@@ -180,10 +183,10 @@ export default function HomePage() {
         <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 40, alignItems: 'center' }}>
           <div>
             <h2 style={{ fontSize: '3.5rem', fontWeight: 900, color: '#111827', margin: '0 0 20px', lineHeight: 1 }}>
-              Explore Future with <span style={{ background: 'linear-gradient(90deg, #f59e0b, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Hertz</span>
+              {t('EXPLORE_FUTURE')}<span style={{ background: 'linear-gradient(90deg, #f59e0b, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Hertz</span>
             </h2>
             <p style={{ fontSize: '1.2rem', color: '#4B5563', lineHeight: 1.6, margin: 0 }}>
-              Welcome to your AI-powered career mobility hub. Discover tailored pathways for upskilling, reskilling, and internal job opportunities designed entirely around your potential.
+              {t('HUB_DESCRIPTION')}
             </p>
           </div>
 
@@ -196,7 +199,7 @@ export default function HomePage() {
              boxShadow: '0 10px 30px rgba(0,0,0,0.03)'
           }}>
              <p style={{ fontSize: 11, fontWeight: 900, color: '#ec4899', letterSpacing: '0.15em', textTransform: 'uppercase', margin: '0 0 16px' }}>
-               Inspiration for the day
+               {t('INSPIRATION')}
              </p>
              <div style={{ display: 'flex', gap: 12 }}>
                <Quote size={32} color="#f59e0b" style={{ flexShrink: 0, opacity: 0.3 }} />
@@ -238,10 +241,10 @@ export default function HomePage() {
                      textTransform: 'uppercase',
                      letterSpacing: '0.05em'
                    }}>
-                     {tile.title}
+                     {t(tile.title)}
                    </div>
                    <p style={{ fontSize: 16, fontWeight: 600, color: '#475569', lineHeight: 1.5, margin: 0 }}>
-                     {tile.desc}
+                     {t(tile.desc)}
                    </p>
                 </div>
               </div>

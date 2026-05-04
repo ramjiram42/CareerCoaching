@@ -11,8 +11,8 @@ import Image from 'next/image';
 
 // ─── Profile Data for John (Resume Focused) ─────────────────────────
 const PROFILE = {
-  name: 'John',
-  title: 'Solution Architect',
+  name: 'John Smith',
+  title: 'Customer Service Rep',
   bio: 'Love helping People!!',
   location: 'Miami, FL',
   type: 'Full-Time',
@@ -27,7 +27,7 @@ const PROFILE = {
     "Intelligent Automation",
     "UiPath", 
     "Workato", 
-    "Solution Architecture", 
+    "Customer Service Repure", 
     "Process Optimization", 
     "Cloud awareness (Azure/AWS)", 
     "Technical Project Management"

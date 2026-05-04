@@ -6,7 +6,7 @@ import { Send, Sparkles, User, ChevronRight, BookOpen, Users, TrendingUp, Briefc
 
 // ─── Knowledge Base for John ─────────────────────────────
 const JOHN_PROFILE = {
-  name: 'John',
+  name: 'John Smith',
   currentRole: 'Branch Manager / Operations',
   level: 'Mid-Senior',
   yearsExp: 9,
