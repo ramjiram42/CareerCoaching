@@ -7,72 +7,18 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const DOMAINS = [
-<<<<<<< HEAD
-  'Fleet Management', 'Branch Operations', 'Customer Experience', 'Revenue Management', 
-  'Vehicle Maintenance', 'EV & Electrification', 'Corporate Strategy', 'Technology & Engineering'
-];
-
-const mentorImages = [
-  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80',
-  'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
-  'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80',
-  'https://images.unsplash.com/photo-1506794778242-aff5640707bf?w=200&q=80',
-  'https://images.unsplash.com/photo-1567532939604-b6c5b0ad2e01?w=200&q=80',
-  'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80',
-  'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80',
-  'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80',
-  'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80',
-  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&q=80',
-  'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80',
-  'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&q=80',
-  'https://images.unsplash.com/photo-1531123897727-8f129e16fd3c?w=200&q=80',
-  'https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200&q=80',
-  'https://images.unsplash.com/photo-1598550874175-4d0fe4a2c906?w=200&q=80',
-  'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=200&q=80',
-];
-
-const MENTORS = [
-  // Core Mentors
-  { id: '1', name: 'Alice Johnson', expertiseArea: 'Global Fleet Optimization & Logistics', rating: 4.9, yearsExperience: 18, sessionsDone: 142, domain: 'Fleet Management', avatar: mentorImages[0] },
-  { id: '2', name: 'Chris Berg', expertiseArea: 'Regional Branch Operations & Scaling', rating: 4.8, yearsExperience: 22, sessionsDone: 89, domain: 'Branch Operations', avatar: mentorImages[1] },
-  { id: '3', name: 'Sandra Lee', expertiseArea: 'Premium Customer Experience Delivery', rating: 4.9, yearsExperience: 15, sessionsDone: 201, domain: 'Customer Experience', avatar: mentorImages[2] },
-  { id: '4', name: 'Arjun Mehta', expertiseArea: 'Dynamic Pricing & Revenue Management', rating: 4.9, yearsExperience: 12, sessionsDone: 156, domain: 'Revenue Management', avatar: mentorImages[3] },
-  
-  // Additional Mentors
-  { id: 'in1', name: 'Priya Sharma', expertiseArea: 'Predictive Vehicle Maintenance Strategy', rating: 5.0, yearsExperience: 14, sessionsDone: 110, domain: 'Vehicle Maintenance', avatar: mentorImages[8] },
-  { id: 'in2', name: 'Rajesh Gupta', expertiseArea: 'EV Fleet Transition & Infrastructure', rating: 4.9, yearsExperience: 16, sessionsDone: 95, domain: 'EV & Electrification', avatar: mentorImages[9] },
-  { id: 'in3', name: 'Ananya Rao', expertiseArea: 'Car Rental Technology Systems', rating: 4.8, yearsExperience: 11, sessionsDone: 68, domain: 'Technology & Engineering', avatar: mentorImages[10] },
-  { id: 'in4', name: 'Vikram Singh', expertiseArea: 'Corporate Finance & Expansion', rating: 4.7, yearsExperience: 20, sessionsDone: 130, domain: 'Corporate Strategy', avatar: mentorImages[11] },
-  { id: 'in5', name: 'Deepika Iyer', expertiseArea: 'Branch Manager Leadership Training', rating: 4.9, yearsExperience: 15, sessionsDone: 180, domain: 'Branch Operations', avatar: mentorImages[12] },
-  { id: 'in6', name: 'Rohan Deshmukh', expertiseArea: 'B2B Corporate Rental Accounts', rating: 4.8, yearsExperience: 12, sessionsDone: 75, domain: 'Customer Experience', avatar: mentorImages[13] },
-  { id: 'in7', name: 'Sanjay Reddy', expertiseArea: 'Fleet Acquisition & Disposal', rating: 5.0, yearsExperience: 18, sessionsDone: 120, domain: 'Fleet Management', avatar: mentorImages[14] },
-  { id: 'in8', name: 'Meera Kapur', expertiseArea: 'Yield Management & Forecasting', rating: 4.9, yearsExperience: 13, sessionsDone: 88, domain: 'Revenue Management', avatar: mentorImages[15] },
-
-  // Generative Expansion to reach 50+
-  ...Array.from({ length: 42 }, (_, i) => ({
-    id: `gen-${i}`,
-    name: [`Mentor ${i + 9}`, `Specialist ${i + 5}`, `Lead ${i + 2}`][i % 3],
-    expertiseArea: `Advanced coaching in ${DOMAINS[i % DOMAINS.length]} within car rental operations.`,
-    rating: ((i % 5) * 0.1 + 4.5).toFixed(1),
-    yearsExperience: (i * 7) % 15 + 8,
-    sessionsDone: (i * 23) % 200 + 50,
-    domain: DOMAINS[i % DOMAINS.length],
-    avatar: mentorImages[i % mentorImages.length]
-  }))
-=======
-  'Learning & Development', 'Operations', 'IT Career Path', 'Incentive Compensation'
+  'Learning & Development', 'Operations', 'Technology', 'Incentive Compensation'
 ];
 
 const MENTORS = [
   { id: 'm1', name: 'Megan Grose', expertiseArea: 'Sr Mgr Learning Projects', domain: 'Learning & Development', location: 'Cleveland, OH', avatar: '/mentors/megan.png', rating: 4.9, yearsExperience: 12, sessionsDone: 85 },
   { id: 'm2', name: 'Rayanna Hansford', expertiseArea: 'GM Customer Ops', domain: 'Operations', location: 'Cincinnati, OH', avatar: '/mentors/rayanna.png', rating: 5.0, yearsExperience: 15, sessionsDone: 120 },
   { id: 'm3', name: 'Brian Jones', expertiseArea: 'Sr Mgr Customer Ops', domain: 'Operations', location: 'Nashville, TN', avatar: '/mentors/brian.png', rating: 4.8, yearsExperience: 14, sessionsDone: 95 },
-  { id: 'm4', name: 'Shanu Kommula', expertiseArea: 'Dir Technology', domain: 'IT Career Path', location: 'Denver, CO', avatar: '/mentors/shanu.png', rating: 4.9, yearsExperience: 18, sessionsDone: 150 },
+  { id: 'm4', name: 'Shanu Kommula', expertiseArea: 'Dir Technology', domain: 'Technology', location: 'Denver, CO', avatar: '/mentors/shanu.png', rating: 4.9, yearsExperience: 18, sessionsDone: 150 },
   { id: 'm5', name: 'Esther Mcwherter', expertiseArea: 'Mgr Customer Ops', domain: 'Operations', location: 'Burbank, CA', avatar: '/mentors/esther.png', rating: 4.9, yearsExperience: 20, sessionsDone: 200 },
   { id: 'm6', name: 'Zoraya Sander', expertiseArea: 'Mgr VAS Sales', domain: 'Operations', location: 'Orlando, FL', avatar: '/mentors/zoraya.png', rating: 4.8, yearsExperience: 11, sessionsDone: 65 },
   { id: 'm7', name: 'Bryan Vachereau', expertiseArea: 'GM Customer Ops', domain: 'Operations', location: 'Burlington, VT', avatar: '/mentors/bryan.png', rating: 4.7, yearsExperience: 13, sessionsDone: 45 },
   { id: 'm8', name: 'Nicholas Vanaman', expertiseArea: 'Mgr Incentive Comp', domain: 'Incentive Compensation', location: 'Estero, FL', avatar: '/mentors/nicholas.png', rating: 4.9, yearsExperience: 16, sessionsDone: 110 }
->>>>>>> 0ee8d5b4dc861dd89fed0b044a1a428de994dc79
 ];
 
 export default function MentorshipPage() {
@@ -121,7 +67,7 @@ export default function MentorshipPage() {
           zIndex: 10
         }}>
            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-              {['All', ...DOMAINS.slice(0, 5)].map(domain => (
+              {['All', ...DOMAINS].map(domain => (
                  <button 
                   key={domain} 
                   onClick={() => setActiveDomain(domain)} 

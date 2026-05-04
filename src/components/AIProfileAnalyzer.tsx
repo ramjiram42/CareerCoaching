@@ -800,7 +800,7 @@ export function AIProfileAnalyzer() {
     {
       id: '2',
       pathId: 'it-path',
-      role: 'IT Career Path',
+      role: 'Technology',
       label: 'High Match',
       labelColor: '#F59E0B',
       match: 'HIGH_MATCH',
@@ -1212,7 +1212,7 @@ export function AIProfileAnalyzer() {
       </div>
       
       {showNewJourney && (
-        <NewJourneyFlow onFindJourney={(role) => { const roleMap: Record<string, string> = { 'Incentive Compensation': 'incentive-comp', 'IT Career Path': 'it-path', 'Learning & Development': 'l-and-d', 'Operations': 'operations' }; setPortalActivePath(roleMap[role] || 'incentive-comp'); setShowNewJourney(false); setShowSurprise(true); }} onCancel={() => setShowNewJourney(false)} />
+        <NewJourneyFlow onFindJourney={(role) => { const roleMap: Record<string, string> = { 'Incentive Compensation': 'incentive-comp', 'Technology': 'it-path', 'Learning & Development': 'l-and-d', 'Operations': 'operations' }; setPortalActivePath(roleMap[role] || 'incentive-comp'); setShowNewJourney(false); setShowSurprise(true); }} onCancel={() => setShowNewJourney(false)} />
       )}
       
       {showSurprise && portalActivePath && (

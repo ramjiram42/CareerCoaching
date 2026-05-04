@@ -5,7 +5,7 @@ import { Search, Filter, BookOpen, Clock, Star, Play, CheckCircle, Award, Compas
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const CATEGORIES = ['All', 'Incentive Compensation', 'IT Career Path', 'Learning & Development', 'Operations', 'Public Learning'];
+const CATEGORIES = ['All', 'Incentive Compensation', 'Technology', 'Learning & Development', 'Operations', 'Public Learning'];
 
 // Optimized, stable Unsplash collection for high-fidelity course cards
 const courseImages = [
@@ -29,10 +29,10 @@ const courseDefinitions = [
   { title: 'Quota Setting & Performance Analytics', category: 'Incentive Compensation', level: 'Intermediate', tags: ['Data', 'Incentives'], provider: 'Global COE' },
   { title: 'Global Incentive Compliance Frameworks', category: 'Incentive Compensation', level: 'Advanced', tags: ['Legal', 'Finance'], provider: 'Hertz Academy' },
   
-  // IT Career Path
-  { title: 'Full Stack Enterprise Development with Next.js', category: 'IT Career Path', level: 'Advanced', tags: ['React', 'Next.js'], provider: 'Tech Institute' },
-  { title: 'Cloud Architecture & Infrastructure for Hertz', category: 'IT Career Path', level: 'Advanced', tags: ['AWS', 'Azure'], provider: 'Global COE' },
-  { title: 'Cybersecurity Protocols for Global Systems', category: 'IT Career Path', level: 'Intermediate', tags: ['Security', 'IT'], provider: 'Tech Institute' },
+  // Technology
+  { title: 'Full Stack Enterprise Development with Next.js', category: 'Technology', level: 'Advanced', tags: ['React', 'Next.js'], provider: 'Tech Institute' },
+  { title: 'Cloud Architecture & Infrastructure for Hertz', category: 'Technology', level: 'Advanced', tags: ['AWS', 'Azure'], provider: 'Global COE' },
+  { title: 'Cybersecurity Protocols for Global Systems', category: 'Technology', level: 'Intermediate', tags: ['Security', 'IT'], provider: 'Tech Institute' },
   
   // Learning & Development
   { title: 'Strategic Talent Development & Coaching', category: 'Learning & Development', level: 'Advanced', tags: ['L&D', 'Leadership'], provider: 'Hertz Academy' },

@@ -9,7 +9,7 @@ interface NewJourneyFlowProps {
 }
 
 const TARGET_ROLE_OPTIONS = [
-  { label: 'In my function', roles: ['Incentive Compensation', 'IT Career Path'] },
+  { label: 'In my function', roles: ['Incentive Compensation', 'Technology'] },
   { label: 'Other functions', roles: ['Learning & Development', 'Operations'] }
 ];
 

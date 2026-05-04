@@ -51,7 +51,7 @@
       "paths": [
         {
           "id": "it-path",
-          "name": "IT Career Path",
+          "name": "Technology",
           "matchScore": 8.5,
           "readiness": "Mid term (2-4 years)",
           "whyItFits": "Leverages your project management and agile background.",
