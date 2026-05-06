@@ -46,8 +46,8 @@
     {
       "id": "high-match",
       "type": "High Match ⚡",
-      "style": "purple",
-      "color": "#8B5CF6",
+      "style": "orange",
+      "color": "#F59E0B",
       "paths": [
         {
           "id": "operations",
@@ -109,8 +109,8 @@
     {
       "id": "new-horizon",
       "type": "New Horizon 🚀",
-      "style": "orange",
-      "color": "#F59E0B",
+      "style": "purple",
+      "color": "#8B5CF6",
       "paths": [
         {
           "id": "it-path",

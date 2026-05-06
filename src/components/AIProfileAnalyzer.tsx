@@ -786,6 +786,18 @@ export function AIProfileAnalyzer() {
 
   const careerCards = [
     {
+      id: '4',
+      pathId: 'operations',
+      role: 'Operations',
+      label: 'High Match',
+      labelColor: '#F59E0B',
+      match: 'HIGH_MATCH',
+      matchColor: '#F59E0B',
+      badge: 'EXPLORE',
+      badgeColor: '#F59E0B',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop'
+    },
+    {
       id: '1',
       pathId: 'incentive-comp',
       role: 'Incentive Compensation',
@@ -796,18 +808,6 @@ export function AIProfileAnalyzer() {
       badge: 'NEXT_STEP',
       badgeColor: '#EC4899',
       image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=400&h=400&fit=crop'
-    },
-    {
-      id: '4',
-      pathId: 'operations',
-      role: 'Operations',
-      label: 'High Match',
-      labelColor: '#8B5CF6',
-      match: 'HIGH_MATCH',
-      matchColor: '#8B5CF6',
-      badge: 'EXPLORE',
-      badgeColor: '#8B5CF6',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop'
     },
     {
       id: '3',
@@ -826,11 +826,11 @@ export function AIProfileAnalyzer() {
       pathId: 'it-path',
       role: 'Technology',
       label: 'New Horizon',
-      labelColor: '#F59E0B',
+      labelColor: '#8B5CF6',
       match: 'NEW_HORIZON',
-      matchColor: '#F59E0B',
+      matchColor: '#8B5CF6',
       badge: 'NEXT_STEP',
-      badgeColor: '#F59E0B',
+      badgeColor: '#8B5CF6',
       image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=400&fit=crop'
     }
   ];
