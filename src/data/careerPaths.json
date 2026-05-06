@@ -45,35 +45,23 @@
     },
     {
       "id": "high-match",
-      "type": "New Horizon 🚀",
-      "style": "orange",
-      "color": "#F59E0B",
+      "type": "High Match ⚡",
+      "style": "purple",
+      "color": "#8B5CF6",
       "paths": [
         {
-          "id": "it-path",
-          "name": "Technology",
-          "matchScore": 8.5,
-          "readiness": "Mid term (2-4 years)",
-          "whyItFits": "Leverages your project management and agile background.",
-          "alignedSkills": ["Agile", "Scrum", "Confluence"],
-          "missingSkills": ["Jira Advanced", "Business Process Mapping"],
+          "id": "operations",
+          "name": "Operations",
+          "matchScore": 7.0,
+          "readiness": "Long term (5-10 years)",
+          "whyItFits": "Opportunity to scale leadership and process management.",
+          "alignedSkills": ["Leadership", "Process Optimization"],
+          "missingSkills": ["Operations Management", "Supply Chain"],
           "defaultHighlight": false,
           "nodes": [
-            { "role": "Business Analyst", "status": "next", "skills_to_master": ["Requirements Gathering", "Process Mapping", "UAT Planning", "Stakeholder Interviewing"], "learning_path": [
-              { "name": "The Complete Business Analysis Fundamentals Course", "url": "https://www.udemy.com/course/business-analysis-fundamentals/", "type": "Course", "content_covered": ["Business Analysis Fundamentals", "Requirements Engineering & Analysis", "Stakeholder Interviewing Techniques", "Business Communication & Documentation"] },
-              { "name": "Agile Business Analyst (The Power of the Agile BA)", "url": "https://www.udemy.com/course/agile-business-analyst/", "type": "Course", "content_covered": ["User Stories & Acceptance Criteria"] },
-              { "name": "Fundamentals of Business Process Mapping", "url": "https://www.linkedin.com/learning/business-process-modeling", "type": "Course", "content_covered": ["Process Mapping (Swimlanes, Flow Diagrams)"] },
-              { "name": "User Acceptance Testing (UAT)", "url": "https://www.linkedin.com/learning/user-acceptance-testing", "type": "Course", "content_covered": ["UAT Planning", "Test Case Writing"] },
-              { "name": "Learning Confluence", "url": "https://www.linkedin.com/learning/confluence-essential-training", "type": "Course", "content_covered": ["Confluence (Requirements Documentation)"] }
-            ]},
-            { "role": "Scrum Master", "status": "future", "skills_to_master": ["Agile Methodologies", "Servant Leadership", "Sprint Planning", "Jira Management"], "learning_path": [
-              { "name": "Agile with Atlassian Jira", "url": "https://www.coursera.org/learn/agile-atlassian-jira", "type": "Course", "content_covered": ["Jira (Boards, Sprints, Burndown)", "Sprint Planning & Backlog Management", "Agile Metrics & Team Health Metrics", "Continuous Improvement & Retrospectives"] },
-              { "name": "Agile Leadership Principles and Practices", "url": "https://www.coursera.org/learn/agile-leadership", "type": "Course", "content_covered": ["Facilitation & Servant Leadership", "Conflict Resolution & Team Coaching"] },
-              { "name": "Introduction to Agile Development and Scrum", "url": "https://www.coursera.org/learn/agile-development-scrum", "type": "Course", "content_covered": ["Agile Fundamentals (Agile Manifesto, Scrum basics)"] },
-              { "name": "Implement the Scrum Framework", "url": "https://www.coursera.org/learn/scrum-framework", "type": "Course", "content_covered": ["Scrum Framework (Roles, Ceremonies, Artifacts)"] },
-              { "name": "Learning Confluence", "url": "https://www.linkedin.com/learning/confluence-essential-training", "type": "Course", "content_covered": ["Confluence (Team Documentation)"] },
-              { "name": "Scrum Master Certification Preparation (PSM I)", "url": "https://www.udemy.com/course/professional-scrum-master-psm-certification-preparation/", "type": "Certification", "content_covered": ["Preparation for PSM I Certification"] },
-              { "name": "Cultivating Enterprising Agile", "url": "https://www.coursera.org/learn/enterprise-agile", "type": "Course", "content_covered": ["Enterprise Agile Concepts", "Agile Transformation Strategies", "Overcoming Agile Adoption Challenges", "Agile Planning Tools"] }
+            { "role": "Operations Manager", "status": "next", "skills_to_master": ["Process Optimization", "Performance Metrics", "Change Management"], "learning_path": [
+              { "name": "Leadership Evolution: RAC Level 1", "url": "https://hertz.csod.com/ui/lms-learning-details/app/curriculum/e3f5f791-6a45-4f1b-b1c0-8a8a832cbe6e", "type": "Course" },
+              { "name": "Leadership Evolution: RAC Level 1 Participant Guide", "url": "https://hertz.sharepoint.com/sites/GlobalLearning/Leadership%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FGlobalLearning%2FLeadership%20Documents%2FFoundations%2FHLE%20Level%201%20Participant%20Guide%2Epdf&parent=%2Fsites%2FGlobalLearning%2FLeadership%20Documents%2FFoundations", "type": "Guide" }
             ]}
           ]
         }
@@ -120,23 +108,35 @@
     },
     {
       "id": "new-horizon",
-      "type": "High Match ⚡",
-      "style": "purple",
-      "color": "#8B5CF6",
+      "type": "New Horizon 🚀",
+      "style": "orange",
+      "color": "#F59E0B",
       "paths": [
         {
-          "id": "operations",
-          "name": "Operations",
-          "matchScore": 7.0,
-          "readiness": "Long term (5-10 years)",
-          "whyItFits": "Opportunity to scale leadership and process management.",
-          "alignedSkills": ["Leadership", "Process Optimization"],
-          "missingSkills": ["Operations Management", "Supply Chain"],
+          "id": "it-path",
+          "name": "Technology",
+          "matchScore": 8.5,
+          "readiness": "Mid term (2-4 years)",
+          "whyItFits": "Leverages your project management and agile background.",
+          "alignedSkills": ["Agile", "Scrum", "Confluence"],
+          "missingSkills": ["Jira Advanced", "Business Process Mapping"],
           "defaultHighlight": false,
           "nodes": [
-            { "role": "Operations Manager", "status": "next", "skills_to_master": ["Process Optimization", "Performance Metrics", "Change Management"], "learning_path": [
-              { "name": "Leadership Evolution: RAC Level 1", "url": "https://hertz.csod.com/ui/lms-learning-details/app/curriculum/e3f5f791-6a45-4f1b-b1c0-8a8a832cbe6e", "type": "Course" },
-              { "name": "Leadership Evolution: RAC Level 1 Participant Guide", "url": "https://hertz.sharepoint.com/sites/GlobalLearning/Leadership%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FGlobalLearning%2FLeadership%20Documents%2FFoundations%2FHLE%20Level%201%20Participant%20Guide%2Epdf&parent=%2Fsites%2FGlobalLearning%2FLeadership%20Documents%2FFoundations", "type": "Guide" }
+            { "role": "Business Analyst", "status": "next", "skills_to_master": ["Requirements Gathering", "Process Mapping", "UAT Planning", "Stakeholder Interviewing"], "learning_path": [
+              { "name": "The Complete Business Analysis Fundamentals Course", "url": "https://www.udemy.com/course/business-analysis-fundamentals/", "type": "Course", "content_covered": ["Business Analysis Fundamentals", "Requirements Engineering & Analysis", "Stakeholder Interviewing Techniques", "Business Communication & Documentation"] },
+              { "name": "Agile Business Analyst (The Power of the Agile BA)", "url": "https://www.udemy.com/course/agile-business-analyst/", "type": "Course", "content_covered": ["User Stories & Acceptance Criteria"] },
+              { "name": "Fundamentals of Business Process Mapping", "url": "https://www.linkedin.com/learning/business-process-modeling", "type": "Course", "content_covered": ["Process Mapping (Swimlanes, Flow Diagrams)"] },
+              { "name": "User Acceptance Testing (UAT)", "url": "https://www.linkedin.com/learning/user-acceptance-testing", "type": "Course", "content_covered": ["UAT Planning", "Test Case Writing"] },
+              { "name": "Learning Confluence", "url": "https://www.linkedin.com/learning/confluence-essential-training", "type": "Course", "content_covered": ["Confluence (Requirements Documentation)"] }
+            ]},
+            { "role": "Scrum Master", "status": "future", "skills_to_master": ["Agile Methodologies", "Servant Leadership", "Sprint Planning", "Jira Management"], "learning_path": [
+              { "name": "Agile with Atlassian Jira", "url": "https://www.coursera.org/learn/agile-atlassian-jira", "type": "Course", "content_covered": ["Jira (Boards, Sprints, Burndown)", "Sprint Planning & Backlog Management", "Agile Metrics & Team Health Metrics", "Continuous Improvement & Retrospectives"] },
+              { "name": "Agile Leadership Principles and Practices", "url": "https://www.coursera.org/learn/agile-leadership", "type": "Course", "content_covered": ["Facilitation & Servant Leadership", "Conflict Resolution & Team Coaching"] },
+              { "name": "Introduction to Agile Development and Scrum", "url": "https://www.coursera.org/learn/agile-development-scrum", "type": "Course", "content_covered": ["Agile Fundamentals (Agile Manifesto, Scrum basics)"] },
+              { "name": "Implement the Scrum Framework", "url": "https://www.coursera.org/learn/scrum-framework", "type": "Course", "content_covered": ["Scrum Framework (Roles, Ceremonies, Artifacts)"] },
+              { "name": "Learning Confluence", "url": "https://www.linkedin.com/learning/confluence-essential-training", "type": "Course", "content_covered": ["Confluence (Team Documentation)"] },
+              { "name": "Scrum Master Certification Preparation (PSM I)", "url": "https://www.udemy.com/course/professional-scrum-master-psm-certification-preparation/", "type": "Certification", "content_covered": ["Preparation for PSM I Certification"] },
+              { "name": "Cultivating Enterprising Agile", "url": "https://www.coursera.org/learn/enterprise-agile", "type": "Course", "content_covered": ["Enterprise Agile Concepts", "Agile Transformation Strategies", "Overcoming Agile Adoption Challenges", "Agile Planning Tools"] }
             ]}
           ]
         }
