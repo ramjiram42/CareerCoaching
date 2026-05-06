@@ -8,6 +8,7 @@ import {
   ChevronDown, ExternalLink, Globe, Layout, UserCircle
 } from 'lucide-react'
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 // ─── Profile Data for John (Resume Focused) ─────────────────────────
 const PROFILE = {
@@ -72,21 +73,21 @@ const TabIcon = ({ icon: Icon, color, isActive }: { icon: any, color: string, is
   </div>
 )
 
-const TABS = (activeTab: string) => [
-  { id: 'personalize', label: 'PERSONALIZE', icon: (isActive: boolean) => <TabIcon icon={Settings} color="#FF8C00" isActive={isActive} /> },
-  { id: 'talents', label: 'TALENTS', icon: (isActive: boolean) => <TabIcon icon={Star} color="#FFD700" isActive={isActive} /> },
-  { id: 'feedback', label: 'FEEDBACK', icon: (isActive: boolean) => <TabIcon icon={MessageSquare} color="#3B82F6" isActive={isActive} /> },
-  { id: 'about', label: 'ABOUT ME', icon: (isActive: boolean) => <TabIcon icon={UserCircle} color="#EC4899" isActive={isActive} /> },
+const TABS = (t: (key: string) => string, activeTab: string) => [
+  { id: 'personalize', label: t('PERSONALIZE'), icon: (isActive: boolean) => <TabIcon icon={Settings} color="#FF8C00" isActive={isActive} /> },
+  { id: 'talents', label: t('TALENTS'), icon: (isActive: boolean) => <TabIcon icon={Star} color="#FFD700" isActive={isActive} /> },
+  { id: 'feedback', label: t('FEEDBACK'), icon: (isActive: boolean) => <TabIcon icon={MessageSquare} color="#3B82F6" isActive={isActive} /> },
+  { id: 'about', label: t('ABOUT_ME'), icon: (isActive: boolean) => <TabIcon icon={UserCircle} color="#EC4899" isActive={isActive} /> },
 ]
 
 export default function ProfilePage() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('personalize')
 
   return (
     <main style={{ 
       backgroundColor: '#f4f5f7', 
       minHeight: '100vh', 
-      fontFamily: "'Outfit', 'Inter', sans-serif",
       color: '#1a202c'
     }}>
       {/* Banner Section */}
@@ -114,7 +115,7 @@ export default function ProfilePage() {
                 backdropFilter: 'blur(6px)',
                 border: '1px solid rgba(255,255,255,0.1)'
               }}>
-                View profile as Me <ChevronDown size={14} />
+                {t('VIEW_PROFILE_AS_ME')} <ChevronDown size={14} />
               </button>
            </div>
         </div>
@@ -235,7 +236,7 @@ export default function ProfilePage() {
       <div style={{ borderBottom: '1px solid #e0e0e0', backgroundColor: '#fff', marginTop: '20px' }}>
         <div className="container">
           <div style={{ display: 'flex', gap: 64 }}>
-            {TABS(activeTab).map(tab => (
+            {TABS(t, activeTab).map(tab => (
               <button 
                 key={tab.id}
                 className="tab-button"
@@ -286,17 +287,17 @@ export default function ProfilePage() {
                <div style={{ background: '#333', color: '#fff', borderRadius: '50%', padding: 8 }}>
                   <User size={20} />
                </div>
-               <h2 style={{ fontSize: '20px', fontWeight: 600, color: '#333', margin: 0 }}>Career Engagers and Satisfaction</h2>
+               <h2 style={{ fontSize: '20px', fontWeight: 600, color: '#333', margin: 0 }}>{t('CAREER_ENGAGERS_SATISFACTION')}</h2>
             </div>
             <p style={{ color: '#666', fontSize: '14px', marginBottom: 32 }}>
-              Now you have completed the Career Engagers please complete the <span style={{ color: '#D81B60', textDecoration: 'underline', cursor: 'pointer', fontWeight: 700 }}>Satisfaction Ratings</span> tool.
+              {t('COMPLETE_SATISFACTION_TEXT_1')}<span style={{ color: '#D81B60', textDecoration: 'underline', cursor: 'pointer', fontWeight: 700 }}>{t('SATISFACTION_RATINGS')}</span>{t('COMPLETE_SATISFACTION_TEXT_2')}
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
-               <ResultCard label="Results" icon="🏆" />
-               <ResultCard label="Teamwork" icon="👥" />
-               <ResultCard label="Achievement" icon="⛰️" />
-               <ResultCard label="Quality" icon="🖊️" />
+               <ResultCard label={t('RESULTS')} icon="🏆" />
+               <ResultCard label={t('TEAMWORK_TITLE')} icon="👥" />
+               <ResultCard label={t('ACHIEVEMENT')} icon="⛰️" />
+               <ResultCard label={t('QUALITY')} icon="🖊️" />
             </div>
           </div>
 
@@ -308,9 +309,9 @@ export default function ProfilePage() {
                padding: '24px',
                boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
              }}>
-                <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#333', margin: '0 0 16px 0' }}>Next up</h3>
+                <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#333', margin: '0 0 16px 0' }}>{t('NEXT_UP')}</h3>
                 <p style={{ fontSize: '14px', color: '#666', margin: 0 }}>
-                  Complete the <span style={{ color: '#D81B60', fontWeight: 800, cursor: 'pointer' }}>My Satisfaction</span> tool
+                  {t('COMPLETE_SATISFACTION_TEXT_1').split(' ').slice(0, 3).join(' ')} {t('MY_SATISFACTION')}
                 </p>
              </div>
 
@@ -320,11 +321,11 @@ export default function ProfilePage() {
                padding: '24px',
                boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
              }}>
-                <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#333', margin: '0 0 20px 0' }}>Insights for</h3>
+                <h3 style={{ fontSize: '16px', fontWeight: 600, color: '#333', margin: '0 0 20px 0' }}>{t('INSIGHTS_FOR')}</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                   <InsightItem title="Engagers, Satisfaction, Values and Alignment" />
-                   <InsightItem title="Work Style" />
-                   <InsightItem title="Agility Factors" />
+                   <InsightItem t={t} title={t('ENGAGERS_SATISFACTION_VALUES_ALIGNMENT')} />
+                   <InsightItem t={t} title={t('WORK_STYLE')} />
+                   <InsightItem t={t} title={t('AGILITY_FACTORS')} />
                 </div>
              </div>
           </div>
@@ -398,7 +399,7 @@ function ResultCard({ label, icon }: { label: string, icon: string }) {
   )
 }
 
-function InsightItem({ title }: { title: string }) {
+function InsightItem({ t, title }: { t: (key: string) => string, title: string }) {
   return (
     <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
        <div style={{ width: 20, height: 20, borderRadius: '4px', background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>
@@ -415,7 +416,7 @@ function InsightItem({ title }: { title: string }) {
             fontWeight: 800,
             textDecoration: 'underline',
             cursor: 'pointer'
-          }}>Read Report</button>
+          }}>{t('READ_REPORT')}</button>
        </div>
     </div>
   )

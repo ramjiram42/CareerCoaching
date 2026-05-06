@@ -103,7 +103,7 @@ export default function SuggestedMoves({ onBack, userProfile }: SuggestedMovesPr
   );
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: '#fff', zIndex: 2000, fontFamily: "'Inter', sans-serif", overflowY: 'auto', color: '#1f2937' }}>
+    <div style={{ position: 'fixed', inset: 0, background: '#fff', zIndex: 2000, overflowY: 'auto', color: '#1f2937' }}>
       
       {/* 1. Hero Banner */}
       <div style={{ width: '100%', height: 200, position: 'relative', overflow: 'hidden' }}>

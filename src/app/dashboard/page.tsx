@@ -3,6 +3,7 @@ import { CheckCircle, Clock, BookOpen, Star, User, TrendingUp, Sparkles, Target,
 import Link from 'next/link'
 import { ReadinessChart } from './RechartsClient'
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 // Static mock data
 const MODULES = [
@@ -12,6 +13,7 @@ const MODULES = [
 ]
 
 export default function DashboardPage() {
+  const { t } = useLanguage();
   const learningScore = 25
   const readinessScore = 73
 
@@ -20,8 +22,7 @@ export default function DashboardPage() {
       background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 40%, #EFF6FF 100%)', 
       minHeight: '100vh', 
       paddingBottom: '8rem',
-      fontFamily: "'Outfit', 'Inter', sans-serif"
-    }}>
+      }}>
       {/* Premium Fading Header */}
       <div style={{ 
         backgroundImage: 'url("/hero-banner.png")', 
@@ -46,16 +47,16 @@ export default function DashboardPage() {
              <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 28 }}>
                    <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#F59E0B', boxShadow: '0 0 20px rgba(245, 158, 11, 0.6)' }} />
-                   <p style={{ color: '#F59E0B', fontSize: 13, fontWeight: 950, textTransform: 'uppercase', letterSpacing: '0.3em', margin: 0 }}>Strategic Talent Dashboard</p>
+                   <p style={{ color: '#F59E0B', fontSize: 13, fontWeight: 950, textTransform: 'uppercase', letterSpacing: '0.3em', margin: 0 }}>{t('STRATEGIC_TALENT_DASHBOARD')}</p>
                 </div>
                 <h1 style={{ color: '#fff', fontSize: 84, fontWeight: 1000, letterSpacing: '-0.05em', margin: '0 0 16px', lineHeight: 0.85 }}>
-                   Welcome <br /> <span style={{ background: 'linear-gradient(90deg, #F59E0B, #EC4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>John Smith</span>
+                   {t('WELCOME')} <br /> <span style={{ background: 'linear-gradient(90deg, #F59E0B, #EC4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>John Smith</span>
                 </h1>
-                <p style={{ color: '#BFDBFE', fontSize: 22, maxWidth: 650, fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.5, opacity: 0.8 }}>High School Tutor & Server · Hertz Global operations analysis and path calibration.</p>
+                <p style={{ color: '#BFDBFE', fontSize: 22, maxWidth: 650, fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.5, opacity: 0.8 }}>High School Tutor & Server · {t('DASHBOARD_DESC')}</p>
              </div>
              <div style={{ textAlign: 'right' }}>
                 <div style={{ fontSize: 96, fontWeight: 1000, color: '#fff', letterSpacing: '-0.05em', lineHeight: 1 }}>{readinessScore}%</div>
-                <p style={{ fontSize: 13, fontWeight: 950, color: '#F59E0B', textTransform: 'uppercase', letterSpacing: '0.2em' }}>Current Readiness</p>
+                <p style={{ fontSize: 13, fontWeight: 950, color: '#F59E0B', textTransform: 'uppercase', letterSpacing: '0.2em' }}>{t('CURRENT_READINESS')}</p>
              </div>
           </div>
         </div>
@@ -65,14 +66,14 @@ export default function DashboardPage() {
          {/* Stats Row */}
          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 40, marginBottom: 60 }}>
             {[
-              { label: 'Learning Velocity', val: '24%', icon: <BookOpen />, color: '#3B82F6' },
-              { label: 'Network Sync', val: '88%', icon: <Users size={20} />, color: '#10B981' },
-              { label: 'Target Altitude', val: '40k ft', icon: <Compass size={20} />, color: '#F59E0B' },
+              { label: 'LEARNING_VELOCITY', val: '24%', icon: <BookOpen />, color: '#3B82F6' },
+              { label: 'NETWORK_SYNC', val: '88%', icon: <Users size={20} />, color: '#10B981' },
+              { label: 'TARGET_ALTITUDE', val: '40k ft', icon: <Compass size={20} />, color: '#F59E0B' },
             ].map((stat, idx) => (
               <div key={idx} style={{ background: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(20px)', borderRadius: 32, padding: 40, border: '1px solid rgba(255,255,255,0.5)', boxShadow: '0 20px 50px rgba(0,0,0,0.04)' }}>
                  <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
                     <div style={{ width: 44, height: 44, borderRadius: 12, background: `${stat.color}11`, color: stat.color, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{stat.icon}</div>
-                    <span style={{ fontSize: 13, fontWeight: 1000, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{stat.label}</span>
+                    <span style={{ fontSize: 13, fontWeight: 1000, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t(stat.label)}</span>
                  </div>
                  <p style={{ fontSize: 44, fontWeight: 1000, color: '#1E293B', margin: 0 }}>{stat.val}</p>
               </div>
@@ -82,14 +83,14 @@ export default function DashboardPage() {
          <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: 40 }}>
             {/* Learning Path */}
             <div style={{ background: '#fff', borderRadius: 44, padding: 60, border: '1px solid #F1F5F9', boxShadow: '0 40px 100px -20px rgba(0,0,0,0.05)' }}>
-               <h3 style={{ fontSize: 32, fontWeight: 1000, color: '#1E293B', marginBottom: 48 }}>Active Intelligence Modules</h3>
+               <h3 style={{ fontSize: 32, fontWeight: 1000, color: '#1E293B', marginBottom: 48 }}>{t('ACTIVE_INTELLIGENCE_MODULES')}</h3>
                <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
                   {MODULES.map(mod => (
                     <div key={mod.id} style={{ display: 'flex', gap: 24 }}>
                        <div style={{ marginTop: 6 }}><CheckCircle size={28} color={mod.status === 'COMPLETED' ? '#10B981' : '#E2E8F0'} /></div>
                        <div style={{ flex: 1 }}>
-                          <h4 style={{ fontSize: 20, fontWeight: 1000, color: '#1E293B', marginBottom: 6 }}>{mod.title}</h4>
-                          <p style={{ fontSize: 16, color: '#64748B', fontWeight: 500 }}>{mod.description}</p>
+                          <h4 style={{ fontSize: 20, fontWeight: 1000, color: '#1E293B', marginBottom: 6 }}>{mod.title.replace(/\bMgr\b/g, 'Manager')}</h4>
+                          <p style={{ fontSize: 16, color: '#64748B', fontWeight: 500 }}>{mod.description.replace(/\bMgr\b/g, 'Manager')}</p>
                        </div>
                        <div style={{ background: '#F8FAFC', padding: '10px 20px', borderRadius: 16, border: '1px solid #F1F5F9', height: 'fit-content' }}>
                           <span style={{ fontWeight: 1000, fontSize: 13, color: '#64748B' }}>{mod.estimatedHours}H</span>
@@ -102,15 +103,15 @@ export default function DashboardPage() {
             {/* Sidebar Cards */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
                <div style={{ background: '#111827', borderRadius: 44, padding: 48, color: '#fff', boxShadow: '0 40px 90px rgba(0,0,0,0.2)' }}>
-                  <h3 style={{ fontSize: 24, fontWeight: 1000, marginBottom: 24, letterSpacing: '-0.02em' }}>Strategic Sync</h3>
+                  <h3 style={{ fontSize: 24, fontWeight: 1000, marginBottom: 24, letterSpacing: '-0.02em' }}>{t('STRATEGIC_SYNC')}</h3>
                   <div style={{ height: 200, marginBottom: 40 }}>
                      <ReadinessChart learning={40} mentor={10} certs={0} />
                   </div>
-                  <Link href="/skills" style={{ display: 'block', background: '#fff', color: '#111827', padding: '18px', borderRadius: 20, textAlign: 'center', fontWeight: 1000, fontSize: 13, textDecoration: 'none', letterSpacing: '0.05em' }}>SKILL INTELLIGENCE</Link>
+                  <Link href="/skills" style={{ display: 'block', background: '#fff', color: '#111827', padding: '18px', borderRadius: 20, textAlign: 'center', fontWeight: 1000, fontSize: 13, textDecoration: 'none', letterSpacing: '0.05em' }}>{t('SKILL_INTELLIGENCE')}</Link>
                </div>
 
                <div style={{ background: '#FFFBEB', borderRadius: 44, padding: 48, border: '1px solid #FEF3C7' }}>
-                  <p style={{ color: '#92400E', fontSize: 12, fontWeight: 1000, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 24 }}>Next Mentorship Node</p>
+                  <p style={{ color: '#92400E', fontSize: 12, fontWeight: 1000, textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: 24 }}>{t('NEXT_MENTORSHIP_NODE')}</p>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginBottom: 32 }}>
                      <div style={{ width: 64, height: 64, borderRadius: 20, background: '#F59E0B', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Award size={32} />
@@ -120,7 +121,7 @@ export default function DashboardPage() {
                         <p style={{ fontSize: 14, fontWeight: 700, color: '#92400E', margin: 0 }}>Tomorrow, 10:00 AM</p>
                      </div>
                   </div>
-                  <Link href="/mentorship" style={{ display: 'block', padding: '16px', background: '#F59E0B', color: '#fff', borderRadius: 16, textAlign: 'center', fontWeight: 1000, fontSize: 13, textDecoration: 'none' }}>SIMULATE PREP</Link>
+                  <Link href="/mentorship" style={{ display: 'block', padding: '16px', background: '#F59E0B', color: '#fff', borderRadius: 16, textAlign: 'center', fontWeight: 1000, fontSize: 13, textDecoration: 'none' }}>{t('SIMULATE_PREP')}</Link>
                </div>
             </div>
          </div>

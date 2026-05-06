@@ -1,6 +1,7 @@
 'use client';
 import { Target, Flag, Award, CheckCircle2, ChevronRight, TrendingUp, Trophy, Star, Sparkles, MapPin, Shield, Zap } from 'lucide-react';
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const MILESTONES_DATA = [
   { id: 1, title: 'Strategic Operations Phase 1', status: 'Completed', date: 'Oct 2025', desc: 'Mastery of fleet utilization analytics and budget planning.', color: '#10B981', icon: <CheckCircle2 size={22} /> },
@@ -9,13 +10,14 @@ const MILESTONES_DATA = [
 ];
 
 export default function MilestonesPage() {
+  const { t } = useLanguage();
+
   return (
     <main style={{ 
       background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 40%, #E0F2FE 100%)', 
       minHeight: '100vh', 
       paddingBottom: '8rem',
-      fontFamily: "'Outfit', 'Inter', sans-serif"
-    }}>
+      }}>
       {/* Premium Fading Header */}
       <div style={{ 
         background: 'linear-gradient(135deg, #0F172A 0%, #1E293B 100%)', 
@@ -33,7 +35,7 @@ export default function MilestonesPage() {
              <p style={{ color: '#F59E0B', fontSize: 13, fontWeight: 950, textTransform: 'uppercase', letterSpacing: '0.3em', margin: 0 }}>Progress Intelligence Tracking</p>
           </div>
           <h1 style={{ color: '#fff', fontSize: 84, fontWeight: 1000, letterSpacing: '-0.05em', margin: '0 0 16px', lineHeight: 0.85 }}>
-            Career <br /> <span style={{ background: 'linear-gradient(90deg, #F59E0B, #EC4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Milestones</span>
+            {t('CAREER')} <br /> <span style={{ background: 'linear-gradient(90deg, #F59E0B, #EC4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{t('MILESTONES')}</span>
           </h1>
           <p style={{ color: '#94A3B8', fontSize: 22, maxWidth: 650, fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.5 }}>Visualize your professional evolution. Every milestone reached is a step closer to your final cockpit destination.</p>
         </div>
@@ -54,9 +56,9 @@ export default function MilestonesPage() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
                  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                     <div style={{ background: 'linear-gradient(135deg, #3B82F6, #6366F1)', width: 50, height: 50, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', boxShadow: '0 10px 20px rgba(59,130,246,0.3)' }}><TrendingUp size={24} /></div>
-                    <h2 style={{ fontWeight: 1000, fontSize: 32, color: '#1E293B', margin: 0, letterSpacing: '-0.02em' }}>Achievement Timeline</h2>
+                    <h2 style={{ fontWeight: 1000, fontSize: 32, color: '#1E293B', margin: 0, letterSpacing: '-0.02em' }}>{t('ACHIEVEMENT_TIMELINE')}</h2>
                  </div>
-                 <button className="premium-btn-shimmer" style={{ padding: '14px 28px', borderRadius: 18, border: '1px solid #E2E8F0', background: '#fff', color: '#1E293B', fontWeight: 1000, fontSize: 13, cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>AUDIT PROGRESS</button>
+                 <button className="premium-btn-shimmer" style={{ padding: '14px 28px', borderRadius: 18, border: '1px solid #E2E8F0', background: '#fff', color: '#1E293B', fontWeight: 1000, fontSize: 13, cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.03)' }}>{t('AUDIT_PROGRESS')}</button>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative' }}>
@@ -109,7 +111,7 @@ export default function MilestonesPage() {
               }}>
                  <div style={{ position: 'absolute', top: 0, right: 0, opacity: 0.1 }}><Sparkles size={120} color="#F59E0B" /></div>
                  <Trophy size={48} color="#F59E0B" style={{ marginBottom: 30 }} />
-                 <h3 style={{ fontWeight: 1000, fontSize: 28, margin: '0 0 16px', letterSpacing: '-0.02em' }}>Current Vector</h3>
+                 <h3 style={{ fontWeight: 1000, fontSize: 28, margin: '0 0 16px', letterSpacing: '-0.02em' }}>{t('CURRENT_VECTOR')}</h3>
                  <p style={{ color: '#94A3B8', fontSize: 17, fontWeight: 600, lineHeight: 1.6, marginBottom: 40 }}>Your profile is currently <strong style={{ color: '#F59E0B' }}>65% synced</strong> with the Regional Operations Director requirements.</p>
                  
                  <div style={{ position: 'relative', padding: '24px', background: 'rgba(255,255,255,0.03)', borderRadius: 24, border: '1px solid rgba(255,255,255,0.05)' }}>
@@ -122,7 +124,7 @@ export default function MilestonesPage() {
                     </div>
                  </div>
                  
-                 <button style={{ width: '100%', marginTop: 32, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', padding: '16px', borderRadius: 16, color: '#fff', fontWeight: 1000, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.1em', cursor: 'pointer' }}>Unlock Next Node</button>
+                 <button style={{ width: '100%', marginTop: 32, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', padding: '16px', borderRadius: 16, color: '#fff', fontWeight: 1000, fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.1em', cursor: 'pointer' }}>{t('UNLOCK_NEXT_NODE')}</button>
               </div>
 
               <div style={{ 

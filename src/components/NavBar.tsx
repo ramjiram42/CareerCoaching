@@ -139,40 +139,52 @@ export const NavBar = () => {
                 </svg>
              </div>
              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{ fontSize: 24, fontWeight: 950, color: '#111827', lineHeight: 0.9 }}>CAREER</span>
+                <span style={{ fontSize: 24, fontWeight: 950, background: 'linear-gradient(90deg, #f59e0b, #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', lineHeight: 0.9 }}>CAREER</span>
                 <span style={{ fontSize: 12, fontWeight: 800, letterSpacing: '0.25em', color: '#ec4899', marginTop: 4 }}>CONNECTIONS</span>
              </div>
           </Link>
         </div>
 
-        {/* CENTER: Navigation Tabs with Gradient Pill */}
+        {/* CENTER: Navigation Tabs with Glassy Pill */}
         <div style={{ 
-          background: 'rgba(243, 244, 246, 0.5)', 
-          borderRadius: 30, 
-          padding: '6px', 
+          background: 'rgba(255, 255, 255, 0.6)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255, 255, 255, 0.8)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.05)',
+          borderRadius: 40, 
+          padding: '8px', 
           display: 'flex', 
-          gap: 4, 
+          gap: 6, 
           position: 'relative' 
         }}>
            {navLinks.map((link, idx) => {
              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+             const isHovered = hoveredIdx === idx;
              return (
                <Link 
                  key={link.name} 
                  href={link.href}
                  ref={(el) => { navRefs.current[idx] = el; }}
+                 onMouseEnter={() => setHoveredIdx(idx)}
+                 onMouseLeave={() => setHoveredIdx(null)}
                  style={{
                    textDecoration: 'none',
-                   fontSize: 13,
-                   padding: '12px 24px',
+                   fontSize: 15,
+                   padding: '14px 28px',
                    fontWeight: 800,
-                   color: isActive ? '#fff' : '#4B5563',
-                   borderRadius: 24,
+                   color: isActive ? '#fff' : (isHovered ? '#0f172a' : '#4B5563'),
+                   borderRadius: 30,
                    position: 'relative',
                    zIndex: 2,
-                   background: isActive ? 'linear-gradient(90deg, #f59e0b, #ec4899)' : 'transparent',
-                   boxShadow: isActive ? '0 10px 20px rgba(236, 72, 153, 0.3)' : 'none',
-                   transition: 'all 0.3s ease'
+                   background: isActive 
+                     ? 'linear-gradient(135deg, #f59e0b, #ec4899)' 
+                     : (isHovered ? 'linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.4))' : 'transparent'),
+                   boxShadow: isActive 
+                     ? '0 10px 25px rgba(236, 72, 153, 0.4), inset 0 1px 0 rgba(255,255,255,0.3)' 
+                     : (isHovered ? '0 4px 15px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.8)' : 'none'),
+                   border: isActive ? '1px solid transparent' : (isHovered ? '1px solid rgba(255,255,255,0.8)' : '1px solid transparent'),
+                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
                  }}
                >
                  {t(link.name)}

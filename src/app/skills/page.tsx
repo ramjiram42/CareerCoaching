@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { TrendingUp, Zap, Target, BookOpen, BarChart3, AlertTriangle, CheckCircle, ArrowRight, ChevronRight, Star, Sparkles, Shield, Compass, Award } from 'lucide-react'
 import React from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 // ─── Skills Data ─────────────────────────────────────────
 const SKILL_PORTFOLIO = [
@@ -40,18 +41,18 @@ const UPSKILLING_PATHS = [
 const TABS = ['portfolio', 'gaps', 'benchmarking', 'emerging', 'upskilling'] as const
 type Tab = typeof TABS[number]
 
-const tabLabels: Record<Tab, string> = {
-  portfolio: 'Skill Portfolio',
-  gaps: 'Gap Resolver',
-  benchmarking: 'Benchmarking',
-  emerging: 'Emerging Radar',
-  upskilling: 'Upskilling Plan',
-}
-
 export default function SkillsPage() {
+  const { t } = useLanguage();
   const [tab, setTab] = useState<Tab>('portfolio')
   const [category, setCategory] = useState('All')
-  const categories = ['All', ...Array.from(new Set(SKILL_PORTFOLIO.map(s => s.category)))]
+
+  const tabLabels: Record<Tab, string> = {
+    portfolio: t('SKILL_PORTFOLIO'),
+    gaps: 'Gap Resolver',
+    benchmarking: 'Benchmarking',
+    emerging: 'Emerging Radar',
+    upskilling: 'Upskilling Plan',
+  }
 
   const filtered = category === 'All' ? SKILL_PORTFOLIO : SKILL_PORTFOLIO.filter(s => s.category === category)
   const owned = filtered.filter(s => s.owned)
@@ -62,8 +63,7 @@ export default function SkillsPage() {
       background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 40%, #EDE9FE 100%)', 
       minHeight: '100vh', 
       paddingBottom: '8rem',
-      fontFamily: "'Outfit', 'Inter', sans-serif"
-    }}>
+      }}>
       {/* Premium Fading Header */}
       <div style={{ 
         background: 'linear-gradient(135deg, #4C1D95 0%, #5B21B6 100%)', 
@@ -80,7 +80,7 @@ export default function SkillsPage() {
              <p style={{ color: '#A78BFA', fontSize: 13, fontWeight: 950, textTransform: 'uppercase', letterSpacing: '0.3em', margin: 0 }}>Human Capital Intelligence</p>
           </div>
           <h1 style={{ color: '#fff', fontSize: 84, fontWeight: 1000, letterSpacing: '-0.05em', margin: '0 0 16px', lineHeight: 0.85 }}>
-            Skill <br /> <span style={{ background: 'linear-gradient(90deg, #A78BFA, #EC4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Portfolio</span>
+            {t('SKILLS')} <br /> <span style={{ background: 'linear-gradient(90deg, #A78BFA, #EC4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Portfolio</span>
           </h1>
           <p style={{ color: '#DDD6FE', fontSize: 22, maxWidth: 650, fontWeight: 600, letterSpacing: '0.01em', lineHeight: 1.5, opacity: 0.8 }}>Calibrate your technical arsenal. Deep analysis of your current capabilities against global Hertz benchmarks.</p>
         </div>
@@ -100,16 +100,16 @@ export default function SkillsPage() {
           gap: 12,
           marginBottom: 60
         }}>
-           {TABS.map(t => (
+           {TABS.map(t_id => (
              <button 
-              key={t} 
-              onClick={() => setTab(t)} 
+              key={t_id} 
+              onClick={() => setTab(t_id)} 
               style={{ 
                 padding: '16px 32px', 
                 borderRadius: 18, 
                 border: 'none', 
-                background: tab === t ? '#4C1D95' : 'transparent', 
-                color: tab === t ? '#fff' : '#64748B', 
+                background: tab === t_id ? '#4C1D95' : 'transparent', 
+                color: tab === t_id ? '#fff' : '#64748B', 
                 fontWeight: 1000, 
                 fontSize: 13, 
                 letterSpacing: '0.05em',
@@ -117,7 +117,7 @@ export default function SkillsPage() {
                 transition: 'all 0.3s'
               }}
              >
-                {tabLabels[t].toUpperCase()}
+                {tabLabels[t_id].toUpperCase()}
              </button>
            ))}
         </div>
@@ -137,7 +137,7 @@ export default function SkillsPage() {
                 <div>
                    <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 40 }}>
                       <CheckCircle size={28} color="#10B981" />
-                      <h2 style={{ fontSize: 32, fontWeight: 1000, color: '#1E293B', margin: 0 }}>Validated Mastery</h2>
+                      <h2 style={{ fontSize: 32, fontWeight: 1000, color: '#1E293B', margin: 0 }}>{t('VALIDATED_MASTERY')}</h2>
                    </div>
                    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                       {owned.map(s => (
@@ -158,7 +158,7 @@ export default function SkillsPage() {
                 <div>
                    <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 40 }}>
                       <AlertTriangle size={28} color="#F59E0B" />
-                      <h2 style={{ fontSize: 32, fontWeight: 1000, color: '#1E293B', margin: 0 }}>Strategic Gaps</h2>
+                      <h2 style={{ fontSize: 32, fontWeight: 1000, color: '#1E293B', margin: 0 }}>{t('STRATEGIC_GAPS')}</h2>
                    </div>
                    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
                       {gaps.map(s => (
@@ -180,8 +180,8 @@ export default function SkillsPage() {
            {tab !== 'portfolio' && (
              <div style={{ textAlign: 'center', padding: '100px 0' }}>
                 <Sparkles size={64} color="#A78BFA" style={{ marginBottom: 24 }} />
-                <h2 style={{ fontSize: 32, fontWeight: 1000, color: '#1E293B', marginBottom: 16 }}>Intelligence Loading...</h2>
-                <p style={{ color: '#64748B', fontSize: 18, fontWeight: 600 }}>Closing the loop on your professional trajectory analysis.</p>
+                <h2 style={{ fontSize: 32, fontWeight: 1000, color: '#1E293B', marginBottom: 16 }}>{t('INTELLIGENCE_LOADING')}</h2>
+                <p style={{ color: '#64748B', fontSize: 18, fontWeight: 600 }}>{t('CLOSING_LOOP')}</p>
              </div>
            )}
         </div>

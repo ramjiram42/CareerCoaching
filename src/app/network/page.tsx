@@ -16,8 +16,7 @@ export default function NetworkPage() {
       background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 40%, #F0FDF4 100%)', 
       minHeight: '100vh', 
       paddingBottom: '8rem',
-      fontFamily: "'Outfit', 'Inter', sans-serif"
-    }}>
+      }}>
       {/* Premium Fading Header */}
       <div style={{ 
         background: 'linear-gradient(135deg, #064E3B 0%, #065F46 100%)', 

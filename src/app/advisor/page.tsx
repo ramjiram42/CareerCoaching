@@ -469,7 +469,7 @@ export default function AdvisorPage() {
               onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send() } }}
               placeholder="Ask about your career path, skill gaps, open roles, gigs, mentors..."
               rows={1}
-              style={{ flex: 1, resize: 'none', border: 'none', outline: 'none', fontSize: '0.95rem', lineHeight: 1.5, color: '#111827', background: 'transparent', padding: '0.25rem 0.5rem', fontFamily: 'inherit' }}
+              style={{ flex: 1, resize: 'none', border: 'none', outline: 'none', fontSize: '0.95rem', lineHeight: 1.5, color: '#111827', background: 'transparent', padding: '0.25rem 0.5rem' }}
             />
             <button onClick={() => send()} style={{ width: 44, height: 44, background: input.trim() ? '#FFD100' : '#F1F5F9', border: 'none', borderRadius: 14, cursor: input.trim() ? 'pointer' : 'default', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'background 0.2s' }}>
               <Send size={18} color={input.trim() ? '#000' : '#9CA3AF'} />

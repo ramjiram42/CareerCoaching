@@ -801,9 +801,9 @@ export function AIProfileAnalyzer() {
       id: '2',
       pathId: 'it-path',
       role: 'Technology',
-      label: 'High Match',
+      label: 'New Horizon',
       labelColor: '#F59E0B',
-      match: 'HIGH_MATCH',
+      match: 'NEW_HORIZON',
       matchColor: '#F59E0B',
       badge: 'NEXT_STEP',
       badgeColor: '#F59E0B',
@@ -825,9 +825,9 @@ export function AIProfileAnalyzer() {
       id: '4',
       pathId: 'operations',
       role: 'Operations',
-      label: 'New Horizon',
+      label: 'High Match',
       labelColor: '#8B5CF6',
-      match: 'NEW_HORIZON',
+      match: 'HIGH_MATCH',
       matchColor: '#8B5CF6',
       badge: 'EXPLORE',
       badgeColor: '#8B5CF6',
@@ -859,8 +859,7 @@ export function AIProfileAnalyzer() {
         margin: '100px auto', 
         padding: '20px',
         position: 'relative',
-        fontFamily: "'Outfit', 'Inter', sans-serif"
-      }}>
+        }}>
          <div style={{ position: 'absolute', inset: -100, pointerEvents: 'none', zIndex: 0 }}>
             <div className="light-particle" style={{ position: 'absolute', top: '20%', left: '10%', width: 4, height: 4, background: '#f59e0b', borderRadius: '50%', filter: 'blur(2px)', animation: 'floatParticle 8s infinite ease-in-out' }} />
             <div className="light-particle" style={{ position: 'absolute', top: '70%', left: '20%', width: 6, height: 6, background: '#ec4899', borderRadius: '50%', filter: 'blur(3px)', animation: 'floatParticle 12s infinite ease-in-out', animationDelay: '2s' }} />
@@ -996,7 +995,7 @@ export function AIProfileAnalyzer() {
 
   if (step === 'analyzing') {
     return (
-      <div style={{ maxWidth: 600, margin: '160px auto', textAlign: 'center', fontFamily: "'Outfit', 'Inter', sans-serif" }}>
+      <div style={{ maxWidth: 600, margin: '160px auto', textAlign: 'center', }}>
         <div style={{ position: 'relative', width: 100, height: 100, margin: '0 auto 40px' }}>
           <div style={{ position: 'absolute', inset: 0, border: '8px solid #F1F5F9', borderRadius: '50%' }} />
           <div style={{ position: 'absolute', inset: 0, border: '8px solid #FFD100', borderRadius: '50%', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite' }} />
@@ -1015,7 +1014,7 @@ export function AIProfileAnalyzer() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 40%, #E0F2FE 100%)', width: '100%', paddingBottom: 100, overflowX: 'hidden', color: '#111827', fontFamily: "'Outfit', 'Inter', sans-serif" }}>
+    <div style={{ minHeight: '100vh', background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 40%, #E0F2FE 100%)', width: '100%', paddingBottom: 100, overflowX: 'hidden', color: '#111827', }}>
       
       <div style={{ background: 'rgba(255, 255, 255, 0.5)', width: '100%', borderBottom: '1px solid rgba(229, 231, 235, 0.5)', backdropFilter: 'blur(10px)', sticky: 'top', zIndex: 100 }}>
         <div style={{ position: 'relative', height: 220, overflow: 'hidden' }}>

@@ -4,8 +4,10 @@ import { UploadCloud, Cpu, Sparkles, ShieldCheck, ArrowRight, Zap, Target } from
 import { useState, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useLanguage } from '@/context/LanguageContext';
 
 export function ResumeUploadSection() {
+  const { t } = useLanguage();
   const [isUploading] = useState(false)
   const [resumeUploaded] = useState(true) 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -34,8 +36,8 @@ export function ResumeUploadSection() {
          <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(245, 158, 11, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24, border: '1px solid rgba(245, 158, 11, 0.2)' }}>
             <UploadCloud size={32} color="#f59e0b" />
          </div>
-         <h2 style={{ fontSize: 24, fontWeight: 900, color: '#fff', margin: 0, fontFamily: '"Outfit", sans-serif' }}>Upload Professional History</h2>
-         <p style={{ color: '#94A3B8', marginTop: 8, fontSize: 14 }}>Let our Neural Engine map your Hertz trajectory</p>
+         <h2 style={{ fontSize: 24, fontWeight: 900, color: '#fff', margin: 0, }}>{t('UPLOAD_PROFESSIONAL_HISTORY')}</h2>
+         <p style={{ color: '#94A3B8', marginTop: 8, fontSize: 14 }}>{t('NEURAL_ENGINE_MAP_TRAJECTORY')}</p>
        </div>
     );
   }
@@ -107,7 +109,7 @@ export function ResumeUploadSection() {
 
              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                   <h1 style={{ fontSize: 44, color: '#fff', margin: 0, fontWeight: 1000, fontFamily: '"Outfit", sans-serif', letterSpacing: '-0.02em', lineHeight: 0.9 }}>John Smith</h1>
+                   <h1 style={{ fontSize: 44, color: '#fff', margin: 0, fontWeight: 1000, letterSpacing: '-0.02em', lineHeight: 0.9 }}>John Smith</h1>
                    <div style={{ 
                       padding: '4px 12px', 
                       background: 'rgba(16, 185, 129, 0.1)', 
@@ -119,7 +121,7 @@ export function ResumeUploadSection() {
                       letterSpacing: '0.1em',
                       textTransform: 'uppercase'
                    }}>
-                      Resume Active
+                      {t('RESUME_ACTIVE')}
                    </div>
                 </div>
                 <p style={{ fontSize: 18, color: '#94A3B8', fontWeight: 800, letterSpacing: '0.15em', textTransform: 'uppercase', margin: '4px 0', opacity: 0.8 }}>
@@ -127,7 +129,7 @@ export function ResumeUploadSection() {
                 </p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
                    <Cpu size={14} color="#f59e0b" />
-                   <span style={{ fontSize: 13, fontWeight: 800, color: '#f59e0b', letterSpacing: '0.05em' }}>Neural Engine Ready</span>
+                   <span style={{ fontSize: 13, fontWeight: 800, color: '#f59e0b', letterSpacing: '0.05em' }}>{t('NEURAL_ENGINE_READY')}</span>
                 </div>
              </div>
           </div>
@@ -135,29 +137,21 @@ export function ResumeUploadSection() {
           {/* RIGHT: ACTIONS */}
           <div style={{ display: 'flex', gap: 20, position: 'relative', zIndex: 1 }}>
              <button 
-               style={{ 
-                 background: 'rgba(255,255,255,0.05)', 
-                 color: '#fff', 
-                 padding: '24px 36px', 
-                 borderRadius: 18, 
-                 fontWeight: 900, 
-                 border: 'none', 
-                 fontSize: 14, 
-                 textTransform: 'uppercase', 
-                 letterSpacing: '0.15em',
-                 cursor: 'pointer',
-                 transition: 'all 0.3s ease',
-               }}
-               onMouseEnter={(e) => {
-                 e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-                 e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
-               }}
-               onMouseLeave={(e) => {
-                 e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-                 e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
-               }}
+                style={{ 
+                  background: 'rgba(255,255,255,0.05)', 
+                  color: '#fff', 
+                  padding: '24px 36px', 
+                  borderRadius: 18, 
+                  fontWeight: 900, 
+                  border: 'none', 
+                  fontSize: 14, 
+                  textTransform: 'uppercase', 
+                  letterSpacing: '0.15em',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                }}
              >
-                Upload Resume
+                {t('UPLOAD_RESUME')}
              </button>
              <Link 
                href="/your-move"
@@ -179,16 +173,8 @@ export function ResumeUploadSection() {
                  boxShadow: '0 15px 35px rgba(236, 72, 153, 0.4)',
                  transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
                }}
-               onMouseEnter={(e) => {
-                 e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
-                 e.currentTarget.style.boxShadow = '0 20px 45px rgba(236, 72, 153, 0.5)';
-               }}
-               onMouseLeave={(e) => {
-                 e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                 e.currentTarget.style.boxShadow = '0 15px 35px rgba(236, 72, 153, 0.4)';
-               }}
              >
-                Skip to Results <ArrowRight size={18} />
+                {t('SKIP_TO_RESULTS')} <ArrowRight size={18} />
              </Link>
           </div>
        </div>
@@ -197,7 +183,7 @@ export function ResumeUploadSection() {
        <div style={{ display: 'flex', alignItems: 'center', gap: 12, opacity: 0.6 }}>
           <div style={{ width: 40, height: 1, background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2))' }} />
           <p style={{ fontSize: 11, color: '#94A3B8', fontWeight: 700, letterSpacing: '0.15em', margin: 0, textTransform: 'uppercase' }}>
-             Hertz Career Forge is powered by <span style={{ color: '#fff' }}>Intelligent Neural Pathfinding.</span>
+             {t('HERTZ_CAREER_FORGE_POWERED_BY')}<span style={{ color: '#fff' }}>{t('INTELLIGENT_NEURAL_PATHFINDING')}</span>
           </p>
           <div style={{ width: 40, height: 1, background: 'linear-gradient(90deg, rgba(255,255,255,0.2), transparent)' }} />
        </div>

@@ -16,7 +16,7 @@ const gigs = [
 
 export default function GigsPage() {
   return (
-    <main style={{ background: '#fff', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
+    <main style={{ background: '#fff', minHeight: '100vh', }}>
       
       {/* 1. Hero Banner - Standardized Branding */}
       <div style={{ width: '100%', height: 260, position: 'relative', overflow: 'hidden' }}>

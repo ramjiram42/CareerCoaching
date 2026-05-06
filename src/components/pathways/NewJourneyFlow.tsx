@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Search, User, ArrowRight, ChevronDown, HelpCircle, X, Compass, ChevronLeft, ChevronRight, Rocket, Cpu, Zap, Target } from 'lucide-react';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface NewJourneyFlowProps {
   onFindJourney: (role: string) => void;
@@ -9,8 +10,8 @@ interface NewJourneyFlowProps {
 }
 
 const TARGET_ROLE_OPTIONS = [
-  { label: 'In my function', roles: ['Incentive Compensation', 'Technology'] },
-  { label: 'Other functions', roles: ['Learning & Development', 'Operations'] }
+  { label: 'IN_MY_FUNCTION', roles: ['Incentive Compensation', 'Technology'] },
+  { label: 'OTHER_FUNCTIONS', roles: ['Learning & Development', 'Operations'] }
 ];
 
 // Removed the last one ("Product Manager (AI)") as requested
@@ -27,10 +28,11 @@ const NEXT_STEPS_DATA = [
 ];
 
 export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFlowProps) {
+  const { t } = useLanguage();
   const [stage, setStage] = useState<'form' | 'simulating' | 'results'>('form');
   const [targetRole, setTargetRole] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-  const [activeTab, setActiveTab] = useState('In my function');
+  const [activeTab, setActiveTab] = useState('IN_MY_FUNCTION');
 
   const filteredRoles = TARGET_ROLE_OPTIONS.find(t => t.label === activeTab)?.roles || [];
 
@@ -72,8 +74,8 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
            <div style={{ position: 'absolute', top: '50%', left: '-20%', right: '-20%', height: 2, background: 'linear-gradient(90deg, transparent, #3B82F6, transparent)', boxShadow: '0 0 15px #3B82F6', animation: 'scan 2s linear infinite' }} />
         </div>
         
-        <h2 style={{ fontSize: 32, fontWeight: 900, color: '#111827', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Calibrating Trajectory</h2>
-        <p style={{ fontSize: 18, color: '#6B7280', fontWeight: 500, maxWidth: 500 }}>Our AI engine is analyzing 15,000+ career data points to optimize your next move into <span style={{ color: '#3B82F6', fontWeight: 800 }}>{targetRole}</span>...</p>
+        <h2 style={{ fontSize: 32, fontWeight: 900, color: '#111827', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t('CALIBRATING_TRAJECTORY')}</h2>
+        <p style={{ fontSize: 18, color: '#6B7280', fontWeight: 500, maxWidth: 500 }}>{t('AI_ENGINE_ANALYZING_1')}<span style={{ color: '#3B82F6', fontWeight: 800 }}>{targetRole}</span>{t('AI_ENGINE_ANALYZING_2')}</p>
         
         <div style={{ marginTop: 40, width: 300, height: 6, background: '#F3F4F6', borderRadius: 3, overflow: 'hidden' }}>
            <div style={{ height: '100%', background: 'linear-gradient(90deg, #3B82F6, #EC4899)', width: '0%', animation: 'progress 5s linear forwards' }} />
@@ -108,7 +110,7 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
           onClick={() => setStage('form')}
           style={{ position: 'absolute', top: 32, left: 32, background: 'none', border: 'none', cursor: 'pointer', color: '#6B7280', display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, fontSize: 13 }}
         >
-          <ChevronLeft size={20} /> BACK TO SEARCH
+          <ChevronLeft size={20} /> {t('BACK_TO_SEARCH')}
         </button>
 
         <button 
@@ -164,7 +166,7 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
         <div style={{ display: 'flex', alignItems: 'center', margin: '40px 0 60px' }}>
             <div style={{ height: 1, flex: 1, background: '#E5E7EB' }}></div>
             <div style={{ padding: '0 20px', display: 'flex', alignItems: 'center', gap: 10 }}>
-               <span style={{ fontSize: 11, fontWeight: 800, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.2em' }}>STRETCH OPPORTUNITIES</span>
+               <span style={{ fontSize: 11, fontWeight: 800, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.2em' }}>{t('STRETCH_OPPORTUNITIES')}</span>
             </div>
             <div style={{ height: 1, flex: 1, background: '#E5E7EB' }}></div>
         </div>
@@ -206,9 +208,9 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
 
       <div style={{ textAlign: 'center', marginBottom: 70 }}>
         <h2 style={{ fontSize: 48, fontWeight: 850, color: '#111827', marginBottom: 12, letterSpacing: '-0.02em', textTransform: 'uppercase' }}>
-          Find a <span style={{ color: '#3B82F6' }}>journey</span>
+          {t('FIND_A_JOURNEY')}<span style={{ color: '#3B82F6' }}>journey</span>
         </h2>
-        <p style={{ fontSize: 18, color: '#6B7280', fontWeight: 500 }}>Simulate your career trajectory with the simulation engine.</p>
+        <p style={{ fontSize: 18, color: '#6B7280', fontWeight: 500 }}>{t('SIMULATE_CAREER_TRAJECTORY')}</p>
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 50, marginBottom: 90, position: 'relative' }}>
@@ -218,7 +220,7 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
                 <Image src="/john_profile.png" width={100} height={100} alt="Start" style={{ objectFit: 'cover' }} priority />
               </div>
             </div>
-            <span style={{ marginTop: 16, fontSize: 11, fontWeight: 800, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Current Location</span>
+            <span style={{ marginTop: 16, fontSize: 11, fontWeight: 800, color: '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t('CURRENT_LOCATION')}</span>
          </div>
 
          <div style={{ flex: 1, position: 'relative', display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
@@ -232,27 +234,27 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
             <div style={{ width: 100, height: 100, borderRadius: '50%', background: '#F9FAFB', border: '1px solid #E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'center', color: targetRole ? '#3B82F6' : '#D1D5DB', transition: 'all 0.3s' }}>
               <Rocket size={44} />
             </div>
-            <span style={{ marginTop: 16, fontSize: 11, fontWeight: 800, color: targetRole ? '#3B82F6' : '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Destination</span>
+            <span style={{ marginTop: 16, fontSize: 11, fontWeight: 800, color: targetRole ? '#3B82F6' : '#9CA3AF', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t('DESTINATION')}</span>
          </div>
       </div>
 
       <div style={{ display: 'flex', gap: 30, justifyContent: 'center', alignItems: 'flex-start', flexWrap: 'wrap' }}>
          <div style={{ flex: 1, minWidth: '320px' }}>
-            <div style={{ padding: '4px 10px', fontSize: 11, fontWeight: 700, color: '#6B7280', letterSpacing: '0.05em', marginBottom: 8, textTransform: 'uppercase' }}>Current Designation</div>
+            <div style={{ padding: '4px 10px', fontSize: 11, fontWeight: 700, color: '#6B7280', letterSpacing: '0.05em', marginBottom: 8, textTransform: 'uppercase' }}>{t('CURRENT_DESIGNATION')}</div>
             <input readOnly value="High School Tutor & Server" style={{ width: '100%', padding: '18px 24px', borderRadius: 16, border: '1px solid #E5E7EB', fontSize: 16, fontWeight: 700, color: '#111827', background: '#F9FAFB', outline: 'none' }} />
          </div>
 
          <div style={{ position: 'relative', flex: 1, minWidth: '320px' }}>
-            <div style={{ padding: '4px 10px', fontSize: 11, fontWeight: 700, color: '#6B7280', letterSpacing: '0.05em', marginBottom: 8, textTransform: 'uppercase' }}>Target Designation</div>
+            <div style={{ padding: '4px 10px', fontSize: 11, fontWeight: 700, color: '#6B7280', letterSpacing: '0.05em', marginBottom: 8, textTransform: 'uppercase' }}>{t('TARGET_DESIGNATION')}</div>
             <div onClick={() => setShowDropdown(!showDropdown)} style={{ width: '100%', padding: '18px 24px', borderRadius: 16, border: showDropdown ? '2px solid #3B82F6' : '1px solid #E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#fff', cursor: 'pointer', transition: 'all 0.2s' }}>
-               <span style={{ color: targetRole ? '#111827' : '#9CA3AF', fontSize: 16, fontWeight: 700 }}>{targetRole || 'Select target role...'}</span>
+               <span style={{ color: targetRole ? '#111827' : '#9CA3AF', fontSize: 16, fontWeight: 700 }}>{targetRole || t('SELECT_TARGET_ROLE')}</span>
                <ChevronDown size={22} color={targetRole ? '#3B82F6' : '#9CA3AF'} />
             </div>
             {showDropdown && (
                <div style={{ position: 'absolute', top: '110%', left: 0, right: 0, background: '#fff', borderRadius: 16, border: '1px solid #E5E7EB', boxShadow: '0 20px 40px rgba(0,0,0,0.1)', zIndex: 100, overflow: 'hidden' }}>
                   <div style={{ display: 'flex', background: '#F9FAFB', borderBottom: '1px solid #F3F4F6' }}>
                      {TARGET_ROLE_OPTIONS.map(opt => (
-                        <button key={opt.label} onClick={(e) => { e.stopPropagation(); setActiveTab(opt.label); }} style={{ flex: 1, padding: '16px', border: 'none', background: activeTab === opt.label ? '#fff' : 'transparent', borderBottom: activeTab === opt.label ? '2px solid #3B82F6' : 'none', fontSize: 12, fontWeight: 700, color: activeTab === opt.label ? '#111827' : '#6B7280', textTransform: 'uppercase', cursor: 'pointer' }}>{opt.label}</button>
+                        <button key={opt.label} onClick={(e) => { e.stopPropagation(); setActiveTab(opt.label); }} style={{ flex: 1, padding: '16px', border: 'none', background: activeTab === opt.label ? '#fff' : 'transparent', borderBottom: activeTab === opt.label ? '2px solid #3B82F6' : 'none', fontSize: 12, fontWeight: 700, color: activeTab === opt.label ? '#111827' : '#6B7280', textTransform: 'uppercase', cursor: 'pointer' }}>{t(opt.label)}</button>
                      ))}
                   </div>
                   <div style={{ maxHeight: '320px', overflowY: 'auto', padding: '10px 0' }}>
@@ -264,15 +266,15 @@ export default function NewJourneyFlow({ onFindJourney, onCancel }: NewJourneyFl
             )}
          </div>
 
-         <button onClick={handleSimulate} style={{ background: targetRole ? '#111827' : '#E5E7EB', color: '#fff', border: 'none', padding: '18px 50px', borderRadius: 16, fontSize: 18, fontWeight: 800, textTransform: 'uppercase', cursor: targetRole ? 'pointer' : 'not-allowed', marginTop: 38, transition: 'all 0.2s' }}>Simulate Path</button>
+         <button onClick={handleSimulate} style={{ background: targetRole ? '#111827' : '#E5E7EB', color: '#fff', border: 'none', padding: '18px 50px', borderRadius: 16, fontSize: 18, fontWeight: 800, textTransform: 'uppercase', cursor: targetRole ? 'pointer' : 'not-allowed', marginTop: 38, transition: 'all 0.2s' }}>{t('SIMULATE_PATHWAY')}</button>
       </div>
 
       <div style={{ marginTop: 90, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
              <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#F9FAFB', border: '1px solid #E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3B82F6', id: 'engine-icon' }}><Cpu size={22} /></div>
              <div style={{ textAlign: 'left' }}>
-                <div style={{ fontSize: 10, fontWeight: 800, color: '#9CA3AF', letterSpacing: '0.1rem', textTransform: 'uppercase' }}>Simulation Core</div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#4B5563' }}>Systems Optimal</div>
+                <div style={{ fontSize: 10, fontWeight: 800, color: '#9CA3AF', letterSpacing: '0.1rem', textTransform: 'uppercase' }}>{t('SIMULATION_CORE')}</div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: '#4B5563' }}>{t('SYSTEMS_OPTIMAL')}</div>
              </div>
           </div>
       </div>

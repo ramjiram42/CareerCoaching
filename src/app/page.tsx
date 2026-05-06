@@ -64,7 +64,7 @@ export default function HomePage() {
   ];
 
   return (
-    <main style={{ background: '#fff', minHeight: '100vh', fontFamily: "'Outfit', sans-serif" }}>
+    <main style={{ background: '#fff', minHeight: '100vh', }}>
       
       <div style={{ 
         height: '260px', 

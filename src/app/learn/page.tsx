@@ -4,45 +4,45 @@ import { useState } from 'react';
 import { Search, Filter, BookOpen, Clock, Star, Play, CheckCircle, Award, Compass, Layout, Zap, Target, ArrowRight, Brain, Cpu, Database, Network, Users, Shield, Terminal, Globe, Code, Layers, Server, Car, Briefcase, TrendingUp, Anchor } from 'lucide-react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 const CATEGORIES = ['All', 'Incentive Compensation', 'Technology', 'Learning & Development', 'Operations', 'Public Learning'];
 
-// Optimized, stable Unsplash collection for high-fidelity course cards
 const courseImages = [
-  'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1555255707-c07966488bc0?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=800&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=100&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=100&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1518770660439-4636190af475?q=100&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=100&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=100&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=100&w=1200&auto=format&fit=crop', // Replaced broken one
+  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=100&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=100&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=100&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=100&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=100&w=1200&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=100&w=1200&auto=format&fit=crop',
 ];
 
 const courseDefinitions = [
   // Incentive Compensation
-  { title: 'Advanced Sales Compensation Design', category: 'Incentive Compensation', level: 'Advanced', tags: ['Comp', 'Strategy'], provider: 'Hertz Academy' },
-  { title: 'Quota Setting & Performance Analytics', category: 'Incentive Compensation', level: 'Intermediate', tags: ['Data', 'Incentives'], provider: 'Global COE' },
-  { title: 'Global Incentive Compliance Frameworks', category: 'Incentive Compensation', level: 'Advanced', tags: ['Legal', 'Finance'], provider: 'Hertz Academy' },
+  { title: 'Advanced Sales Compensation Design', category: 'Incentive Compensation', level: 'Advanced', tags: ['Comp', 'Strategy'], provider: 'Hertz Academy', url: 'https://www.linkedin.com/learning/search?keywords=sales+compensation+design' },
+  { title: 'Quota Setting & Performance Analytics', category: 'Incentive Compensation', level: 'Intermediate', tags: ['Data', 'Incentives'], provider: 'Global COE', url: 'https://www.coursera.org/search?query=sales%20analytics' },
+  { title: 'Global Incentive Compliance Frameworks', category: 'Incentive Compensation', level: 'Advanced', tags: ['Legal', 'Finance'], provider: 'Hertz Academy', url: 'https://www.youtube.com/results?search_query=incentive+compliance+frameworks' },
   
   // Technology
-  { title: 'Full Stack Enterprise Development with Next.js', category: 'Technology', level: 'Advanced', tags: ['React', 'Next.js'], provider: 'Tech Institute' },
-  { title: 'Cloud Architecture & Infrastructure for Hertz', category: 'Technology', level: 'Advanced', tags: ['AWS', 'Azure'], provider: 'Global COE' },
-  { title: 'Cybersecurity Protocols for Global Systems', category: 'Technology', level: 'Intermediate', tags: ['Security', 'IT'], provider: 'Tech Institute' },
+  { title: 'Full Stack Enterprise Development with Next.js', category: 'Technology', level: 'Advanced', tags: ['React', 'Next.js'], provider: 'Tech Institute', url: 'https://nextjs.org/learn' },
+  { title: 'Cloud Architecture & Infrastructure for Hertz', category: 'Technology', level: 'Advanced', tags: ['AWS', 'Azure'], provider: 'Global COE', url: 'https://www.coursera.org/search?query=aws%20cloud%20architecture' },
+  { title: 'Cybersecurity Protocols for Global Systems', category: 'Technology', level: 'Intermediate', tags: ['Security', 'IT'], provider: 'Tech Institute', url: 'https://www.coursera.org/search?query=cyber%20security' },
   
   // Learning & Development
-  { title: 'Strategic Talent Development & Coaching', category: 'Learning & Development', level: 'Advanced', tags: ['L&D', 'Leadership'], provider: 'Hertz Academy' },
-  { title: 'Instructional Design for Digital Learning', category: 'Learning & Development', level: 'Intermediate', tags: ['Training', 'E-learning'], provider: 'Global COE' },
-  { title: 'Measuring Training ROI & Impact', category: 'Learning & Development', level: 'Advanced', tags: ['Analytics', 'L&D'], provider: 'Hertz Academy' },
+  { title: 'Strategic Talent Development & Coaching', category: 'Learning & Development', level: 'Advanced', tags: ['L&D', 'Leadership'], provider: 'Hertz Academy', url: 'https://www.linkedin.com/learning/search?keywords=talent+development+coaching' },
+  { title: 'Instructional Design for Digital Learning', category: 'Learning & Development', level: 'Intermediate', tags: ['Training', 'E-learning'], provider: 'Global COE', url: 'https://www.coursera.org/search?query=instructional%20design' },
+  { title: 'Measuring Training ROI & Impact', category: 'Learning & Development', level: 'Advanced', tags: ['Analytics', 'L&D'], provider: 'Hertz Academy', url: 'https://www.linkedin.com/learning/search?keywords=measuring+learning+effectiveness' },
 
   // Operations
-  { title: 'Fleet Logistics & Supply Chain Mastery', category: 'Operations', level: 'Advanced', tags: ['Logistics', 'Fleet'], provider: 'Hertz Academy' },
-  { title: 'Operational Excellence & Lean Management', category: 'Operations', level: 'Intermediate', tags: ['Six Sigma', 'Lean'], provider: 'Global COE' },
-  { title: 'Branch Management & Profitability Systems', category: 'Operations', level: 'Advanced', tags: ['Ops', 'Leadership'], provider: 'Hertz Academy' },
+  { title: 'Fleet Logistics & Supply Chain Mastery', category: 'Operations', level: 'Advanced', tags: ['Logistics', 'Fleet'], provider: 'Hertz Academy', url: 'https://www.coursera.org/search?query=supply%20chain%20logistics' },
+  { title: 'Operational Excellence & Lean Management', category: 'Operations', level: 'Intermediate', tags: ['Six Sigma', 'Lean'], provider: 'Global COE', url: 'https://www.coursera.org/search?query=lean%20management' },
+  { title: 'Branch Management & Profitability Systems', category: 'Operations', level: 'Advanced', tags: ['Ops', 'Leadership'], provider: 'Hertz Academy', url: 'https://www.linkedin.com/learning/search?keywords=retail+store+manager' },
 
   // Public Learning
   { title: 'LinkedIn Learning: Executive Presence Foundations', category: 'Public Learning', level: 'Beginner', tags: ['Leadership', 'LinkedIn'], provider: 'LinkedIn Learning', url: 'https://www.linkedin.com/learning/' },
@@ -68,13 +68,14 @@ const ALL_COURSES = courseDefinitions.map((c, i) => ({
 }));
 
 export default function LearningHubPage() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('Courses');
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredCourses = ALL_COURSES.filter(c => activeCategory === 'All' || c.category === activeCategory);
 
   return (
-    <main style={{ background: '#fff', minHeight: '100vh', fontFamily: "'Inter', sans-serif" }}>
+    <main style={{ background: '#fff', minHeight: '100vh', }}>
       
       {/* Hero Banner */}
       <div style={{ width: '100%', height: 260, position: 'relative', overflow: 'hidden' }}>
@@ -87,9 +88,9 @@ export default function LearningHubPage() {
          />
          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, transparent 80%)' }} />
          <div style={{ position: 'relative', zIndex: 1, padding: '60px 100px' }}>
-            <p style={{ fontSize: 12, fontWeight: 900, color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 12 }}>Learning Hub</p>
-            <h1 style={{ fontSize: 42, fontWeight: 950, color: '#fff', margin: 0, lineHeight: 1.1 }}>PRECISION<br />LEARNING.</h1>
-            <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 16, marginTop: 12, maxWidth: 600 }}>Precision-engineered courses and paths to close your skill gaps for your next move.</p>
+            <p style={{ fontSize: 12, fontWeight: 900, color: '#f59e0b', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: 12 }}>{t('LEARNING_HUB')}</p>
+            <h1 style={{ fontSize: 42, fontWeight: 950, color: '#fff', margin: 0, lineHeight: 1.1, whiteSpace: 'pre-line' }}>{t('PRECISION_LEARNING')}</h1>
+            <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 16, marginTop: 12, maxWidth: 600 }}>{t('LEARNING_HUB_DESC')}</p>
          </div>
       </div>
 
@@ -113,7 +114,7 @@ export default function LearningHubPage() {
                     transition: 'all 0.3s'
                   }}
                  >
-                   {cat.toUpperCase()}
+                   {t(cat.toUpperCase())}
                  </button>
               ))}
            </div>
@@ -135,7 +136,7 @@ export default function LearningHubPage() {
                     transition: 'all 0.3s'
                   }}
                  >
-                   {tab}
+                   {t(tab.toUpperCase())}
                  </button>
               ))}
            </div>
@@ -164,12 +165,12 @@ export default function LearningHubPage() {
                         unoptimized 
                       />
                       <div style={{ position: 'absolute', top: 12, right: 12, background: 'rgba(255,255,255,0.9)', padding: '4px 10px', borderRadius: 8, fontSize: 10, fontWeight: 900, color: '#1e293b', zIndex: 2 }}>
-                         {course.level}
+                         {t(course.level.toUpperCase())}
                       </div>
                    </div>
                    <div style={{ padding: 20 }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
-                         <span style={{ fontSize: 10, fontWeight: 900, color: '#f59e0b', textTransform: 'uppercase' }}>{course.category}</span>
+                         <span style={{ fontSize: 10, fontWeight: 900, color: '#f59e0b', textTransform: 'uppercase' }}>{t(course.category.toUpperCase())}</span>
                          <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 800, color: '#b45309' }}>
                             <Star size={12} fill="#f59e0b" color="#f59e0b" /> {course.rating}
                          </div>
@@ -199,7 +200,7 @@ export default function LearningHubPage() {
                           textDecoration: 'none'
                         }}
                       >
-                        {course.category === 'Public Learning' ? 'Go to Platform' : 'Start Learning'}
+                        {course.category === 'Public Learning' ? t('GO_TO_PLATFORM') : t('START_LEARNING')}
                       </a>
                    </div>
                 </motion.div>
