@@ -827,7 +827,7 @@ export function AIProfileAnalyzer() {
       role: 'Technology',
       label: 'New Horizon',
       labelColor: '#8B5CF6',
-      match: 'NEW_HORIZON',
+      match: 'NEW HORIZON',
       matchColor: '#8B5CF6',
       badge: 'NEXT_STEP',
       badgeColor: '#8B5CF6',

@@ -461,7 +461,7 @@ const translations: Translations = {
     ES: 'NUEVO HORIZONTE',
     IT: 'NUOVO ORIZZONTE'
   },
-  'NEW_HORIZON': {
+  'NEW HORIZON': {
     EN: 'NEW HORIZON',
     DE: 'NEUER HORIZONT',
     FR: 'NOUVEL HORIZON',
