@@ -790,11 +790,11 @@ export function AIProfileAnalyzer() {
       pathId: 'operations',
       role: 'Operations',
       label: 'High Match',
-      labelColor: '#F59E0B',
+      labelColor: '#10B981',
       match: 'HIGH_MATCH',
-      matchColor: '#F59E0B',
+      matchColor: '#10B981',
       badge: 'EXPLORE',
-      badgeColor: '#F59E0B',
+      badgeColor: '#10B981',
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop'
     },
     {
@@ -814,11 +814,11 @@ export function AIProfileAnalyzer() {
       pathId: 'l-and-d',
       role: 'Learning & Development',
       label: 'Potential',
-      labelColor: '#10B981',
+      labelColor: '#F59E0B',
       match: 'POTENTIAL',
-      matchColor: '#10B981',
+      matchColor: '#F59E0B',
       badge: 'EXPLORE',
-      badgeColor: '#10B981',
+      badgeColor: '#F59E0B',
       image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=400&fit=crop'
     },
     {

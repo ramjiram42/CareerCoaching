@@ -83,9 +83,9 @@ export default function CareerCoachingPortal({ overridePath, onBack }: { overrid
 // ==========================================
 function RecommendedView({ data, onSelectPath, savedPaths, toggleSave }: any) {
   const lanes = [
-    { path: data.categories[1].paths[0], label: "High Match", color: "#F59E0B", icon: <TrendingUp size={16} color="#fff" /> },
+    { path: data.categories[1].paths[0], label: "High Match", color: "#10B981", icon: <TrendingUp size={16} color="#fff" /> },
     { path: data.categories[0].paths[0], label: "Best Fit", color: "#ec4899", icon: <Star size={16} fill="#fff" /> },
-    { path: data.categories[2].paths[0], label: "Potential", color: "#10B981", icon: <Zap size={16} fill="#fff" /> },
+    { path: data.categories[2].paths[0], label: "Potential", color: "#F59E0B", icon: <Zap size={16} fill="#fff" /> },
     { path: data.categories[3].paths[0], label: "New Horizon", color: "#8B5CF6", icon: <Compass size={16} color="#fff" /> }
   ];
 

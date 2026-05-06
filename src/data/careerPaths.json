@@ -46,8 +46,8 @@
     {
       "id": "high-match",
       "type": "High Match ⚡",
-      "style": "orange",
-      "color": "#F59E0B",
+      "style": "green",
+      "color": "#10B981",
       "paths": [
         {
           "id": "operations",
@@ -70,8 +70,8 @@
     {
       "id": "potential",
       "type": "Potential 🌟",
-      "style": "green",
-      "color": "#10B981",
+      "style": "orange",
+      "color": "#F59E0B",
       "paths": [
         {
           "id": "l-and-d",
